@@ -3,10 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const stats = [
-  { label: "GitHub Repos", value: 50, suffix: "+" },
-  { label: "Articles Published", value: 30, suffix: "+" },
-  { label: "Years Experience", value: 5, suffix: "+" },
-  { label: "Open Source Contributions", value: 100, suffix: "+" },
+  { label: "GitHub Followers", value: 33, suffix: "+" },
+  { label: "LinkedIn Connections", value: 5000, suffix: "+" },
+  { label: "Technical Articles", value: 50, suffix: "+" },
+  { label: "Years Experience", value: 7, suffix: "+" },
+  { label: "Data Processed Daily", value: 2, suffix: "TB+" },
+  { label: "Open Source Projects", value: 20, suffix: "+" },
 ];
 
 const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
@@ -37,7 +39,7 @@ const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
 
   return (
     <span ref={ref} className="tabular-nums">
-      {count}{suffix}
+      {count.toLocaleString()}{suffix}
     </span>
   );
 };
@@ -59,7 +61,7 @@ export const Stats = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -69,10 +71,10 @@ export const Stats = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+              <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-muted-foreground font-medium">{stat.label}</p>
+              <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
             </motion.div>
           ))}
         </div>

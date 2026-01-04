@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { Linkedin, Github, Youtube, Mail, Heart } from "lucide-react";
+import { Linkedin, Github, Youtube, Mail, Heart, Twitter, BookOpen } from "lucide-react";
 
 const socialLinks = [
+  { icon: Youtube, href: "https://youtube.com/@kuldeeppal", label: "YouTube" },
   { icon: Linkedin, href: "https://linkedin.com/in/kuldeep27396", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/kuldeep27396", label: "GitHub" },
-  { icon: Youtube, href: "https://youtube.com/@kuldeeppal", label: "YouTube" },
-  { icon: Mail, href: "mailto:kuldeep27396@gmail.com", label: "Email" },
+  { icon: BookOpen, href: "https://medium.com/@kuldeep27396", label: "Medium" },
+  { icon: Twitter, href: "https://twitter.com/kuldeep27396", label: "Twitter" },
 ];
 
 export const Footer = () => {
@@ -22,7 +23,7 @@ export const Footer = () => {
           {/* Logo/Name */}
           <div className="text-center md:text-left">
             <h3 className="text-xl font-bold font-mono">Kuldeep Pal</h3>
-            <p className="text-sm text-muted-foreground">Data Engineer & ML Enthusiast</p>
+            <p className="text-sm text-muted-foreground">Senior Software Engineer - Data @ Walmart</p>
           </div>
 
           {/* Social Links */}
@@ -45,7 +46,7 @@ export const Footer = () => {
 
           {/* Copyright */}
           <div className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-destructive fill-destructive" /> © {new Date().getFullYear()}
+            Made with <Heart className="w-4 h-4 text-destructive fill-destructive" /> in India © {new Date().getFullYear()}
           </div>
         </motion.div>
       </div>
