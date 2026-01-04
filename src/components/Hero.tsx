@@ -1,21 +1,26 @@
 import { motion } from "framer-motion";
-import { Linkedin, Github, Youtube, Mail, ExternalLink } from "lucide-react";
+import { Linkedin, Github, Youtube, Mail, ExternalLink, Twitter, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
+  { icon: Youtube, href: "https://youtube.com/@kuldeeppal", label: "YouTube" },
   { icon: Linkedin, href: "https://linkedin.com/in/kuldeep27396", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/kuldeep27396", label: "GitHub" },
-  { icon: Youtube, href: "https://youtube.com/@kuldeeppal", label: "YouTube" },
-  { icon: Mail, href: "mailto:kuldeep27396@gmail.com", label: "Email" },
+  { icon: BookOpen, href: "https://medium.com/@kuldeep27396", label: "Medium" },
+  { icon: Twitter, href: "https://twitter.com/kuldeep27396", label: "Twitter" },
 ];
 
 const skills = [
   "Apache Spark",
   "Python",
-  "Data Engineering",
   "AWS",
-  "Machine Learning",
-  "Big Data",
+  "GCP",
+  "Kafka",
+  "Data Engineering",
+];
+
+const education = [
+  "B.Tech in Computer Science",
 ];
 
 export const Hero = () => {
@@ -48,16 +53,34 @@ export const Hero = () => {
                 <span className="gradient-text">Kuldeep Pal</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-                Data Engineer & ML Enthusiast
+                Senior Software Engineer - Data at <span className="text-foreground font-semibold">Walmart</span>
               </p>
             </div>
 
             {/* Bio */}
             <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              Building scalable data platforms and ML pipelines. Passionate about 
-              turning complex data challenges into elegant solutions and sharing 
-              knowledge with the community.
+              With <span className="text-primary font-semibold">7+ years of experience</span> specializing in 
+              Apache Spark, Kafka, Python, and Cloud Platforms. Passionate about building scalable data 
+              platforms and sharing knowledge with the community.
             </p>
+
+            {/* Education */}
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-muted-foreground">Education</p>
+              <div className="flex flex-wrap gap-2">
+                {education.map((edu, index) => (
+                  <motion.span
+                    key={edu}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 + index * 0.05 }}
+                    className="px-3 py-1.5 text-sm bg-primary/10 text-primary rounded-full border border-primary/20"
+                  >
+                    ✓ {edu}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
 
             {/* Skills Tags */}
             <div className="flex flex-wrap gap-2">
@@ -66,7 +89,7 @@ export const Hero = () => {
                   key={skill}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 + index * 0.05 }}
+                  transition={{ delay: 0.4 + index * 0.05 }}
                   className="px-3 py-1.5 text-sm font-mono bg-secondary rounded-md text-secondary-foreground"
                 >
                   {skill}
@@ -76,13 +99,17 @@ export const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button size="lg" className="gap-2 shadow-glow">
-                <Mail className="w-4 h-4" />
-                Get in Touch
+              <Button size="lg" className="gap-2 shadow-glow" asChild>
+                <a href="mailto:kuldeep27396@gmail.com">
+                  <Mail className="w-4 h-4" />
+                  Get in Touch
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="gap-2">
-                <ExternalLink className="w-4 h-4" />
-                View Projects
+              <Button size="lg" variant="outline" className="gap-2" asChild>
+                <a href="https://youtube.com/@kuldeeppal" target="_blank" rel="noopener noreferrer">
+                  <Youtube className="w-4 h-4" />
+                  Watch on YouTube
+                </a>
               </Button>
             </div>
 
@@ -121,26 +148,31 @@ export const Hero = () => {
               
               {/* Profile Image Container */}
               <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-card">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <span className="text-7xl font-bold gradient-text">KP</span>
-                </div>
+                <img 
+                  src="https://avatars.githubusercontent.com/u/61800838?v=4" 
+                  alt="Kuldeep Pal"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Floating Badge */}
-              <motion.div
+              <motion.a
+                href="https://linkedin.com/in/kuldeep27396/recent-activity/articles/"
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute -right-4 bottom-8 bg-card rounded-xl px-4 py-3 shadow-card border border-border"
+                className="absolute -right-4 bottom-8 bg-card rounded-xl px-4 py-3 shadow-card border border-border hover:border-primary transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <ExternalLink className="w-4 h-4 text-primary" />
                   <div>
-                    <p className="font-semibold text-sm">50+ Projects</p>
-                    <p className="text-xs text-muted-foreground">on GitHub</p>
+                    <p className="font-semibold text-sm">50+ Articles</p>
+                    <p className="text-xs text-muted-foreground">on LinkedIn</p>
                   </div>
                 </div>
-              </motion.div>
+              </motion.a>
             </div>
           </motion.div>
         </div>

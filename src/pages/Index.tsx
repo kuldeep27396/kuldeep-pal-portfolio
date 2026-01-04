@@ -1,9 +1,8 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
-import { Offerings } from "@/components/Offerings";
-import { Skills } from "@/components/Skills";
-import { Playbook } from "@/components/Playbook";
+import { FeaturedVideo } from "@/components/FeaturedVideo";
+import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -11,19 +10,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="pt-16">
-        <section id="home">
-          <Hero />
-        </section>
+        <Hero />
         <Stats />
-        <section id="skills">
-          <Skills />
-        </section>
-        <Offerings />
-        <Playbook />
+        <FeaturedVideo />
+        <Contact />
       </main>
-      <section id="contact">
-        <Footer />
-      </section>
+      <Footer />
     </div>
   );
 };
