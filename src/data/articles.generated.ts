@@ -31,7 +31,7 @@ export const highlightTags = [
   "fraud-detection"
 ] as const;
 
-export const lastUpdated = "2026-03-07T17:18:27.484Z";
+export const lastUpdated = "2026-03-07T17:34:15.597Z";
 
 export const articles: ArticleItem[] = [
   {
@@ -49,7 +49,7 @@ export const articles: ArticleItem[] = [
     "title": "Unveiling Insights from IPL Ticket Booking Data with Apache Spark",
     "source": "medium",
     "sourceLabel": "Medium",
-    "date": "Apr 9, 2024",
+    "date": "Apr 8, 2024",
     "isoDate": "2024-04-08T20:08:34.000Z",
     "description": "IPL Introduction : In the realm of sports, the Indian Premier League (IPL) stands out as one of the most electrifying events, capturing the attention of millions of cricket enth...",
     "tags": [
