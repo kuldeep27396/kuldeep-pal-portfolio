@@ -10,17 +10,11 @@ const socialLinks = [
   { icon: Twitter, href: "https://twitter.com/kuldeep27396", label: "Twitter" },
 ];
 
-const skills = [
-  "Apache Spark",
-  "Python",
-  "AWS",
-  "GCP",
-  "Kafka",
-  "Data Engineering",
-];
-
-const education = [
-  "B.Tech in Computer Science",
+const highlights = [
+  "Gift Card Fraud Detection — $4M/year recovery",
+  "Insurance Fraud Investigation — $544K/year savings",
+  "Processing 8K msg/sec (2TB/day) streaming pipelines",
+  "GenAI Agents with LangGraph & MCP Servers",
 ];
 
 export const Hero = () => {
@@ -53,52 +47,41 @@ export const Hero = () => {
                 <span className="gradient-text">Kuldeep Pal</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-                Senior Software Engineer - Data at <span className="text-foreground font-semibold">Walmart</span>
+                Senior Software Engineer - Data & AI
+              </p>
+              <p className="text-lg text-muted-foreground">
+                at <span className="text-foreground font-semibold">Walmart Global Tech</span> · Bengaluru, India
               </p>
             </div>
 
             {/* Bio */}
             <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              With <span className="text-primary font-semibold">7+ years of experience</span> specializing in 
-              Apache Spark, Kafka, Python, and Cloud Platforms. Passionate about building scalable data 
-              platforms and sharing knowledge with the community.
+              <span className="text-primary font-semibold">7+ years</span> building high-performance systems in 
+              Big Data, Backend & AI. Expert in Python, Spark, Kafka, Spring Boot, AWS, GCP, and GenAI — 
+              architecting solutions that drive measurable business impact.
             </p>
 
-            {/* Education */}
+            {/* Key Highlights */}
             <div className="space-y-2">
-              <p className="text-sm font-medium text-muted-foreground">Education</p>
-              <div className="flex flex-wrap gap-2">
-                {education.map((edu, index) => (
-                  <motion.span
-                    key={edu}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + index * 0.05 }}
-                    className="px-3 py-1.5 text-sm bg-primary/10 text-primary rounded-full border border-primary/20"
+              <p className="text-sm font-semibold text-foreground">Key Impact</p>
+              <div className="space-y-1.5">
+                {highlights.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.1 }}
+                    className="flex items-start gap-2 text-sm text-muted-foreground"
                   >
-                    ✓ {edu}
-                  </motion.span>
+                    <span className="text-primary mt-0.5">▸</span>
+                    <span>{item}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Skills Tags */}
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4 + index * 0.05 }}
-                  className="px-3 py-1.5 text-sm font-mono bg-secondary rounded-md text-secondary-foreground"
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-wrap gap-4 pt-2">
               <Button size="lg" className="gap-2 shadow-glow" asChild>
                 <a href="mailto:kuldeep27396@gmail.com">
                   <Mail className="w-4 h-4" />
@@ -114,7 +97,7 @@ export const Hero = () => {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 pt-4">
+            <div className="flex items-center gap-4 pt-2">
               <span className="text-sm text-muted-foreground">Follow me:</span>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
@@ -155,7 +138,7 @@ export const Hero = () => {
                 />
               </div>
 
-              {/* Floating Badge */}
+              {/* Floating Badge - Articles */}
               <motion.a
                 href="https://linkedin.com/in/kuldeep27396/recent-activity/articles/"
                 target="_blank"
@@ -163,16 +146,32 @@ export const Hero = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="absolute -right-4 bottom-8 bg-card rounded-xl px-4 py-3 shadow-card border border-border hover:border-primary transition-colors"
+                className="absolute -right-4 bottom-20 bg-card rounded-xl px-4 py-3 shadow-card border border-border hover:border-primary transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <ExternalLink className="w-4 h-4 text-primary" />
                   <div>
                     <p className="font-semibold text-sm">50+ Articles</p>
-                    <p className="text-xs text-muted-foreground">on LinkedIn</p>
+                    <p className="text-xs text-muted-foreground">on LinkedIn & Medium</p>
                   </div>
                 </div>
               </motion.a>
+
+              {/* Floating Badge - Experience */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8 }}
+                className="absolute -left-4 top-8 bg-card rounded-xl px-4 py-3 shadow-card border border-border"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-primary text-lg">🎓</span>
+                  <div>
+                    <p className="font-semibold text-sm">B.E. (Hons) CSE</p>
+                    <p className="text-xs text-muted-foreground">CGPA: 7.83/10</p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

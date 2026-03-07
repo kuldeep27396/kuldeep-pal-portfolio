@@ -3,12 +3,12 @@ import { useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const stats = [
-  { label: "GitHub Followers", value: 33, suffix: "+" },
+  { label: "Years Experience", value: 7, suffix: "+" },
   { label: "LinkedIn Connections", value: 5000, suffix: "+" },
   { label: "Technical Articles", value: 50, suffix: "+" },
-  { label: "Years Experience", value: 7, suffix: "+" },
   { label: "Data Processed Daily", value: 2, suffix: "TB+" },
   { label: "Open Source Projects", value: 20, suffix: "+" },
+  { label: "Fraud Recovery Impact", value: 4, suffix: "M$/yr" },
 ];
 
 const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
@@ -55,9 +55,9 @@ export const Stats = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Community Impact</h2>
+          <h2 className="text-3xl font-bold mb-4">Impact & Community</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Building a global community of data engineers through content and open-source contributions.
+            Driving business impact at scale while building a global community of data engineers.
           </p>
         </motion.div>
 
