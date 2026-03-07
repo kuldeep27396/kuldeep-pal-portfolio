@@ -139,6 +139,7 @@
       radial-gradient(circle at top, hsl(var(--accent) / 0.45), transparent 34%),
       linear-gradient(180deg, hsl(var(--background)), hsl(38 30% 93%));
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   h1,

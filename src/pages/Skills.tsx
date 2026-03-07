@@ -135,7 +135,7 @@ const Skills = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
             <Link
@@ -153,7 +153,7 @@ const Skills = () => {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <h1 className="text-4xl font-bold mb-4">Tech Stack & Focus Areas</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Tech Stack & Focus Areas</h1>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -163,7 +163,7 @@ const Skills = () => {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
+                className="rounded-[1.5rem] border border-border bg-card p-5 sm:p-6 shadow-card"
               >
                 <div className="flex items-start gap-4 mb-5">
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${category.tone}`}>

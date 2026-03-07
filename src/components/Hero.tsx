@@ -41,14 +41,14 @@ const highlights = [
 
 export const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center py-20 px-6">
+    <section className="min-h-screen flex items-center justify-center py-16 px-4 sm:px-6">
       <div className="container max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-5 sm:space-y-6"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -61,18 +61,18 @@ export const Hero = () => {
             </motion.div>
 
             <div className="space-y-2">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 Hi, I&apos;m <span className="gradient-text">Kuldeep Pal</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground font-medium">
+              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-medium">
                 Senior Software Engineer - Data, AI, and Backend Systems
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Based in <span className="text-foreground font-semibold">Bengaluru, India</span>
               </p>
             </div>
 
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            <p className="max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
               I&apos;m a senior engineer working across <span className="text-foreground font-medium">data engineering, AI, and backend systems</span>.
               I build production systems on the data side, backend side, and AI side, with strong impact on data platforms,
               AI agents, APIs, and platform reliability. I&apos;m particularly interested in high-ownership engineering challenges
@@ -97,14 +97,14 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button size="lg" className="gap-2 shadow-glow" asChild>
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 pt-2">
+              <Button size="lg" className="w-full sm:w-auto justify-center gap-2 shadow-glow" asChild>
                 <a href="#contact">
                   <Send className="w-4 h-4" />
                   Get in Touch
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="gap-2" asChild>
+              <Button size="lg" variant="outline" className="w-full sm:w-auto justify-center gap-2" asChild>
                 <a href="https://cal.com/kuldeep.pal/meet-kuldeep" target="_blank" rel="noopener noreferrer">
                   <CalendarDays className="w-4 h-4" />
                   Book a Call
@@ -112,7 +112,7 @@ export const Hero = () => {
               </Button>
             </div>
 
-            <div className="flex items-center gap-4 pt-2">
+            <div className="flex flex-col items-start gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
               <span className="text-sm text-muted-foreground">Follow me:</span>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
@@ -149,7 +149,7 @@ export const Hero = () => {
           >
             <div className="relative">
               <div className="absolute inset-[-1.25rem] rounded-[2.5rem] bg-[radial-gradient(circle_at_top,hsl(var(--accent)/0.55),transparent_55%)] blur-2xl" />
-              <div className="relative w-[19rem] h-[24rem] md:w-[22rem] md:h-[27rem] rounded-[2rem] overflow-hidden border border-white/30 bg-[linear-gradient(180deg,hsl(var(--card)),hsl(var(--background)))] shadow-card">
+              <div className="relative h-[20rem] w-[16rem] sm:h-[24rem] sm:w-[19rem] md:h-[27rem] md:w-[22rem] rounded-[2rem] overflow-hidden border border-white/30 bg-[linear-gradient(180deg,hsl(var(--card)),hsl(var(--background)))] shadow-card">
                 <div className="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,hsl(0_0%_100%/0.45),transparent_70%)]" />
                 <img
                   src="https://avatars.githubusercontent.com/u/61800838?v=4"
@@ -166,7 +166,7 @@ export const Hero = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.55 }}
-                className="absolute right-3 bottom-4 bg-card/95 rounded-2xl px-3 py-2 shadow-card border border-border hover:border-primary transition-colors"
+                className="absolute right-2 bottom-3 sm:right-3 sm:bottom-4 bg-card/95 rounded-2xl px-3 py-2 shadow-card border border-border hover:border-primary transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <ExternalLink className="w-3.5 h-3.5 text-primary" />

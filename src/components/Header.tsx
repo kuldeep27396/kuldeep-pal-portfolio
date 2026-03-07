@@ -69,7 +69,7 @@ export const Header = () => {
       transition={{ duration: 0.5 }}
       className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50"
     >
-      <div className="container max-w-6xl mx-auto px-6">
+      <div className="container max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-3">
             <BrandMark />
@@ -126,7 +126,7 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden py-4 border-t border-border"
+            className="lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto py-4 border-t border-border"
           >
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (

@@ -40,16 +40,16 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 py-20 px-6 bg-card">
+    <section id="contact" className="scroll-mt-24 py-20 px-4 sm:px-6 bg-card">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-10 sm:mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Get in Touch</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             For opportunities, collaboration, or technical conversations around data platforms, AI systems, and backend engineering, send a message here.
           </p>
@@ -76,7 +76,7 @@ export const Contact = () => {
               <p className="text-xs text-muted-foreground">
                 Messages are submitted directly through the form. Your message, name, and email are sent securely without showing a personal email address on the page.
               </p>
-              <Button variant="outline" className="gap-2 mt-2" asChild>
+              <Button variant="outline" className="mt-2 w-full justify-center gap-2 sm:w-auto" asChild>
                 <a href="https://cal.com/kuldeep.pal/meet-kuldeep" target="_blank" rel="noopener noreferrer">
                   <CalendarDays className="w-4 h-4" />
                   Schedule via Cal.com
@@ -134,7 +134,7 @@ export const Contact = () => {
 
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
               <p className="text-xs text-muted-foreground min-h-4">{result}</p>
-              <Button type="submit" className="gap-2" disabled={isSubmitting}>
+              <Button type="submit" className="w-full justify-center gap-2 sm:w-auto" disabled={isSubmitting}>
                 <Send className="w-4 h-4" />
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>

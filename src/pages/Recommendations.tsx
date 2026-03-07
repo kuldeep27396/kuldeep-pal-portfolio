@@ -127,7 +127,7 @@ const Recommendations = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -149,8 +149,8 @@ const Recommendations = () => {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-4xl font-bold mb-4">LinkedIn Recommendations</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">LinkedIn Recommendations</h1>
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
               Public recommendations received on LinkedIn from teammates, managers, teachers, and collaborators.
             </p>
           </motion.div>
@@ -159,14 +159,14 @@ const Recommendations = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="rounded-[1.5rem] border border-border bg-card p-6 shadow-card mb-10 flex flex-wrap items-center justify-between gap-5"
+            className="rounded-[1.5rem] border border-border bg-card p-5 sm:p-6 shadow-card mb-10 flex flex-wrap items-center justify-between gap-5"
           >
             <div>
               <p className="text-sm font-semibold text-primary mb-1">Recommendation Snapshot</p>
-              <h2 className="text-2xl font-bold">{recommendations.length} received recommendations</h2>
+              <h2 className="text-xl sm:text-2xl font-bold">{recommendations.length} received recommendations</h2>
               <p className="text-sm text-muted-foreground mt-1">This page uses the exact recommendation text you provided from LinkedIn.</p>
             </div>
-            <Button variant="outline" className="gap-2" asChild>
+            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
               <a href="https://www.linkedin.com/in/kuldeep27396/details/recommendations/" target="_blank" rel="noopener noreferrer">
                 <ExternalLink className="w-4 h-4" />
                 Open LinkedIn Recommendations

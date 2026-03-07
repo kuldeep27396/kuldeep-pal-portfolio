@@ -54,7 +54,7 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
             <Link
@@ -72,8 +72,8 @@ const Projects = () => {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-4xl font-bold mb-4">GitHub & Personal Projects</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">GitHub & Personal Projects</h1>
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
               A selection of personal projects from my public GitHub profile, spanning AI tooling, browser products,
               orchestration, and real-time data engineering.
             </p>
@@ -83,18 +83,18 @@ const Projects = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="rounded-[1.75rem] border border-border bg-card p-7 shadow-card mb-10"
+            className="rounded-[1.75rem] border border-border bg-card p-5 sm:p-7 shadow-card mb-10"
           >
             <div className="flex flex-wrap items-start justify-between gap-6">
               <div className="space-y-2">
                 <p className="text-sm font-semibold text-primary">Public GitHub Snapshot</p>
-                <h2 className="text-2xl font-bold">Hands-on personal work beyond the resume</h2>
+                <h2 className="text-xl sm:text-2xl font-bold">Hands-on personal work beyond the resume</h2>
                 <p className="text-muted-foreground max-w-2xl">
                   This section is based on the current public GitHub profile and focuses on projects that reinforce the same story:
                   data engineering depth, AI experimentation, and production-minded backend work.
                 </p>
               </div>
-              <Button variant="outline" className="gap-2" asChild>
+              <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
                 <a href="https://github.com/kuldeep27396" target="_blank" rel="noopener noreferrer">
                   <Github className="w-4 h-4" />
                   View All on GitHub
@@ -119,7 +119,7 @@ const Projects = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="group rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
+                className="group rounded-[1.5rem] border border-border bg-card p-5 sm:p-6 shadow-card"
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <div className="flex items-center gap-3">

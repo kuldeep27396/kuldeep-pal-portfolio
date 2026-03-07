@@ -244,7 +244,7 @@ const Certificates = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -266,7 +266,7 @@ const Certificates = () => {
             transition={{ duration: 0.5 }}
             className="mb-10"
           >
-            <h1 className="text-4xl font-bold mb-4">Licenses & Certifications</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Licenses & Certifications</h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
               Public credentials from LinkedIn across data engineering, AI, backend systems, cloud, and foundational engineering topics.
             </p>

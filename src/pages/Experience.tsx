@@ -39,7 +39,7 @@ const Experience = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
             <Link
@@ -57,8 +57,8 @@ const Experience = () => {
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <h1 className="text-4xl font-bold mb-4">Work Experience</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Work Experience</h1>
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
               Experience across product companies and consulting environments, with consistent focus on data engineering
               and increasing ownership in AI systems, backend services, and production platform design.
             </p>
@@ -71,7 +71,7 @@ const Experience = () => {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: expIndex * 0.1 }}
-                className="rounded-[1.75rem] border border-border bg-card p-7 shadow-card"
+                className="rounded-[1.75rem] border border-border bg-card p-5 sm:p-7 shadow-card"
               >
                 <div className="flex flex-wrap items-start gap-4">
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
@@ -80,7 +80,7 @@ const Experience = () => {
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
                       <div>
-                        <h2 className="text-2xl font-bold">{exp.company}</h2>
+                        <h2 className="text-xl sm:text-2xl font-bold">{exp.company}</h2>
                         <p className="text-foreground font-medium">{exp.role}</p>
                         {exp.clients ? <p className="text-sm text-muted-foreground mt-1">{exp.clients}</p> : null}
                       </div>
@@ -118,7 +118,7 @@ const Experience = () => {
             transition={{ delay: 0.45 }}
             className="mt-16"
           >
-            <h2 className="text-2xl font-bold mb-6">Education</h2>
+            <h2 className="text-xl sm:text-2xl font-bold mb-6">Education</h2>
             <div className="bg-card rounded-xl p-6 border border-border shadow-card">
               <div className="flex items-start gap-4">
                 <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">

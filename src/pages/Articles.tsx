@@ -29,7 +29,7 @@ const Articles = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 pb-16 px-6">
+      <main className="pt-24 pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl mx-auto">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
             <Link
@@ -47,22 +47,22 @@ const Articles = () => {
             transition={{ duration: 0.5 }}
             className="mb-8"
           >
-            <h1 className="text-4xl font-bold">Blogs</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold">Blogs</h1>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="flex flex-wrap gap-3 mb-8"
+            className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-8"
           >
-            <Button variant="outline" className="gap-2" asChild>
+            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
               <a href={sourceLinks.linkedin} target="_blank" rel="noopener noreferrer">
                 <Newspaper className="w-4 h-4" />
                 LinkedIn Newsletter
               </a>
             </Button>
-            <Button className="gap-2" asChild>
+            <Button className="w-full justify-center gap-2 sm:w-auto" asChild>
               <a
                 href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6983848189787271168"
                 target="_blank"
@@ -72,7 +72,7 @@ const Articles = () => {
                 Subscribe on LinkedIn
               </a>
             </Button>
-            <Button variant="outline" className="gap-2" asChild>
+            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
               <a href={sourceLinks.medium} target="_blank" rel="noopener noreferrer">
                 <BookOpen className="w-4 h-4" />
                 Medium Profile
@@ -88,12 +88,9 @@ const Articles = () => {
           >
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-6">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold">Live Newsletter Wall</h2>
-                <p className="text-muted-foreground mt-2">
-                  Embedded view of the LinkedIn newsletter feed for quick browsing.
-                </p>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Live Newsletter Wall</h2>
               </div>
-              <Button variant="outline" className="gap-2" asChild>
+              <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
                 <a
                   href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6983848189787271168"
                   target="_blank"
@@ -105,7 +102,7 @@ const Articles = () => {
               </Button>
             </div>
 
-            <div className="rss-embed-shell w-full overflow-hidden rounded-[1.25rem]">
+            <div className="rss-embed-shell w-full overflow-hidden rounded-xl sm:rounded-[1.25rem]">
               <rssapp-list id="02YvGSMPwlBwIWEu" />
             </div>
           </motion.section>
@@ -118,12 +115,9 @@ const Articles = () => {
           >
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-6">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold">Medium Wall</h2>
-                <p className="text-muted-foreground mt-2">
-                  Embedded view of the Medium feed for fast browsing through the archive.
-                </p>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Medium Wall</h2>
               </div>
-              <Button variant="outline" className="gap-2" asChild>
+              <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
                 <a href={sourceLinks.medium} target="_blank" rel="noopener noreferrer">
                   <BookOpen className="w-4 h-4" />
                   Open Medium Profile
@@ -131,7 +125,7 @@ const Articles = () => {
               </Button>
             </div>
 
-            <div className="rss-embed-shell w-full overflow-hidden rounded-[1.25rem]">
+            <div className="rss-embed-shell w-full overflow-hidden rounded-xl sm:rounded-[1.25rem]">
               <rssapp-list id="7MPetCZibcZLILhs" />
             </div>
           </motion.section>

@@ -31,7 +31,7 @@ export const highlightTags = [
   "fraud-detection"
 ] as const;
 
-export const lastUpdated = "2026-03-07T17:33:52.523Z";
+export const lastUpdated = "2026-03-07T18:13:55.432Z";
 
 export const articles: ArticleItem[] = [
   {
