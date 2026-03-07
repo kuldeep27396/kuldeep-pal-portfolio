@@ -6,99 +6,91 @@ import { ArrowLeft } from "lucide-react";
 
 const skillCategories = [
   {
-    title: "Core Expertise",
-    description: "Primary technologies I specialize in",
-    skills: [
-      { name: "Apache Spark", level: "Expert" },
-      { name: "Python", level: "Expert" },
-      { name: "PySpark", level: "Expert" },
-      { name: "Kafka", level: "Advanced" },
-      { name: "Airflow", level: "Advanced" },
-      { name: "Data Lakehouse", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Cloud Platforms",
-    description: "AWS, GCP and Azure services",
-    skills: [
-      { name: "AWS S3", level: "Expert" },
-      { name: "AWS EMR", level: "Expert" },
-      { name: "AWS Glue", level: "Advanced" },
-      { name: "AWS Lambda", level: "Advanced" },
-      { name: "GCP BigQuery", level: "Advanced" },
-      { name: "GCP Dataproc", level: "Advanced" },
-      { name: "GCS", level: "Advanced" },
-      { name: "Azure", level: "Intermediate" },
-    ],
-  },
-  {
-    title: "Programming Languages",
-    description: "Languages I work with",
+    title: "Programming",
+    icon: "💻",
     skills: [
       { name: "Python", level: "Expert" },
       { name: "SQL", level: "Expert" },
-      { name: "PySpark", level: "Expert" },
+      { name: "Java", level: "Advanced" },
+      { name: "Shell Scripting", level: "Advanced" },
       { name: "Scala", level: "Advanced" },
-      { name: "Java", level: "Intermediate" },
-      { name: "Shell/Bash", level: "Advanced" },
     ],
   },
   {
-    title: "Databases & Storage",
-    description: "Data storage technologies",
+    title: "Big Data",
+    icon: "⚡",
+    skills: [
+      { name: "Apache Spark (PySpark)", level: "Expert" },
+      { name: "Scala-Spark", level: "Expert" },
+      { name: "Apache Kafka", level: "Expert" },
+      { name: "Apache Airflow", level: "Expert" },
+      { name: "Databricks", level: "Advanced" },
+      { name: "Hadoop / Hive", level: "Advanced" },
+      { name: "Delta Lake", level: "Advanced" },
+    ],
+  },
+  {
+    title: "Cloud — AWS",
+    icon: "☁️",
+    skills: [
+      { name: "S3", level: "Expert" },
+      { name: "EMR", level: "Expert" },
+      { name: "Glue", level: "Advanced" },
+      { name: "Redshift", level: "Advanced" },
+      { name: "Lambda", level: "Advanced" },
+    ],
+  },
+  {
+    title: "Cloud — GCP",
+    icon: "🔷",
     skills: [
       { name: "BigQuery", level: "Expert" },
-      { name: "MySQL", level: "Advanced" },
-      { name: "MongoDB", level: "Advanced" },
-      { name: "Redis", level: "Advanced" },
-      { name: "Elasticsearch", level: "Advanced" },
-      { name: "SQL Server", level: "Intermediate" },
+      { name: "Dataproc", level: "Advanced" },
+      { name: "GCS", level: "Advanced" },
     ],
   },
   {
-    title: "AI & Machine Learning",
-    description: "AI/ML tools and frameworks",
+    title: "Backend",
+    icon: "🔧",
     skills: [
-      { name: "LangChain", level: "Advanced" },
-      { name: "RAG", level: "Advanced" },
-      { name: "AI Agents", level: "Advanced" },
-      { name: "MCP Servers", level: "Intermediate" },
-      { name: "OpenAI", level: "Advanced" },
-      { name: "Hugging Face", level: "Intermediate" },
-      { name: "MLflow", level: "Intermediate" },
-    ],
-  },
-  {
-    title: "DevOps & Tools",
-    description: "Development and deployment",
-    skills: [
-      { name: "Docker", level: "Advanced" },
-      { name: "Kubernetes", level: "Intermediate" },
-      { name: "Jenkins", level: "Advanced" },
-      { name: "Git", level: "Expert" },
-      { name: "Terraform", level: "Intermediate" },
-      { name: "CI/CD", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Backend Development",
-    description: "Backend frameworks and APIs",
-    skills: [
-      { name: "Spring Boot", level: "Intermediate" },
+      { name: "Spring Boot", level: "Advanced" },
       { name: "FastAPI", level: "Advanced" },
       { name: "REST APIs", level: "Expert" },
       { name: "Microservices", level: "Advanced" },
     ],
   },
   {
-    title: "Professional Skills",
-    description: "Leadership and communication",
+    title: "GenAI & AI",
+    icon: "🤖",
     skills: [
-      { name: "Technical Writing", level: "Expert" },
-      { name: "Problem Solving", level: "Expert" },
-      { name: "System Design", level: "Advanced" },
-      { name: "Mentoring", level: "Advanced" },
-      { name: "Agile Methodology", level: "Advanced" },
+      { name: "LangChain", level: "Advanced" },
+      { name: "LangGraph", level: "Advanced" },
+      { name: "RAG", level: "Advanced" },
+      { name: "Pydantic", level: "Advanced" },
+      { name: "FastMCP", level: "Advanced" },
+      { name: "AI Agents", level: "Advanced" },
+    ],
+  },
+  {
+    title: "Databases",
+    icon: "🗄️",
+    skills: [
+      { name: "BigQuery", level: "Expert" },
+      { name: "Elasticsearch", level: "Advanced" },
+      { name: "Azure SQL", level: "Intermediate" },
+      { name: "Milvus", level: "Intermediate" },
+    ],
+  },
+  {
+    title: "Infrastructure & DevOps",
+    icon: "🏗️",
+    skills: [
+      { name: "Docker", level: "Advanced" },
+      { name: "Kubernetes", level: "Intermediate" },
+      { name: "Jenkins", level: "Advanced" },
+      { name: "Terraform", level: "Intermediate" },
+      { name: "Git", level: "Expert" },
+      { name: "CI/CD", level: "Advanced" },
     ],
   },
 ];
@@ -108,11 +100,20 @@ const getLevelColor = (level: string) => {
     case "Expert":
       return "bg-primary text-primary-foreground";
     case "Advanced":
-      return "bg-primary/70 text-primary-foreground";
+      return "bg-primary/60 text-primary-foreground";
     case "Intermediate":
-      return "bg-primary/40 text-foreground";
+      return "bg-primary/30 text-foreground";
     default:
       return "bg-secondary text-secondary-foreground";
+  }
+};
+
+const getLevelWidth = (level: string) => {
+  switch (level) {
+    case "Expert": return "w-full";
+    case "Advanced": return "w-3/4";
+    case "Intermediate": return "w-1/2";
+    default: return "w-1/4";
   }
 };
 
@@ -128,8 +129,8 @@ const Skills = () => {
             animate={{ opacity: 1, x: 0 }}
             className="mb-8"
           >
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -146,8 +147,26 @@ const Skills = () => {
           >
             <h1 className="text-4xl font-bold mb-4">Tech Stack & Expertise</h1>
             <p className="text-xl text-muted-foreground max-w-2xl">
-              Core technologies and professional skills I bring to every project.
+              Core technologies and tools I use to build scalable data platforms and AI systems.
             </p>
+          </motion.div>
+
+          {/* Legend */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap gap-4 mb-8 text-sm"
+          >
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-primary" /> Expert
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-primary/60" /> Advanced
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-primary/30" /> Intermediate
+            </span>
           </motion.div>
 
           {/* Skills Grid */}
@@ -157,37 +176,38 @@ const Skills = () => {
                 key={category.title}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+                transition={{ duration: 0.5, delay: categoryIndex * 0.08 }}
                 className="bg-card rounded-xl p-6 border border-border"
               >
-                <h2 className="text-xl font-semibold mb-2">{category.title}</h2>
-                <p className="text-sm text-muted-foreground mb-4">{category.description}</p>
-                
-                <div className="flex flex-wrap gap-2">
+                <div className="flex items-center gap-3 mb-5">
+                  <span className="text-2xl">{category.icon}</span>
+                  <h2 className="text-xl font-semibold">{category.title}</h2>
+                </div>
+
+                <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
                     <motion.div
                       key={skill.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.03 }}
-                      className={`px-3 py-1.5 text-sm font-mono rounded-md ${getLevelColor(skill.level)}`}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: categoryIndex * 0.08 + skillIndex * 0.03 }}
                     >
-                      {skill.name}
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-mono font-medium">{skill.name}</span>
+                        <span className={`px-2 py-0.5 text-xs rounded-full ${getLevelColor(skill.level)}`}>
+                          {skill.level}
+                        </span>
+                      </div>
+                      <div className="w-full bg-secondary/50 rounded-full h-1.5">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: "100%" }}
+                          transition={{ delay: categoryIndex * 0.08 + skillIndex * 0.05, duration: 0.6 }}
+                          className={`${getLevelWidth(skill.level)} bg-primary/70 rounded-full h-1.5`}
+                        />
+                      </div>
                     </motion.div>
                   ))}
-                </div>
-
-                {/* Legend */}
-                <div className="mt-4 pt-4 border-t border-border flex flex-wrap gap-3 text-xs">
-                  <span className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-primary" /> Expert
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-primary/70" /> Advanced
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-primary/40" /> Intermediate
-                  </span>
                 </div>
               </motion.div>
             ))}

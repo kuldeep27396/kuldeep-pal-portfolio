@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
-import { Menu, X, Linkedin, Github, Youtube, Twitter, Mail } from "lucide-react";
+import { Menu, X, Linkedin, Github, Youtube, Twitter } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
+  { label: "Experience", href: "/experience" },
   { label: "Skills", href: "/skills" },
+  { label: "Projects", href: "/projects" },
   { label: "Articles", href: "/articles" },
   { label: "Certificates", href: "/certificates" },
   { label: "Recommendations", href: "/recommendations" },
@@ -41,7 +43,7 @@ export const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden lg:flex items-center gap-5">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -58,7 +60,7 @@ export const Header = () => {
           </nav>
 
           {/* Social Links Desktop */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-1.5">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -77,7 +79,7 @@ export const Header = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -90,9 +92,9 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-border"
+            className="lg:hidden py-4 border-t border-border"
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}

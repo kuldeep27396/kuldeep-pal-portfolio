@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { MapPin, Mail, Briefcase, Clock } from "lucide-react";
+import { MapPin, Mail, Briefcase, Clock, Phone } from "lucide-react";
 
 const contactInfo = [
   {
     icon: MapPin,
     title: "Location",
-    value: "India",
+    value: "Bengaluru, India",
   },
   {
     icon: Mail,
@@ -38,7 +38,7 @@ export const Contact = () => {
         >
           <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to reach out!
+            Have a question about data engineering, want to collaborate, or need consulting? Feel free to reach out!
           </p>
         </motion.div>
 
@@ -57,8 +57,8 @@ export const Contact = () => {
               </div>
               <h3 className="font-semibold mb-2">{item.title}</h3>
               {item.href ? (
-                <a 
-                  href={item.href} 
+                <a
+                  href={item.href}
                   className="text-sm text-primary hover:underline"
                 >
                   {item.value}
