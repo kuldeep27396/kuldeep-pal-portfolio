@@ -2,6 +2,17 @@
 
 Personal portfolio built with Vite, React, TypeScript, and Tailwind CSS.
 
+## Repository
+
+GitHub: `https://github.com/kuldeep27396/kuldeep-pal-portfolio.git`
+
+## Status
+
+- Portfolio content refresh completed
+- Vercel deployment support added
+- SPA rewrites configured for Vercel, Netlify, and Cloudflare Pages
+- Blog sync pipeline added for Medium and LinkedIn newsletter sources
+
 ## Scripts
 
 ```sh
