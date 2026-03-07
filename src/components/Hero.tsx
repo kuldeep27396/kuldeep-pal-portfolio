@@ -1,177 +1,181 @@
 import { motion } from "framer-motion";
-import { Linkedin, Github, Youtube, Mail, ExternalLink, Twitter, BookOpen, GraduationCap } from "lucide-react";
+import { Linkedin, Github, ExternalLink, BookOpen, CalendarDays, Send } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { XIcon } from "@/components/XIcon";
 
 const socialLinks = [
-  { icon: Youtube, href: "https://youtube.com/@kuldeeppal", label: "YouTube" },
-  { icon: Linkedin, href: "https://linkedin.com/in/kuldeep27396", label: "LinkedIn" },
-  { icon: Github, href: "https://github.com/kuldeep27396", label: "GitHub" },
-  { icon: BookOpen, href: "https://medium.com/@kuldeep27396", label: "Medium" },
-  { icon: Twitter, href: "https://twitter.com/kuldeep27396", label: "Twitter" },
+  {
+    icon: Linkedin,
+    href: "https://linkedin.com/in/kuldeep27396",
+    label: "LinkedIn",
+    className: "bg-[#0a66c2]/10 text-[#0a66c2] hover:bg-[#0a66c2] hover:text-white",
+  },
+  {
+    icon: Github,
+    href: "https://github.com/kuldeep27396",
+    label: "GitHub",
+    className: "bg-slate-900/10 text-slate-700 hover:bg-slate-900 hover:text-white",
+  },
+  {
+    icon: BookOpen,
+    href: "/articles",
+    label: "Blogs",
+    internal: true,
+    className: "bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500 hover:text-white",
+  },
+  {
+    icon: XIcon,
+    href: "https://x.com/kuldeep27396",
+    label: "X",
+    className: "bg-sky-500/10 text-sky-600 hover:bg-sky-500 hover:text-white",
+  },
 ];
 
 const highlights = [
-  "Gift Card Fraud Detection — $4M/year recovery",
-  "Insurance Fraud Investigation — $544K/year savings",
-  "Processing 8K msg/sec (2TB/day) streaming pipelines",
-  "GenAI Agents with LangGraph & MCP Servers",
+  "Data engineering across data lakes, lakehouse, warehousing, modeling, and large-scale pipelines",
+  "AI agents, LLM workflows, RAG systems, and platform tooling built for production use",
+  "Backend delivery with FastAPI, Spring Boot, APIs, secure integrations, and operational reliability",
+  "Strong fit for senior IC roles spanning data platform, AI systems, backend design, and databases",
 ];
 
 export const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center py-20 px-6">
       <div className="container max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+        <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            {/* Status Badge */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20"
             >
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-medium text-primary">Available for consulting</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-sm font-medium text-emerald-700">Available</span>
             </motion.div>
 
-            {/* Main Heading */}
             <div className="space-y-2">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Hi, I'm{" "}
-                <span className="gradient-text">Kuldeep Pal</span>
+                Hi, I&apos;m <span className="gradient-text">Kuldeep Pal</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-                Senior Software Engineer - Data & AI
+                Senior Software Engineer - Data, AI, and Backend Systems
               </p>
               <p className="text-lg text-muted-foreground">
-                at <span className="text-foreground font-semibold">Walmart Global Tech</span> · Bengaluru, India
+                Based in <span className="text-foreground font-semibold">Bengaluru, India</span>
               </p>
             </div>
 
-            {/* Bio */}
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg">
-              <span className="text-primary font-semibold">7+ years</span> building high-performance systems in 
-              Big Data, Backend & AI. Expert in Python, Spark, Kafka, Spring Boot, AWS, GCP, and GenAI — 
-              architecting solutions that drive measurable business impact.
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              I&apos;m a senior engineer working across <span className="text-foreground font-medium">data engineering, AI, and backend systems</span>.
+              I build production systems on the data side, backend side, and AI side, with strong impact on data platforms,
+              AI agents, APIs, and platform reliability. I&apos;m particularly interested in high-ownership engineering challenges
+              where backend design, databases, and intelligent systems come together.
             </p>
 
-            {/* Key Highlights */}
             <div className="space-y-2">
-              <p className="text-sm font-semibold text-foreground">Key Impact</p>
-              <div className="space-y-1.5">
+              <p className="text-sm font-semibold text-foreground">What I Bring</p>
+              <div className="space-y-2">
                 {highlights.map((item, index) => (
                   <motion.div
                     key={item}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                    transition={{ delay: 0.25 + index * 0.08 }}
+                    className="flex items-start gap-3 text-sm text-muted-foreground"
                   >
-                    <span className="text-primary mt-0.5">▸</span>
+                    <span className="mt-1 h-2 w-2 rounded-full bg-primary" />
                     <span>{item}</span>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-2">
               <Button size="lg" className="gap-2 shadow-glow" asChild>
-                <a href="mailto:kuldeep27396@gmail.com">
-                  <Mail className="w-4 h-4" />
+                <a href="#contact">
+                  <Send className="w-4 h-4" />
                   Get in Touch
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="gap-2" asChild>
-                <a href="https://youtube.com/@kuldeeppal" target="_blank" rel="noopener noreferrer">
-                  <Youtube className="w-4 h-4" />
-                  Watch on YouTube
+                <a href="https://cal.com/kuldeep.pal/meet-kuldeep" target="_blank" rel="noopener noreferrer">
+                  <CalendarDays className="w-4 h-4" />
+                  Book a Call
                 </a>
               </Button>
             </div>
 
-            {/* Social Links */}
             <div className="flex items-center gap-4 pt-2">
               <span className="text-sm text-muted-foreground">Follow me:</span>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="p-2 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                    aria-label={social.label}
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
+                  social.internal ? (
+                    <motion.div key={social.label} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.96 }}>
+                      <Link to={social.href} className={`block p-2.5 rounded-full transition-colors ${social.className}`} aria-label={social.label}>
+                        <social.icon className="w-5 h-5" />
+                      </Link>
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.08 }}
+                      whileTap={{ scale: 0.96 }}
+                      className={`p-2.5 rounded-full transition-colors ${social.className}`}
+                      aria-label={social.label}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </motion.a>
+                  )
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Right - Profile Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Decorative Ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 blur-2xl scale-110" />
-              
-              {/* Profile Image Container */}
-              <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-card">
-                <img 
-                  src="https://avatars.githubusercontent.com/u/61800838?v=4" 
+              <div className="absolute inset-[-1.25rem] rounded-[2.5rem] bg-[radial-gradient(circle_at_top,hsl(var(--accent)/0.55),transparent_55%)] blur-2xl" />
+              <div className="relative w-[19rem] h-[24rem] md:w-[22rem] md:h-[27rem] rounded-[2rem] overflow-hidden border border-white/30 bg-[linear-gradient(180deg,hsl(var(--card)),hsl(var(--background)))] shadow-card">
+                <div className="absolute inset-x-0 top-0 h-20 bg-[radial-gradient(circle_at_top,hsl(0_0%_100%/0.45),transparent_70%)]" />
+                <img
+                  src="https://avatars.githubusercontent.com/u/61800838?v=4"
                   alt="Kuldeep Pal"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top scale-[1.03]"
+                  style={{ maskImage: "linear-gradient(to bottom, black 74%, transparent 100%)" }}
                 />
               </div>
 
-              {/* Floating Badge - Articles */}
               <motion.a
                 href="https://linkedin.com/in/kuldeep27396/recent-activity/articles/"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-                className="absolute -right-4 bottom-20 bg-card rounded-xl px-4 py-3 shadow-card border border-border hover:border-primary transition-colors"
+                transition={{ delay: 0.55 }}
+                className="absolute right-3 bottom-4 bg-card/95 rounded-2xl px-3 py-2 shadow-card border border-border hover:border-primary transition-colors"
               >
                 <div className="flex items-center gap-2">
-                  <ExternalLink className="w-4 h-4 text-primary" />
+                  <ExternalLink className="w-3.5 h-3.5 text-primary" />
                   <div>
-                    <p className="font-semibold text-sm">50+ Articles</p>
-                    <p className="text-xs text-muted-foreground">on LinkedIn & Medium</p>
+                    <p className="font-semibold text-xs">Writing</p>
+                    <p className="text-[11px] text-muted-foreground">LinkedIn and Medium</p>
                   </div>
                 </div>
               </motion.a>
-
-              {/* Floating Badge - Experience */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 }}
-                className="absolute -left-4 top-8 bg-card rounded-xl px-4 py-3 shadow-card border border-border"
-              >
-                <div className="flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-primary" />
-                  <div>
-                    <p className="font-semibold text-sm">B.E. (Hons) CSE</p>
-                    <p className="text-xs text-muted-foreground">CGPA: 7.83/10</p>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>

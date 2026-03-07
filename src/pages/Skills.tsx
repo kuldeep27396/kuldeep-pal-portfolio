@@ -2,119 +2,133 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Code, Zap, Cloud, Server, Wrench, Brain, Database, Container } from "lucide-react";
+import { ArrowLeft, Code2, Database, Brain, Server, Cloud, Workflow, Boxes } from "lucide-react";
+
+type SkillMeta = {
+  logo?: string;
+  mark?: string;
+};
+
+const skillMeta: Record<string, SkillMeta> = {
+  PySpark: { logo: "/skill-logos/apachespark.svg" },
+  Spark: { logo: "/skill-logos/apachespark.svg" },
+  Kafka: { logo: "/skill-logos/apachekafka.svg" },
+  Airflow: { logo: "/skill-logos/apacheairflow.svg" },
+  BigQuery: { logo: "/skill-logos/googlebigquery.svg" },
+  LLMs: { mark: "LLM" },
+  "AI Agents": { mark: "AI" },
+  RAG: { mark: "RAG" },
+  LangChain: { logo: "/skill-logos/langchain.svg" },
+  LangGraph: { logo: "/skill-logos/langgraph.svg" },
+  FastMCP: { mark: "MCP" },
+  "Prompt Engineering": { mark: "PE" },
+  Pydantic: { mark: "PYD" },
+  FastAPI: { logo: "/skill-logos/fastapi.svg" },
+  "REST APIs": { mark: "API" },
+  "Spring Boot": { logo: "/skill-logos/springboot.svg" },
+  "System Design": { mark: "SYS" },
+  Authentication: { mark: "AUTH" },
+  "Secure File Flows": { mark: "SEC" },
+  Microservices: { mark: "MS" },
+  Python: { logo: "/skill-logos/python.svg" },
+  SQL: { mark: "SQL" },
+  Java: { logo: "/skill-logos/java.svg" },
+  Scala: { logo: "/skill-logos/scala.svg" },
+  "Shell Scripting": { mark: "SH" },
+  AWS: { mark: "AWS" },
+  GCP: { logo: "/skill-logos/googlecloud.svg" },
+  S3: { mark: "S3" },
+  EMR: { mark: "EMR" },
+  Glue: { mark: "GL" },
+  Dataproc: { mark: "DP" },
+  GCS: { logo: "/skill-logos/gcs.svg" },
+  Docker: { logo: "/skill-logos/docker.svg" },
+  "CI/CD": { mark: "CI" },
+  "SQL Databases": { mark: "DB" },
+  Redshift: { mark: "RS" },
+  Elasticsearch: { logo: "/skill-logos/elasticsearch.svg" },
+  "Azure SQL": { mark: "AZ" },
+  Milvus: { logo: "/skill-logos/milvus.svg" },
+  Observability: { mark: "OBS" },
+  "Data Quality": { mark: "DQ" },
+  Migration: { mark: "MIG" },
+  Orchestration: { mark: "ORCH" },
+  Caching: { mark: "CA" },
+  "Signed URLs": { mark: "URL" },
+  "Platform Reliability": { mark: "SRE" },
+  "Data Lake": { mark: "DL" },
+  Lakehouse: { mark: "LH" },
+  Warehousing: { mark: "WH" },
+  "Data Modeling": { mark: "DM" },
+};
+
+const getSkillMeta = (skill: string) => {
+  return skillMeta[skill] ?? { mark: skill.replace(/[^A-Za-z0-9]/g, "").slice(0, 2).toUpperCase() || "•" };
+};
 
 const skillCategories = [
   {
-    title: "Programming",
-    icon: Code,
-    skills: [
-      { name: "Python", level: "Expert" },
-      { name: "SQL", level: "Expert" },
-      { name: "Java", level: "Advanced" },
-      { name: "Shell Scripting", level: "Advanced" },
-      { name: "Scala", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Big Data",
-    icon: Zap,
-    skills: [
-      { name: "Apache Spark (PySpark)", level: "Expert" },
-      { name: "Scala-Spark", level: "Expert" },
-      { name: "Apache Kafka", level: "Expert" },
-      { name: "Apache Airflow", level: "Expert" },
-      { name: "Databricks", level: "Advanced" },
-      { name: "Hadoop / Hive", level: "Advanced" },
-      { name: "Delta Lake", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Cloud — AWS",
-    icon: Cloud,
-    skills: [
-      { name: "S3", level: "Expert" },
-      { name: "EMR", level: "Expert" },
-      { name: "Glue", level: "Advanced" },
-      { name: "Redshift", level: "Advanced" },
-      { name: "Lambda", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Cloud — GCP",
-    icon: Cloud,
-    skills: [
-      { name: "BigQuery", level: "Expert" },
-      { name: "Dataproc", level: "Advanced" },
-      { name: "GCS", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Backend",
-    icon: Server,
-    skills: [
-      { name: "Spring Boot", level: "Advanced" },
-      { name: "FastAPI", level: "Advanced" },
-      { name: "REST APIs", level: "Expert" },
-      { name: "Microservices", level: "Advanced" },
-    ],
-  },
-  {
-    title: "GenAI & AI",
-    icon: Brain,
-    skills: [
-      { name: "LangChain", level: "Advanced" },
-      { name: "LangGraph", level: "Advanced" },
-      { name: "RAG", level: "Advanced" },
-      { name: "Pydantic", level: "Advanced" },
-      { name: "FastMCP", level: "Advanced" },
-      { name: "AI Agents", level: "Advanced" },
-    ],
-  },
-  {
-    title: "Databases",
+    title: "Data Engineering",
     icon: Database,
-    skills: [
-      { name: "BigQuery", level: "Expert" },
-      { name: "Elasticsearch", level: "Advanced" },
-      { name: "Azure SQL", level: "Intermediate" },
-      { name: "Milvus", level: "Intermediate" },
-    ],
+    description: "Core data platform and analytics engineering stack.",
+    tone: "bg-amber-500/10 text-amber-700",
+    skills: ["PySpark", "Spark", "Kafka", "Airflow", "Data Lake", "Lakehouse", "Warehousing", "Data Modeling", "BigQuery"],
   },
   {
-    title: "Infrastructure & DevOps",
-    icon: Container,
-    skills: [
-      { name: "Docker", level: "Advanced" },
-      { name: "Kubernetes", level: "Intermediate" },
-      { name: "Jenkins", level: "Advanced" },
-      { name: "Terraform", level: "Intermediate" },
-      { name: "Git", level: "Expert" },
-      { name: "CI/CD", level: "Advanced" },
-    ],
+    title: "AI and Agents",
+    icon: Brain,
+    description: "Practical LLM systems and workflow orchestration.",
+    tone: "bg-emerald-500/10 text-emerald-700",
+    skills: ["LLMs", "AI Agents", "RAG", "LangChain", "LangGraph", "FastMCP", "Prompt Engineering", "Pydantic"],
+  },
+  {
+    title: "Backend Engineering",
+    icon: Server,
+    description: "Production backend delivery and service design.",
+    tone: "bg-sky-500/10 text-sky-700",
+    skills: ["FastAPI", "REST APIs", "Spring Boot", "System Design", "Authentication", "Secure File Flows", "Microservices"],
+  },
+  {
+    title: "Programming",
+    icon: Code2,
+    description: "Languages used across data, APIs, and platform work.",
+    tone: "bg-rose-500/10 text-rose-700",
+    skills: ["Python", "SQL", "Java", "Scala", "Shell Scripting"],
+  },
+  {
+    title: "Cloud and Infra",
+    icon: Cloud,
+    description: "Delivery and operations across managed cloud services.",
+    tone: "bg-cyan-500/10 text-cyan-700",
+    skills: ["AWS", "GCP", "S3", "EMR", "Glue", "Dataproc", "GCS", "Docker", "CI/CD"],
+  },
+  {
+    title: "Databases and Search",
+    icon: Boxes,
+    description: "Storage and retrieval systems used in production work.",
+    tone: "bg-violet-500/10 text-violet-700",
+    skills: ["SQL Databases", "Redshift", "Elasticsearch", "Azure SQL", "Milvus"],
+  },
+  {
+    title: "Platform Workflow",
+    icon: Workflow,
+    description: "Cross-cutting practices around scale and reliability.",
+    tone: "bg-orange-500/10 text-orange-700",
+    skills: ["Observability", "Data Quality", "Migration", "Orchestration", "Caching", "Signed URLs", "Platform Reliability"],
   },
 ];
 
-const getLevelColor = (level: string) => {
-  switch (level) {
-    case "Expert":
-      return "bg-primary text-primary-foreground";
-    case "Advanced":
-      return "bg-primary/60 text-primary-foreground";
-    case "Intermediate":
-      return "bg-primary/30 text-foreground";
-    default:
-      return "bg-secondary text-secondary-foreground";
-  }
-};
+const SkillBadge = ({ skill }: { skill: string }) => {
+  const meta = getSkillMeta(skill);
 
-const getLevelWidth = (level: string) => {
-  switch (level) {
-    case "Expert": return "w-full";
-    case "Advanced": return "w-3/4";
-    case "Intermediate": return "w-1/2";
-    default: return "w-1/4";
-  }
+  return (
+    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
+      <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-[9px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
+        {meta.logo ? <img src={meta.logo} alt="" className="h-3.5 w-3.5 object-contain" loading="lazy" /> : meta.mark}
+      </span>
+      <span>{skill}</span>
+    </span>
+  );
 };
 
 const Skills = () => {
@@ -123,12 +137,7 @@ const Skills = () => {
       <Header />
       <main className="pt-24 pb-16 px-6">
         <div className="container max-w-6xl mx-auto">
-          {/* Back Link */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
-          >
+          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
@@ -138,77 +147,37 @@ const Skills = () => {
             </Link>
           </motion.div>
 
-          {/* Page Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="mb-12"
           >
-            <h1 className="text-4xl font-bold mb-4">Tech Stack & Expertise</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">
-              Core technologies and tools I use to build scalable data platforms and AI systems.
-            </p>
+            <h1 className="text-4xl font-bold mb-4">Tech Stack & Focus Areas</h1>
           </motion.div>
 
-          {/* Legend */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-wrap gap-4 mb-8 text-sm"
-          >
-            <span className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-primary" /> Expert
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-primary/60" /> Advanced
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-primary/30" /> Intermediate
-            </span>
-          </motion.div>
-
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
-            {skillCategories.map((category, categoryIndex) => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {skillCategories.map((category, index) => (
               <motion.div
                 key={category.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: categoryIndex * 0.08 }}
-                className="bg-card rounded-xl p-6 border border-border"
+                transition={{ duration: 0.45, delay: index * 0.06 }}
+                className="rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
               >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <category.icon className="w-5 h-5 text-primary" />
+                <div className="flex items-start gap-4 mb-5">
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${category.tone}`}>
+                    <category.icon className="w-6 h-6" />
                   </div>
-                  <h2 className="text-xl font-semibold">{category.title}</h2>
+                  <div>
+                    <h2 className="text-xl font-semibold">{category.title}</h2>
+                    <p className="text-sm text-muted-foreground mt-1">{category.description}</p>
+                  </div>
                 </div>
 
-                <div className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: categoryIndex * 0.08 + skillIndex * 0.03 }}
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm font-mono font-medium">{skill.name}</span>
-                        <span className={`px-2 py-0.5 text-xs rounded-full ${getLevelColor(skill.level)}`}>
-                          {skill.level}
-                        </span>
-                      </div>
-                      <div className="w-full bg-secondary/50 rounded-full h-1.5">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: "100%" }}
-                          transition={{ delay: categoryIndex * 0.08 + skillIndex * 0.05, duration: 0.6 }}
-                          className={`${getLevelWidth(skill.level)} bg-primary/70 rounded-full h-1.5`}
-                        />
-                      </div>
-                    </motion.div>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <SkillBadge key={skill} skill={skill} />
                   ))}
                 </div>
               </motion.div>

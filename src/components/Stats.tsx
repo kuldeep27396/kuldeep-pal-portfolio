@@ -1,52 +1,17 @@
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
 
 const stats = [
-  { label: "Years Experience", value: 7, suffix: "+" },
-  { label: "LinkedIn Connections", value: 5000, suffix: "+" },
-  { label: "Technical Articles", value: 50, suffix: "+" },
-  { label: "Data Processed Daily", value: 2, suffix: "TB+" },
-  { label: "Open Source Projects", value: 20, suffix: "+" },
-  { label: "Fraud Recovery Impact", value: 4, suffix: "M$/yr" },
+  { label: "Data Engineering", value: "7.5+ years" },
+  { label: "AI and Agents", value: "2+ years" },
+  { label: "Data, AI, Backend + Product", value: "End-to-End Ownership" },
+  { label: "Daily Data Volume (Batch + Streaming)", value: "Multiple TB+" },
+  { label: "AI-Enabled Backend", value: "FastAPI + Spring Boot" },
+  { label: "Platform Focus", value: "Lakehouse + Warehousing" },
 ];
-
-const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (isInView) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = value / steps;
-      let current = 0;
-
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= value) {
-          setCount(value);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, duration / steps);
-
-      return () => clearInterval(timer);
-    }
-  }, [isInView, value]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {count.toLocaleString()}{suffix}
-    </span>
-  );
-};
 
 export const Stats = () => {
   return (
-    <section className="py-16 px-6 bg-card">
+    <section className="py-16 px-6 bg-card/90">
       <div className="container max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,26 +20,24 @@ export const Stats = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Impact & Community</h2>
+          <h2 className="text-3xl font-bold mb-4">Technical Positioning</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Driving business impact at scale while building a global community of data engineers.
+            The combination of scale, stack, and production ownership I bring to senior engineering roles.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center"
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="rounded-2xl border border-border bg-background/80 p-5 text-left shadow-soft"
             >
-              <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                <Counter value={stat.value} suffix={stat.suffix} />
-              </div>
-              <p className="text-sm text-muted-foreground font-medium">{stat.label}</p>
+              <div className="text-xl md:text-2xl font-bold gradient-text mb-2">{stat.value}</div>
+              <p className="text-sm text-muted-foreground">{stat.label}</p>
             </motion.div>
           ))}
         </div>

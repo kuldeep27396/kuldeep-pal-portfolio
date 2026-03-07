@@ -1,7 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
-import { FeaturedVideo } from "@/components/FeaturedVideo";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -12,7 +11,6 @@ const Index = () => {
       <main className="pt-16">
         <Hero />
         <Stats />
-        <FeaturedVideo />
         <Contact />
       </main>
       <Footer />
