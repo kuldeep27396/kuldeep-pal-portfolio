@@ -155,8 +155,7 @@ const buildHighlightTags = (articles) => {
   return Array.from(new Set([...priority, ...dynamicTags])).slice(0, 12);
 };
 
-const serializeModule = ({ articles, highlightTags, lastUpdated }) => `/* eslint-disable */
-export type ArticleItem = {
+const serializeModule = ({ articles, highlightTags, lastUpdated }) => `export type ArticleItem = {
   title: string;
   source: "linkedin" | "medium";
   sourceLabel: string;

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export type ArticleItem = {
   title: string;
   source: "linkedin" | "medium";
@@ -31,7 +30,7 @@ export const highlightTags = [
   "fraud-detection"
 ] as const;
 
-export const lastUpdated = "2026-03-07T18:13:55.432Z";
+export const lastUpdated = "2026-03-07T18:32:35.119Z";
 
 export const articles: ArticleItem[] = [
   {
