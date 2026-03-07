@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Github, Youtube, Mail, ExternalLink, Twitter, BookOpen } from "lucide-react";
+import { Linkedin, Github, Youtube, Mail, ExternalLink, Twitter, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
