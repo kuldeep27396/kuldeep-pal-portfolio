@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Award, ExternalLink, Calendar, Trophy } from "lucide-react";
+import { ArrowLeft, Award, Calendar, Trophy, Medal, Star, Target, FileCheck } from "lucide-react";
 
 const certifications = [
   {
@@ -10,7 +10,7 @@ const certifications = [
     issuer: "Airflow / Astronomer",
     date: "2025",
     description: "Certified in Apache Airflow fundamentals, DAG design, and orchestration best practices.",
-    logo: "🚀",
+    icon: Award,
     type: "certification",
   },
   {
@@ -18,7 +18,7 @@ const certifications = [
     issuer: "Confluent Kafka",
     date: "2025",
     description: "Professional certification in Apache Kafka and stream processing for real-time data pipelines.",
-    logo: "🌊",
+    icon: Award,
     type: "certification",
   },
   {
@@ -26,7 +26,7 @@ const certifications = [
     issuer: "Databricks",
     date: "2024",
     description: "Data Management Certification covering Databricks platform and lakehouse architecture.",
-    logo: "⚡",
+    icon: Award,
     type: "certification",
   },
 ];
@@ -37,28 +37,28 @@ const awards = [
     issuer: "Walmart",
     date: "2025",
     description: "Recognized for technical excellence and leadership in data platform and AI initiatives.",
-    logo: "🏆",
+    icon: Trophy,
   },
   {
     title: "Bravo Award — Engineering Excellence",
     issuer: "Walmart",
     date: "2025",
     description: "Received twice a year for outstanding engineering contributions.",
-    logo: "⭐",
+    icon: Star,
   },
   {
     title: "Impact Awards — Cost Optimization & Mentoring",
     issuer: "Walmart",
     date: "2024",
     description: "Recognized for driving cost savings and mentoring junior engineers across the team.",
-    logo: "🎯",
+    icon: Target,
   },
   {
     title: "GATE CSE — 90th Percentile",
     issuer: "IIT Delhi",
     date: "2020",
     description: "Graduate Aptitude Test in Engineering - Computer Science, conducted by IIT Delhi.",
-    logo: "📝",
+    icon: FileCheck,
   },
 ];
 
@@ -112,8 +112,8 @@ const Certificates = () => {
                   className="group bg-card rounded-xl p-6 border border-border hover:border-primary/50 hover:shadow-card transition-all"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-2xl">
-                      {cert.logo}
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <cert.icon className="w-7 h-7 text-primary" />
                     </div>
                     <Award className="w-5 h-5 text-primary" />
                   </div>
@@ -122,7 +122,7 @@ const Certificates = () => {
                   </h3>
                   <div className="flex items-center gap-2 text-sm mb-3">
                     <span className="font-medium text-foreground">{cert.issuer}</span>
-                    <span className="text-muted-foreground">•</span>
+                    <span className="text-muted-foreground">·</span>
                     <span className="flex items-center gap-1 text-muted-foreground">
                       <Calendar className="w-3 h-3" />
                       {cert.date}
@@ -150,14 +150,14 @@ const Certificates = () => {
                   className="bg-card rounded-xl p-6 border border-border hover:border-primary/30 transition-colors"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center text-xl flex-shrink-0">
-                      {award.logo}
+                    <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center flex-shrink-0">
+                      <award.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
                       <h3 className="font-semibold mb-1">{award.title}</h3>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                         <span>{award.issuer}</span>
-                        <span>•</span>
+                        <span>·</span>
                         <span>{award.date}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">{award.description}</p>
@@ -183,7 +183,7 @@ const Certificates = () => {
                 rel="noopener noreferrer"
                 className="text-primary hover:underline font-medium"
               >
-                LinkedIn →
+                LinkedIn
               </a>
             </p>
           </motion.div>

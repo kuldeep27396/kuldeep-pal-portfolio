@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Building2, MapPin, Calendar, TrendingUp } from "lucide-react";
+import { ArrowLeft, Building2, MapPin, Calendar, TrendingUp, GraduationCap, FileCheck } from "lucide-react";
 
 const experiences = [
   {
@@ -10,7 +10,7 @@ const experiences = [
     location: "Bengaluru, India",
     role: "Senior Software Engineer (GenAI, Data Platform)",
     period: "June 2022 – Present",
-    logo: "🏪",
+    icon: Building2,
     color: "bg-primary/10 text-primary",
     achievements: [
       {
@@ -60,12 +60,12 @@ const experiences = [
     location: "Pune, India",
     role: "Data Engineer - 2 (Big-Data, AWS, Data Modelling)",
     period: "Sept 2021 – June 2022",
-    logo: "📊",
+    icon: Building2,
     color: "bg-accent text-accent-foreground",
     achievements: [
       {
-        title: "Clinical Trial Analytics (ZAIDYN™)",
-        description: "Contributed to ZAIDYN™ clinical trial planning SaaS as key member of Data Platform team for Unified Data Analytics Solution.",
+        title: "Clinical Trial Analytics (ZAIDYN)",
+        description: "Contributed to ZAIDYN clinical trial planning SaaS as key member of Data Platform team for Unified Data Analytics Solution.",
         impact: "Enterprise SaaS product",
       },
       {
@@ -90,7 +90,7 @@ const experiences = [
     location: "Pune, India",
     role: "Data Engineer (Clients: Morgan Stanley, Nassau Re)",
     period: "Sept 2018 – Sept 2021",
-    logo: "💼",
+    icon: Building2,
     color: "bg-secondary text-secondary-foreground",
     achievements: [
       {
@@ -172,8 +172,8 @@ const Experience = () => {
                   {/* Header */}
                   <div className="p-6 border-b border-border">
                     <div className="flex flex-wrap items-start gap-4">
-                      <div className={`w-14 h-14 rounded-xl ${exp.color} flex items-center justify-center text-2xl`}>
-                        {exp.logo}
+                      <div className={`w-14 h-14 rounded-xl ${exp.color} flex items-center justify-center`}>
+                        <exp.icon className="w-7 h-7" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <h2 className="text-2xl font-bold">{exp.company}</h2>
@@ -231,8 +231,8 @@ const Experience = () => {
             <div className="bg-card rounded-xl p-6 border border-border md:ml-16 relative">
               <div className="absolute left-[-2.25rem] top-4 w-5 h-5 rounded-full bg-primary border-4 border-background hidden md:block" />
               <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center text-2xl">
-                  🎓
+                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <GraduationCap className="w-7 h-7 text-primary" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold">Shri Vaishnav Institute of Tech. and Science</h3>
@@ -251,7 +251,9 @@ const Experience = () => {
             className="mt-6 bg-card rounded-xl p-6 border border-border md:ml-16"
           >
             <div className="flex items-center gap-3">
-              <span className="text-2xl">📝</span>
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <FileCheck className="w-6 h-6 text-primary" />
+              </div>
               <div>
                 <h3 className="font-bold">GATE CSE 2020</h3>
                 <p className="text-sm text-muted-foreground">90th Percentile — IIT Delhi</p>
