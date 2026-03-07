@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Code, Zap, Cloud, Server, Wrench, Brain, Database, Container } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Programming",
-    icon: "💻",
+    icon: Code,
     skills: [
       { name: "Python", level: "Expert" },
       { name: "SQL", level: "Expert" },
@@ -18,7 +18,7 @@ const skillCategories = [
   },
   {
     title: "Big Data",
-    icon: "⚡",
+    icon: Zap,
     skills: [
       { name: "Apache Spark (PySpark)", level: "Expert" },
       { name: "Scala-Spark", level: "Expert" },
@@ -31,7 +31,7 @@ const skillCategories = [
   },
   {
     title: "Cloud — AWS",
-    icon: "☁️",
+    icon: Cloud,
     skills: [
       { name: "S3", level: "Expert" },
       { name: "EMR", level: "Expert" },
@@ -42,7 +42,7 @@ const skillCategories = [
   },
   {
     title: "Cloud — GCP",
-    icon: "🔷",
+    icon: Cloud,
     skills: [
       { name: "BigQuery", level: "Expert" },
       { name: "Dataproc", level: "Advanced" },
@@ -51,7 +51,7 @@ const skillCategories = [
   },
   {
     title: "Backend",
-    icon: "🔧",
+    icon: Server,
     skills: [
       { name: "Spring Boot", level: "Advanced" },
       { name: "FastAPI", level: "Advanced" },
@@ -61,7 +61,7 @@ const skillCategories = [
   },
   {
     title: "GenAI & AI",
-    icon: "🤖",
+    icon: Brain,
     skills: [
       { name: "LangChain", level: "Advanced" },
       { name: "LangGraph", level: "Advanced" },
@@ -73,7 +73,7 @@ const skillCategories = [
   },
   {
     title: "Databases",
-    icon: "🗄️",
+    icon: Database,
     skills: [
       { name: "BigQuery", level: "Expert" },
       { name: "Elasticsearch", level: "Advanced" },
@@ -83,7 +83,7 @@ const skillCategories = [
   },
   {
     title: "Infrastructure & DevOps",
-    icon: "🏗️",
+    icon: Container,
     skills: [
       { name: "Docker", level: "Advanced" },
       { name: "Kubernetes", level: "Intermediate" },
@@ -180,7 +180,9 @@ const Skills = () => {
                 className="bg-card rounded-xl p-6 border border-border"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <span className="text-2xl">{category.icon}</span>
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <category.icon className="w-5 h-5 text-primary" />
+                  </div>
                   <h2 className="text-xl font-semibold">{category.title}</h2>
                 </div>
 

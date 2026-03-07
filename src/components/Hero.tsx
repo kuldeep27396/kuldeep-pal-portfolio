@@ -165,7 +165,7 @@ export const Hero = () => {
                 className="absolute -left-4 top-8 bg-card rounded-xl px-4 py-3 shadow-card border border-border"
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-primary text-lg">🎓</span>
+                  <GraduationCap className="w-5 h-5 text-primary" />
                   <div>
                     <p className="font-semibold text-sm">B.E. (Hons) CSE</p>
                     <p className="text-xs text-muted-foreground">CGPA: 7.83/10</p>
