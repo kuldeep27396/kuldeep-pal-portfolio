@@ -2,8 +2,10 @@ import { Download } from "lucide-react";
 
 const resumeUrl =
   "https://2aadxqrvwumqaun6.public.blob.vercel-storage.com/SENIOR_DATA_ENGINEER_Kuldeep_Pal_7_Years.pdf";
-const viewerUrl = `${resumeUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`;
 const fileName = "Kuldeep-Pal-Resume.pdf";
+
+const viewerUrl = new URL(resumeUrl);
+viewerUrl.hash = "toolbar=0&navpanes=0&scrollbar=0&view=FitH";
 
 const Resume = () => {
   const handleDownload = async () => {
@@ -35,8 +37,9 @@ const Resume = () => {
         </div>
         <iframe
           title="Kuldeep Pal Resume"
-          src={viewerUrl}
-          className="h-[calc(100vh-4.5rem)] min-h-[680px] w-full bg-white sm:h-[calc(100vh-5rem)]"
+          src={viewerUrl.toString()}
+          sandbox="allow-same-origin"
+          className="h-[78vh] min-h-[50vh] w-full bg-white sm:h-[calc(100vh-5rem)]"
         />
       </section>
     </main>
