@@ -16,6 +16,17 @@ type Certification = {
 
 const certificationGroups: Array<{ year: string; items: Certification[] }> = [
   {
+    year: "2026",
+    items: [
+      {
+        title: "Engineering Innovation Award",
+        issuer: "Walmart Global Tech",
+        issued: "Mar 2026",
+        skills: ["Innovation", "Architecture", "AI Agents"],
+      },
+    ],
+  },
+  {
     year: "2025",
     items: [
       {
@@ -64,6 +75,18 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
         credentialId: "1de3cd060620",
         skills: ["SQL", "Data Structures", "REST API"],
       },
+      {
+        title: "L3 to L4 Career Promotion",
+        issuer: "Walmart Global Tech",
+        issued: "Apr 2025",
+        skills: ["Seniority", "Ownership", "Technical Leadership"],
+      },
+      {
+        title: "Bravo Award - Excellence in Execution",
+        issuer: "Walmart Global Tech",
+        issued: "Jan 2025",
+        skills: ["Execution", "Reliability"],
+      },
     ],
   },
   {
@@ -94,6 +117,12 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
         issuer: "Back To Back SWE",
         issued: "Jan 2024",
         skills: ["Algorithms", "Data Structures"],
+      },
+      {
+        title: "Walmart Impact Award",
+        issuer: "Walmart Global Tech",
+        issued: "Dec 2024",
+        skills: ["Business Impact", "Scale"],
       },
     ],
   },
@@ -268,7 +297,7 @@ const Certificates = () => {
           >
             <h1 className="text-3xl sm:text-4xl font-bold mb-4">Licenses & Certifications</h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
-              Public credentials from LinkedIn across data engineering, AI, backend systems, cloud, and foundational engineering topics.
+              Public credentials from LinkedIn and internal Engineering Excellence awards from Walmart, reflecting impact across data engineering, AI, and backend systems.
             </p>
           </motion.div>
 

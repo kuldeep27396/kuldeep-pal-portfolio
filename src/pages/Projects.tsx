@@ -65,6 +65,18 @@ const projects: Project[] = [
     tech: ["Full Stack", "Backend", "Product Build", "Application Design"],
     github: "https://github.com/kuldeep27396/SplitKro",
   },
+  {
+    title: "Technical Writing Newsletter",
+    description: "A professional engineering newsletter with over 12k+ views, focusing on the intersection of data engineering, distributed systems, and AI architecture.",
+    tech: ["Technical Writing", "System Design", "Newsletter", "Architecture"],
+    liveApp: "https://www.linkedin.com/newsletters/software-data-engineering-6983848189787271168/",
+  },
+  {
+    title: "Apache Pinot Real-time OLAP",
+    description: "Architectural exploration and deployment of Apache Pinot for real-time analytical queries on massive streaming datasets.",
+    tech: ["Apache Pinot", "Real-time OLAP", "Streaming", "Presto/Trino"],
+    github: "https://github.com/kuldeep27396/Apache-Pinot-with-Kafka-Realtime-OLAP",
+  },
 ];
 
 const Projects = () => {

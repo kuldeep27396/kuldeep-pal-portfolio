@@ -8,7 +8,7 @@ const experiences = [
   {
     company: "Walmart Global Tech",
     location: "Bengaluru, India",
-    role: "Senior Software Engineer",
+    role: "Senior Software Engineer (Data and AI)",
     period: "June 2022 - Present",
     summary:
       "Working at the intersection of data engineering, AI, and backend systems across streaming pipelines, platform ETL, AI agents, FastAPI services, Spring Boot integrations, and secure large-file workflows built for production scale.",
