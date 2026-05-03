@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { label: "Data Engineering", value: "7.5+ years" },
+  { label: "Data Engineering", value: "8+ years" },
   { label: "AI and Agents", value: "2+ years" },
   { label: "Data, AI, Backend + Product", value: "End-to-End Ownership" },
   { label: "Daily Data Volume (Batch + Streaming)", value: "Multiple TB+" },

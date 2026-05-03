@@ -72,7 +72,7 @@ const skillCategories = [
     icon: Database,
     description: "Core data platform and analytics engineering stack.",
     tone: "bg-amber-500/10 text-amber-700",
-    skills: ["PySpark", "Spark", "Kafka", "Airflow", "Data Lake", "Lakehouse", "Warehousing", "Data Modeling", "BigQuery"],
+    skills: ["PySpark", "Spark", "Kafka", "Airflow", "Data Lake", "Lakehouse", "Warehousing", "Data Modeling", "BigQuery", "Delta Lake", "Hadoop/Hive"],
   },
   {
     title: "AI and Agents",
@@ -100,7 +100,7 @@ const skillCategories = [
     icon: Cloud,
     description: "Delivery and operations across managed cloud services.",
     tone: "bg-cyan-500/10 text-cyan-700",
-    skills: ["AWS", "GCP", "S3", "EMR", "Glue", "Dataproc", "GCS", "Docker", "CI/CD"],
+    skills: ["AWS", "GCP", "S3", "EMR", "Glue", "Dataproc", "GCS", "Docker", "Kubernetes", "Git", "CI/CD"],
   },
   {
     title: "Databases and Search",

@@ -8,6 +8,15 @@ import { useState } from "react";
 
 const recommendations = [
   {
+    name: "Nimin Prabha Sasidharan",
+    headline:
+      "Senior Manager, Agentic Workflow Architecture & Simulation @ Walmart | AI-Native Platforms | Driving Scalable Intelligent Operations",
+    date: "March 20, 2026",
+    context: "Nimin Prabha was senior to Kuldeep but didn't manage Kuldeep directly",
+    content:
+      "I have worked closely with Kuldeep for over 3 years and he is one of the most proactive and intellectually curious engineers I have worked with.\n\nHe came in as a data engineer and organically grew into full stack development not because it was asked of him but because he identified gaps and filled them. That kind of ownership is hard to teach.\n\nWhat really stood out was his work around coding agents. When the team was still figuring out how to approach AI-assisted development, Kuldeep went deep on it, experimented, and came back with concrete standards and guidelines that the whole team adopted. He raised the bar on how we write and review code using coding agents and the velocity improvement was noticeable.\n\nHe is technically sharp, collaborative and the kind of engineer who makes the people around him better. I would work with him again without hesitation.",
+  },
+  {
     name: "Payal Ghosal",
     headline:
       "Financial Analyst - Technology Lead in Siemens | Tableau | Power BI | SQL | ETL | Ex Synechron | Ex Accenture | Ex TCSer",

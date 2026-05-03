@@ -11,11 +11,27 @@ const githubStats = [
   { label: "Stars", value: "76" },
 ];
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  tech: string[];
+  github?: string;
+  liveApp?: string;
+  aboutUrl?: string;
+};
+
+const projects: Project[] = [
+  {
+    title: "Agentic PDF RAG",
+    description: "Serverless RAG pipeline for document chat with page-level citations. Features hierarchical chunking, multi-model LLM routing, and session-scoped privacy.",
+    tech: ["FastAPI", "Redis", "Next.js 15", "RAG", "Milvus"],
+    liveApp: "https://agentic-pdf-rag.vercel.app",
+    aboutUrl: "https://agentic-pdf-rag.vercel.app/about",
+  },
   {
     title: "pr-review-agent",
-    description: "Personal project for automated pull request review using GitHub webhooks, Node.js services, and LLM-assisted review workflows.",
-    tech: ["Node.js", "GitHub Webhooks", "LLMs", "Automation"],
+    description: "Automated code review agent that analyzes PR sections, generates architectural flowcharts, and suggests actionable fixes under 10 seconds.",
+    tech: ["FastAPI", "LangGraph", "LLMs", "Automation"],
     github: "https://github.com/kuldeep27396/pr-review-agent",
   },
   {
@@ -23,6 +39,7 @@ const projects = [
     description: "Browser extension that summarizes YouTube content with AI-assisted prompts and a lightweight product-style user experience.",
     tech: ["JavaScript", "Browser Extension", "Perplexity", "Product Build"],
     github: "https://github.com/kuldeep27396/youtube-summary-with-perplexity-extension",
+    liveApp: "https://chromewebstore.google.com/detail/youtube-to-perplexity-ai/jgoiaakanloefcjgaecbmmifbnhecppl",
   },
   {
     title: "airflow-projects-deployed",
@@ -143,16 +160,40 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <div className="flex gap-4 pt-5">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
-                  >
-                    <Github className="w-4 h-4" />
-                    Source Code
-                  </a>
+                <div className="flex flex-wrap gap-4 pt-5 mt-auto">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                    >
+                      <Github className="w-4 h-4" />
+                      Source Code
+                    </a>
+                  )}
+                  {project.liveApp && (
+                    <a
+                      href={project.liveApp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live App
+                    </a>
+                  )}
+                  {project.aboutUrl && (
+                    <a
+                      href={project.aboutUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors hover:underline"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      About & Architecture
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
