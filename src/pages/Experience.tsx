@@ -17,7 +17,7 @@ const experiences = [
   {
     company: "ZS Associates",
     location: "Pune, India",
-    role: "Data Engineer II",
+    role: "Software Engineer - 2 (Big-Data, AWS, Data Modelling)",
     period: "Sept 2021 - June 2022",
     summary:
       "Built analytics and warehouse pipelines for product use cases with focus on Airflow orchestration, Spark optimization, data modeling, and AWS-based data engineering workflows.",

@@ -1,30 +1,12 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen, Newspaper, BellPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { sourceLinks } from "@/data/articles.generated";
+import { sourceLinks, articles } from "@/data/articles.generated";
 
 const Articles = () => {
-  useEffect(() => {
-    const existingScript = document.querySelector('script[data-rssapp-list-widget="true"]');
-    if (existingScript) {
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://widget.rss.app/v1/list.js";
-    script.async = true;
-    script.type = "text/javascript";
-    script.dataset.rssappListWidget = "true";
-    document.body.appendChild(script);
-
-    return () => {
-      script.remove();
-    };
-  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -80,55 +62,54 @@ const Articles = () => {
             </Button>
           </motion.div>
 
-          <motion.section
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="mb-14"
+            className="grid md:grid-cols-2 gap-6"
           >
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-6">
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Live Newsletter Wall</h2>
-              </div>
-              <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
-                <a
-                  href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6983848189787271168"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <BellPlus className="w-4 h-4" />
-                  Subscribe on LinkedIn
-                </a>
-              </Button>
-            </div>
-
-            <div className="rss-embed-shell w-full overflow-hidden rounded-xl sm:rounded-[1.25rem]">
-              <rssapp-list id="02YvGSMPwlBwIWEu" />
-            </div>
-          </motion.section>
-
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.16 }}
-            className="mb-14"
-          >
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-6">
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Medium Wall</h2>
-              </div>
-              <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
-                <a href={sourceLinks.medium} target="_blank" rel="noopener noreferrer">
-                  <BookOpen className="w-4 h-4" />
-                  Open Medium Profile
-                </a>
-              </Button>
-            </div>
-
-            <div className="rss-embed-shell w-full overflow-hidden rounded-xl sm:rounded-[1.25rem]">
-              <rssapp-list id="7MPetCZibcZLILhs" />
-            </div>
-          </motion.section>
+            {articles.map((article, index) => (
+              <a
+                key={`${article.title}-${index}`}
+                href={article.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col rounded-[1.5rem] border border-border bg-card overflow-hidden hover:shadow-card transition-shadow"
+              >
+                {article.image && (
+                  <div className="aspect-video w-full overflow-hidden bg-muted">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-col flex-1 p-5 sm:p-6">
+                  <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-3">
+                    <span className="uppercase tracking-wider text-primary">{article.sourceLabel}</span>
+                    <span>•</span>
+                    <span>{article.date}</span>
+                  </div>
+                  <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1" dangerouslySetInnerHTML={{ __html: article.description }} />
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {article.tags.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] font-medium text-foreground"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </motion.div>
         </div>
       </main>
       <Footer />
