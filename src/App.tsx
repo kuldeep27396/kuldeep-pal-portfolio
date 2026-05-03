@@ -13,6 +13,7 @@ import Certificates from "./pages/Certificates";
 import Recommendations from "./pages/Recommendations";
 import Resume from "./pages/Resume";
 import NotFound from "./pages/NotFound";
+import { ChatAgent } from "./components/ChatAgent";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ChatAgent />
       </BrowserRouter>
       <Analytics />
     </TooltipProvider>
