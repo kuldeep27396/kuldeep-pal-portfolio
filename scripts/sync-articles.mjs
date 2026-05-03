@@ -10,9 +10,11 @@ const outputFile = path.join(projectRoot, "src/data/articles.generated.ts");
 const SOURCE_LINKS = {
   linkedin: "https://www.linkedin.com/newsletters/software-data-engineering-6983848189787271168/",
   medium: "https://kuldeep27396.medium.com/",
+  substack: "https://kuldeeppal.substack.com/",
 };
 
 const MEDIUM_RSS_URL = process.env.MEDIUM_RSS_URL ?? "https://kuldeep27396.medium.com/feed";
+const SUBSTACK_RSS_URL = process.env.SUBSTACK_RSS_URL ?? "https://kuldeeppal.substack.com/feed";
 const LINKEDIN_NEWSLETTER_RSS_URL = process.env.LINKEDIN_NEWSLETTER_RSS_URL ?? "";
 
 const decodeHtml = (value = "") =>
@@ -118,7 +120,7 @@ const normalize = (items, source) =>
   items.map((item) => ({
     title: item.title,
     source,
-    sourceLabel: source === "linkedin" ? "LinkedIn Newsletter" : "Medium",
+    sourceLabel: source === "linkedin" ? "LinkedIn Newsletter" : source === "medium" ? "Medium" : "Substack",
     date: formatDate(item.pubDate),
     isoDate: item.pubDate ? new Date(item.pubDate).toISOString() : "",
     description: summarize(item.description),
@@ -157,7 +159,7 @@ const buildHighlightTags = (articles) => {
 
 const serializeModule = ({ articles, highlightTags, lastUpdated }) => `export type ArticleItem = {
   title: string;
-  source: "linkedin" | "medium";
+  source: "linkedin" | "medium" | "substack";
   sourceLabel: string;
   date: string;
   isoDate: string;
@@ -181,12 +183,33 @@ const main = async () => {
 
   const results = [];
   const errors = [];
+  
+  let existingArticles = [];
+  try {
+    const existingContent = await readFile(outputFile, "utf8");
+    // Extract the JSON array from the generated file using regex
+    const match = existingContent.match(/export const articles: ArticleItem\[\] = (\[[\s\S]*?\]);/);
+    if (match && match[1]) {
+      existingArticles = JSON.parse(match[1]);
+    }
+  } catch (error) {
+    // Ignore read errors (file might not exist)
+  }
 
   try {
     const mediumXml = await fetchFeed(MEDIUM_RSS_URL);
     results.push(...normalize(extractItems(mediumXml), "medium"));
   } catch (error) {
     errors.push(`Medium sync failed: ${error.message}`);
+  }
+
+  if (SUBSTACK_RSS_URL) {
+    try {
+      const substackXml = await fetchFeed(SUBSTACK_RSS_URL);
+      results.push(...normalize(extractItems(substackXml), "substack"));
+    } catch (error) {
+      errors.push(`Substack sync failed: ${error.message}`);
+    }
   }
 
   if (LINKEDIN_NEWSLETTER_RSS_URL) {
@@ -200,17 +223,13 @@ const main = async () => {
     errors.push("LinkedIn sync skipped: set LINKEDIN_NEWSLETTER_RSS_URL to a generated RSS feed for the newsletter.");
   }
 
-  if (!results.length) {
-    const existing = await readFile(outputFile, "utf8").catch(() => "");
-    if (existing) {
-      console.warn("No feeds were synced. Keeping existing generated articles file.");
-      errors.forEach((message) => console.warn(message));
-      return;
-    }
+  if (!results.length && !existingArticles.length) {
     throw new Error(`No articles fetched.\n${errors.join("\n")}`);
   }
 
-  const deduped = Array.from(new Map(results.map((item) => [item.link, item])).values()).sort((a, b) =>
+  // Merge new results with existing articles, newer ones will overwrite older ones with same link
+  const allItems = [...existingArticles, ...results];
+  const deduped = Array.from(new Map(allItems.map((item) => [item.link, item])).values()).sort((a, b) =>
     (b.isoDate || "").localeCompare(a.isoDate || ""),
   );
 

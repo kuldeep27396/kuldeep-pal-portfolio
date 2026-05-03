@@ -60,6 +60,12 @@ const Articles = () => {
                 Medium Profile
               </a>
             </Button>
+            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
+              <a href={sourceLinks.substack} target="_blank" rel="noopener noreferrer">
+                <Newspaper className="w-4 h-4" />
+                Substack Newsletter
+              </a>
+            </Button>
           </motion.div>
 
           <motion.div
