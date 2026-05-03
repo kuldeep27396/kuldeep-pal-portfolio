@@ -1,10 +1,9 @@
-
 export const getChatResponse = async (messages: { role: string; content: string }[]) => {
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
   
   if (!apiKey) throw new Error("API Key Missing");
 
-  let priorityModels = [
+  const priorityModels = [
     "google/gemini-2.0-flash-exp:free",
     "meta-llama/llama-3.1-8b-instruct:free",
     "google/gemma-2-9b-it:free",
@@ -46,16 +45,19 @@ Colleagues describe him as "proactive," "intellectually curious," and an enginee
 - Start responses with a professional hook (e.g., "Kuldeep's background in Data Engineering is quite extensive..." or "That's a great question about his AI work...").
 - If asked about contact info, mention his LinkedIn or Substack.`;
 
-  // Fetch dynamic list of free models
   let allFreeModels = [...priorityModels];
   try {
     const modelsResp = await fetch("https://openrouter.ai/api/v1/models");
     if (modelsResp.ok) {
       const { data } = await modelsResp.json();
-      const dynamicFree = data.filter((m: any) => m.id.endsWith(':free')).map((m: any) => m.id);
+      const dynamicFree = data.filter((m: { id: string }) => m.id.endsWith(':free')).map((m: { id: string }) => m.id);
       allFreeModels = [...new Set([...priorityModels.filter(m => dynamicFree.includes(m)), ...dynamicFree])];
     }
-  } catch (e) {}
+  } catch {
+    // fallback to priority models only
+  }
+
+  const siteUrl = typeof window !== "undefined" ? window.location.origin : "http://localhost:5173";
 
   for (const model of allFreeModels) {
     try {
@@ -63,14 +65,14 @@ Colleagues describe him as "proactive," "intellectually curious," and an enginee
         method: "POST",
         headers: {
           "Authorization": `Bearer ${apiKey}`,
-          "HTTP-Referer": "http://localhost:5173",
+          "HTTP-Referer": siteUrl,
           "X-Title": "Kuldeep Portfolio Agent",
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           "model": model,
           "messages": [{ "role": "system", "content": systemPrompt }, ...messages],
-          "temperature": 0.6, // Slightly higher for more fluid, professional prose
+          "temperature": 0.6,
           "max_tokens": 1000
         })
       });

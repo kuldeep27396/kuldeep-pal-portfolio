@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, X, Send, User, Loader2, Sparkles, Cpu, Mail } from "lucide-react";
+import { Bot, X, Send, User, Sparkles, Cpu } from "lucide-react";
 import { getChatResponse } from "@/lib/openrouter";
 import { Button } from "@/components/ui/button";
 

@@ -75,7 +75,7 @@ const projects: Project[] = [
     title: "Apache Pinot Real-time OLAP",
     description: "Architectural exploration and deployment of Apache Pinot for real-time analytical queries on massive streaming datasets.",
     tech: ["Apache Pinot", "Real-time OLAP", "Streaming", "Presto/Trino"],
-    github: "https://github.com/kuldeep27396/apache-pinot-realtime-olap",
+    github: "https://github.com/kuldeep27396/Apache-Pinot-with-Kafka-Realtime-OLAP",
   },
 ];
 
