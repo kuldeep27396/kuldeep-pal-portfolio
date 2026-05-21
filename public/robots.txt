@@ -13,3 +13,5 @@ Allow: /
 User-agent: *
 Allow: /
 Disallow: /resume
+
+Sitemap: https://kuldeep-pal-portfolio.vercel.app/sitemap.xml
