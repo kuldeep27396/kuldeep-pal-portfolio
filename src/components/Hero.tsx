@@ -15,7 +15,7 @@ const socialLinks = [
     icon: Github,
     href: "https://github.com/kuldeep27396",
     label: "GitHub",
-    className: "bg-slate-900/10 text-slate-700 hover:bg-slate-900 hover:text-white",
+    className: "bg-slate-900/10 text-slate-700 hover:bg-slate-900 hover:text-white dark:bg-slate-100/10 dark:text-slate-300 dark:hover:bg-slate-100 dark:hover:text-slate-900",
   },
   {
     icon: BookOpen,

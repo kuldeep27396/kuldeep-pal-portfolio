@@ -9,6 +9,15 @@ import { marked } from "marked";
 import mermaid from "mermaid";
 import hljs from "highlight.js";
 
+// HTML escape utility to prevent injection via code fence language strings
+const escapeHtml = (str: string): string =>
+  str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
 // Configure marked with a custom renderer for mermaid code blocks
 const renderer = new marked.Renderer();
 renderer.code = (codeOrToken: any, languageOrUndefined?: string) => {
@@ -21,7 +30,9 @@ renderer.code = (codeOrToken: any, languageOrUndefined?: string) => {
     return `<div class="mermaid-container my-8 flex justify-center bg-card p-4 rounded-xl border border-border/50 overflow-x-auto max-w-full"><div class="mermaid w-full text-center">${codeText}</div></div>`;
   }
   
-  const cleanLang = language || "code";
+  // Sanitize language for safe insertion into HTML attributes and text
+  const rawLang = language || "code";
+  const cleanLang = escapeHtml(rawLang.replace(/[^a-zA-Z0-9_\-+#.]/g, ""));
   
   // Calculate line numbers (safe for trailing newlines)
   const trimmedCode = codeText.replace(/\n$/, "");
@@ -162,27 +173,49 @@ export const BlogPost = () => {
         if (!codeElement) return;
 
         const codeText = codeElement.innerText;
-        navigator.clipboard.writeText(codeText).then(() => {
-          const textSpan = btn.querySelector("span");
-          const originalSvg = btn.querySelector("svg")?.outerHTML || "";
-          
-          if (textSpan) textSpan.textContent = "Copied!";
-          btn.classList.add("text-emerald-500", "hover:text-emerald-500");
-          
-          // Temporary success icon
+        const originalSvg = btn.querySelector("svg")?.outerHTML || "";
+
+        const showSuccess = () => {
           btn.innerHTML = `
             <svg class="w-3.5 h-3.5 text-emerald-500 animate-fade-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
             <span class="text-emerald-500 font-semibold">Copied!</span>
           `;
-
+          btn.classList.add("text-emerald-500", "hover:text-emerald-500");
           setTimeout(() => {
-            btn.innerHTML = `
-              ${originalSvg}
-              <span>Copy</span>
-            `;
+            btn.innerHTML = `${originalSvg}<span>Copy</span>`;
             btn.classList.remove("text-emerald-500", "hover:text-emerald-500");
           }, 2000);
-        });
+        };
+
+        const showError = () => {
+          btn.innerHTML = `
+            <svg class="w-3.5 h-3.5 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <span class="text-red-500 font-semibold">Failed</span>
+          `;
+          setTimeout(() => {
+            btn.innerHTML = `${originalSvg}<span>Copy</span>`;
+          }, 2000);
+        };
+
+        // Use Clipboard API with fallback for restricted browsers
+        if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(codeText).then(showSuccess).catch(showError);
+        } else {
+          // Fallback: use a hidden textarea + execCommand
+          try {
+            const textarea = document.createElement("textarea");
+            textarea.value = codeText;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            showSuccess();
+          } catch {
+            showError();
+          }
+        }
       };
 
       document.addEventListener("click", handleCopyClick);

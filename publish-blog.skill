@@ -1,0 +1,64 @@
+# Skill: Publish a New Blog Post
+
+This skill guides an AI assistant through the process of validating, syncing, committing, and raising a PR for a newly added Markdown blog post.
+
+## Instructions for the Assistant
+
+Follow these steps exactly when a user asks to publish a new blog post:
+
+### Step 1: Locate the New Markdown File
+1. Scan the `public/content/blogs/` directory for any new or untracked/modified `.md` files.
+2. If multiple files are found, ask the user which one they would like to publish.
+3. If no new or modified markdown files are found in `public/content/blogs/`, ask the user to specify the path to the blog post they want to publish, or create one first.
+
+### Step 2: Validate Frontmatter
+1. Open and read the markdown file.
+2. Verify that it contains valid YAML frontmatter at the top (delimited by `---`).
+3. Ensure the following frontmatter fields are present and valid:
+   - `title`: A descriptive title (string).
+   - `date`: Today's date in `YYYY-MM-DD` format (if missing or in the past/future, ask the user or update to today's date).
+   - `description`: A short 1-2 sentence summary (string).
+   - `tags`: An array of tags (e.g. `["Kubernetes", "DevOps"]`).
+4. If any fields are missing or invalid, fix them or ask the user for confirmation.
+
+### Step 3: Run the Sync Script
+1. Run the article synchronization command to update the blog index and generate the necessary metadata files:
+   ```bash
+   npm run sync:articles
+   ```
+2. Verify that the output shows the new article index has been regenerated, and `src/data/local-blogs.generated.ts` is updated.
+
+### Step 4: Verify the Build
+1. Run a build to ensure the typescript and bundler compilation works without errors:
+   ```bash
+   npm run build
+   ```
+2. If there are compilation or lint errors, resolve them before proceeding.
+
+### Step 5: Git Branching and Staging
+1. Get the slug of the blog (the filename without `.md`, e.g. if file is `my-blog.md`, slug is `my-blog`).
+2. Create a new git branch:
+   ```bash
+   git checkout -b blog/<slug>
+   ```
+3. Stage the new markdown file and the auto-generated blog index:
+   ```bash
+   git add public/content/blogs/<slug>.md src/data/local-blogs.generated.ts
+   ```
+
+### Step 6: Commit and Push
+1. Commit the changes:
+   ```bash
+   git commit -m "blog: add <blog-title>"
+   ```
+2. Push the branch to remote:
+   ```bash
+   git push -u origin blog/<slug>
+   ```
+
+### Step 7: Create a Pull Request
+1. Use the GitHub CLI to create the PR:
+   ```bash
+   gh pr create --title "blog: add <blog-title>" --body "This PR adds a new blog post: **<blog-title>**."
+   ```
+2. Report the PR URL to the user once it's created.
