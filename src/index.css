@@ -175,4 +175,30 @@
     border: 0;
     background: transparent;
   }
+
+  /* Responsive content scaling for blogs and markdown content */
+  .prose table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mermaid-container {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mermaid svg {
+    max-width: 100% !important;
+    height: auto !important;
+    min-width: 420px; /* Prevent shrinking to complete unreadability */
+  }
+
+  @media (max-width: 640px) {
+    .mermaid svg {
+      min-width: 320px;
+    }
+  }
 }

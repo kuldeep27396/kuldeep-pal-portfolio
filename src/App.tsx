@@ -9,6 +9,7 @@ import Experience from "./pages/Experience";
 import Skills from "./pages/Skills";
 import Projects from "./pages/Projects";
 import Articles from "./pages/Articles";
+import BlogPost from "./pages/BlogPost";
 import Certificates from "./pages/Certificates";
 import Recommendations from "./pages/Recommendations";
 import Resume from "./pages/Resume";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/skills" element={<Skills />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/articles" element={<Articles />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/certificates" element={<Certificates />} />
           <Route path="/recommendations" element={<Recommendations />} />
           <Route path="/resume" element={<Resume />} />

@@ -4,9 +4,14 @@ import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft, BookOpen, Newspaper, BellPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { sourceLinks, articles } from "@/data/articles.generated";
+import { sourceLinks, articles as externalArticles } from "@/data/articles.generated";
+import { localBlogs } from "@/data/local-blogs.generated";
 
 const Articles = () => {
+  // Merge and sort both local and external blog posts by date descending
+  const articles = [...localBlogs, ...externalArticles].sort((a, b) =>
+    b.isoDate.localeCompare(a.isoDate)
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -74,47 +79,78 @@ const Articles = () => {
             transition={{ delay: 0.12 }}
             className="grid md:grid-cols-2 gap-6"
           >
-            {articles.map((article, index) => (
-              <a
-                key={`${article.title}-${index}`}
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col rounded-[1.5rem] border border-border bg-card overflow-hidden hover:shadow-card transition-shadow"
-              >
-                {article.image && (
-                  <div className="aspect-video w-full overflow-hidden bg-muted">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
+            {articles.map((article, index) => {
+              const isLocal = article.source === "local";
+              const CardContent = (
+                <>
+                  {article.image ? (
+                    <div className="aspect-video w-full overflow-hidden bg-muted border-b border-border/10">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    isLocal && (
+                      <div className="aspect-video w-full overflow-hidden bg-[radial-gradient(circle_at_top_left,hsl(var(--primary)/0.15),hsl(var(--accent)/0.25))] flex items-center justify-center p-6 border-b border-border/20">
+                        <span className="font-mono text-xs font-semibold text-primary uppercase tracking-widest text-center opacity-85">
+                          {article.title.substring(0, 40)}...
+                        </span>
+                      </div>
+                    )
+                  )}
+                  <div className="flex flex-col flex-1 p-5 sm:p-6">
+                    <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-3">
+                      <span className="uppercase tracking-wider text-primary font-bold">{article.sourceLabel}</span>
+                      <span>•</span>
+                      <span>{article.date}</span>
+                    </div>
+                    <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1" dangerouslySetInnerHTML={{ __html: article.description }} />
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {article.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] font-medium text-foreground"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                )}
-                <div className="flex flex-col flex-1 p-5 sm:p-6">
-                  <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mb-3">
-                    <span className="uppercase tracking-wider text-primary">{article.sourceLabel}</span>
-                    <span>•</span>
-                    <span>{article.date}</span>
-                  </div>
-                  <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1" dangerouslySetInnerHTML={{ __html: article.description }} />
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {article.tags.slice(0, 3).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] font-medium text-foreground"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </a>
-            ))}
+                </>
+              );
+
+              const cardClassName = "group flex flex-col rounded-[1.5rem] border border-border bg-card overflow-hidden hover:shadow-card transition-shadow";
+
+              if (isLocal) {
+                return (
+                  <Link
+                    key={`${article.title}-${index}`}
+                    to={`/blog/${article.slug}`}
+                    className={cardClassName}
+                  >
+                    {CardContent}
+                  </Link>
+                );
+              }
+
+              return (
+                <a
+                  key={`${article.title}-${index}`}
+                  href={article.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cardClassName}
+                >
+                  {CardContent}
+                </a>
+              );
+            })}
           </motion.div>
         </div>
       </main>

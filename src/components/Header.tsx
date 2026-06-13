@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { Menu, X, Linkedin, Github, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, Linkedin, Github, BookOpen, Sun, Moon } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "@/components/XIcon";
@@ -62,6 +62,27 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  // Initialize theme from localStorage or default to dark mode
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved === "dark" || saved === null; // default to dark
+  });
+
+  // Sync theme status to root document class list
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -90,35 +111,68 @@ export const Header = () => {
             ))}
           </nav>
 
-          <div className="hidden lg:flex items-center gap-2">
-            {socialLinks.map((social) => (
-              social.internal ? (
-                <Link
-                  key={social.label}
-                  to={social.href}
-                  className={`rounded-full p-2 transition-colors ${social.className}`}
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-4 h-4" />
-                </Link>
+          <div className="hidden lg:flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              {socialLinks.map((social) => (
+                social.internal ? (
+                  <Link
+                    key={social.label}
+                    to={social.href}
+                    className={`rounded-full p-2 transition-colors ${social.className}`}
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-4 h-4" />
+                  </Link>
+                ) : (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`rounded-full p-2 transition-colors ${social.className}`}
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-4 h-4" />
+                  </a>
+                )
+              ))}
+            </div>
+
+            <div className="border-l border-border/80 h-4 w-[1px]" />
+
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full w-9 h-9 border border-border/40 hover:bg-muted/50 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Sun className="w-[1.1rem] h-[1.1rem] text-amber-500" />
               ) : (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`rounded-full p-2 transition-colors ${social.className}`}
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-4 h-4" />
-                </a>
-              )
-            ))}
+                <Moon className="w-[1.1rem] h-[1.1rem] text-indigo-500" />
+              )}
+            </Button>
           </div>
 
-          <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </Button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full w-9 h-9 border border-border/40 hover:bg-muted/50 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Sun className="w-[1.1rem] h-[1.1rem] text-amber-500" />
+              ) : (
+                <Moon className="w-[1.1rem] h-[1.1rem] text-indigo-500" />
+              )}
+            </Button>
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </Button>
+          </div>
         </div>
 
         {isOpen && (

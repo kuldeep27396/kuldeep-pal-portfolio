@@ -8,6 +8,17 @@
     <meta name="author" content="Kuldeep Pal" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || theme === null) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
     <meta property="og:title" content="Kuldeep Pal | Senior Software Engineer" />
     <meta property="og:description" content="Senior software engineer working across data engineering, AI systems, backend platforms, and production architecture." />
     <meta property="og:type" content="website" />
