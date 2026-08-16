@@ -9,10 +9,21 @@ interface Message {
   content: string;
 }
 
-// Simple markdown-to-html helper for better formatting
+// Escape HTML special characters to prevent XSS from untrusted model output
+const escapeHtml = (str: string): string =>
+  str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+// Simple markdown-to-html helper for better formatting (HTML-escapes input first)
 const formatMessage = (text: string) => {
+  // Escape first so Markdown/markup in the model output is rendered as text, not HTML.
+  const escaped = escapeHtml(text);
   // Bold
-  let formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-foreground">$1</strong>');
+  let formatted = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-foreground">$1</strong>');
   // Bullet points (handle both - and *)
   formatted = formatted.replace(/^\s*[-*]\s*(.*)/gm, '<li class="ml-4 list-disc my-1">$1</li>');
   // Headers (e.g., ### Title)

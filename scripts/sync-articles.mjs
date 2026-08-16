@@ -187,8 +187,10 @@ const main = async () => {
   let existingArticles = [];
   try {
     const existingContent = await readFile(outputFile, "utf8");
-    // Extract the JSON array from the generated file using regex
-    const match = existingContent.match(/export const articles: ArticleItem\[\] = (\[[\s\S]*?\]);/);
+    // Extract the JSON array from the generated file using regex.
+    // The array is the last statement in the file, so anchor greedily to the
+    // end to avoid a false stop when a description contains "];".
+    const match = existingContent.match(/export const articles: ArticleItem\[\] = (\[[\s\S]*\]);\s*$/);
     if (match && match[1]) {
       existingArticles = JSON.parse(match[1]);
     }
