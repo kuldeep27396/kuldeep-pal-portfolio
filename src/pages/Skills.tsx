@@ -71,49 +71,49 @@ const skillCategories = [
     title: "Data Engineering",
     icon: Database,
     description: "Core data platform and analytics engineering stack.",
-    tone: "bg-amber-500/10 text-amber-700",
+    tone: "bg-amber-500/10 text-amber-700 dark:text-amber-400",
     skills: ["PySpark", "Spark", "Kafka", "Airflow", "Data Lake", "Lakehouse", "Warehousing", "Data Modeling", "BigQuery", "Delta Lake", "Hadoop/Hive"],
   },
   {
     title: "AI and Agents",
     icon: Brain,
     description: "Practical LLM systems and workflow orchestration.",
-    tone: "bg-emerald-500/10 text-emerald-700",
+    tone: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
     skills: ["LLMs", "AI Agents", "RAG", "LangChain", "LangGraph", "FastMCP", "Prompt Engineering", "Pydantic"],
   },
   {
     title: "Backend Engineering",
     icon: Server,
     description: "Production backend delivery and service design.",
-    tone: "bg-sky-500/10 text-sky-700",
+    tone: "bg-sky-500/10 text-sky-700 dark:text-sky-400",
     skills: ["FastAPI", "REST APIs", "Spring Boot", "System Design", "Authentication", "Secure File Flows", "Microservices"],
   },
   {
     title: "Programming",
     icon: Code2,
     description: "Languages used across data, APIs, and platform work.",
-    tone: "bg-rose-500/10 text-rose-700",
+    tone: "bg-rose-500/10 text-rose-700 dark:text-rose-400",
     skills: ["Python", "SQL", "Java", "Scala", "Shell Scripting"],
   },
   {
     title: "Cloud and Infra",
     icon: Cloud,
     description: "Delivery and operations across managed cloud services.",
-    tone: "bg-cyan-500/10 text-cyan-700",
+    tone: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-400",
     skills: ["AWS", "GCP", "S3", "EMR", "Glue", "Dataproc", "GCS", "Docker", "Kubernetes", "Git", "CI/CD"],
   },
   {
     title: "Databases and Search",
     icon: Boxes,
     description: "Storage and retrieval systems used in production work.",
-    tone: "bg-violet-500/10 text-violet-700",
+    tone: "bg-violet-500/10 text-violet-700 dark:text-violet-400",
     skills: ["SQL Databases", "Redshift", "Elasticsearch", "Azure SQL", "Milvus"],
   },
   {
     title: "Platform Workflow",
     icon: Workflow,
     description: "Cross-cutting practices around scale and reliability.",
-    tone: "bg-orange-500/10 text-orange-700",
+    tone: "bg-orange-500/10 text-orange-700 dark:text-orange-400",
     skills: ["Observability", "Data Quality", "Migration", "Orchestration", "Caching", "Signed URLs", "Platform Reliability"],
   },
 ];
@@ -123,7 +123,7 @@ const SkillBadge = ({ skill }: { skill: string }) => {
 
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
-      <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-[9px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
+      <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-xs font-bold uppercase tracking-[0.08em] text-muted-foreground">
         {meta.logo ? <img src={meta.logo} alt="" className="h-3.5 w-3.5 object-contain" loading="lazy" /> : meta.mark}
       </span>
       <span>{skill}</span>
@@ -171,7 +171,7 @@ const Skills = () => {
                   </div>
                   <div>
                     <h2 className="text-xl font-semibold">{category.title}</h2>
-                    <p className="text-sm text-muted-foreground mt-1">{category.description}</p>
+                    <p className="text-sm text-muted-foreground mt-1 max-w-prose">{category.description}</p>
                   </div>
                 </div>
 

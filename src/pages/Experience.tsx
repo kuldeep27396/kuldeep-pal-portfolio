@@ -95,7 +95,7 @@ const Experience = () => {
                         </span>
                       </div>
                     </div>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{exp.summary}</p>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-prose">{exp.summary}</p>
                     <div className="flex flex-wrap gap-2 mt-5">
                       {exp.tech.map((item) => (
                         <span
