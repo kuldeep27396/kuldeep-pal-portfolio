@@ -96,7 +96,7 @@ export const ChatAgent = () => {
               />
             </button>
             
-            <div className="absolute -top-12 right-0 bg-card border border-border px-3 py-1.5 rounded-xl shadow-xl text-[10px] font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute -top-12 right-0 bg-card border border-border px-3 py-1.5 rounded-xl shadow-xl text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
               Chat with Kuldeep AI
             </div>
           </motion.div>
@@ -121,7 +121,7 @@ export const ChatAgent = () => {
                   <h3 className="text-base font-bold tracking-tight">Kuldeep Neural Link</h3>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
-                    <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest">Autonomous Agent</span>
+                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Autonomous Agent</span>
                   </div>
                 </div>
               </div>
@@ -202,9 +202,9 @@ export const ChatAgent = () => {
                 </button>
               </form>
               <div className="flex items-center justify-between mt-4">
-                <span className="text-[9px] text-muted-foreground uppercase tracking-widest font-bold">Neural Core v1.0</span>
+                <span className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Neural Core v1.0</span>
                 <div className="flex items-center gap-1">
-                  <span className="text-[9px] text-muted-foreground">Ready for query</span>
+                  <span className="text-xs text-muted-foreground">Ready for query</span>
                 </div>
               </div>
             </div>

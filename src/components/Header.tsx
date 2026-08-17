@@ -20,26 +20,26 @@ const socialLinks = [
     icon: Linkedin,
     href: "https://linkedin.com/in/kuldeep27396",
     label: "LinkedIn",
-    className: "bg-[#0a66c2]/10 text-[#0a66c2] hover:bg-[#0a66c2] hover:text-white",
+    className: "bg-[#0a66c2]/10 text-[#0a66c2] dark:text-[#7db8f0] hover:bg-[#0a66c2] hover:text-white dark:hover:text-white",
   },
   {
     icon: Github,
     href: "https://github.com/kuldeep27396",
     label: "GitHub",
-    className: "bg-slate-900/10 text-slate-700 hover:bg-slate-900 hover:text-white",
+    className: "bg-slate-900/10 text-slate-700 dark:text-slate-300 hover:bg-slate-900 hover:text-white dark:hover:text-white",
   },
   {
     icon: BookOpen,
     href: "/articles",
     label: "Blogs",
     internal: true,
-    className: "bg-emerald-500/10 text-emerald-700 hover:bg-emerald-500 hover:text-white",
+    className: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white dark:hover:text-white",
   },
   {
     icon: XIcon,
     href: "https://x.com/kuldeep27396",
     label: "X",
-    className: "bg-sky-500/10 text-sky-600 hover:bg-sky-500 hover:text-white",
+    className: "bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500 hover:text-white dark:hover:text-white",
   },
 ];
 
@@ -133,7 +133,7 @@ export const Header = () => {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`text-sm font-medium py-2.5 transition-colors ${
                     location.pathname === link.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => setIsOpen(false)}

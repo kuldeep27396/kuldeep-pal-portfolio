@@ -106,7 +106,7 @@ const Articles = () => {
                     {article.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-border bg-background px-2 py-0.5 text-[10px] font-medium text-foreground"
+                        className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium text-foreground"
                       >
                         #{tag}
                       </span>
