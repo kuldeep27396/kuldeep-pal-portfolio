@@ -101,7 +101,7 @@ const Articles = () => {
                   <h3 className="text-lg font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
                     {article.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1" dangerouslySetInnerHTML={{ __html: article.description }} />
+                  <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-1">{article.description}</p>
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {article.tags.slice(0, 3).map((tag) => (
                       <span
