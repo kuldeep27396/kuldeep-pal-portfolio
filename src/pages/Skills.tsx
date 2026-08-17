@@ -123,7 +123,8 @@ const SkillBadge = ({ skill }: { skill: string }) => {
 
   return (
     <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
-      <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-xs font-bold uppercase tracking-[0.08em] text-muted-foreground">
+      {/* Keep the monogram small: 3-4 letter marks (SQL, AUTH) must fit the 20px circle */}
+      <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-[9px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
         {meta.logo ? <img src={meta.logo} alt="" className="h-3.5 w-3.5 object-contain" loading="lazy" /> : meta.mark}
       </span>
       <span>{skill}</span>
