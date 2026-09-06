@@ -1,53 +1,46 @@
-# Kuldeep Pal Portfolio
+# Kuldeep Pal — Portfolio
 
-Personal portfolio built with Vite, React, TypeScript, and Tailwind CSS.
+My personal portfolio and blog — live at **[kuldeep-pal.in](https://www.kuldeep-pal.in/)**.
 
-## Repository
+Built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui (Radix primitives). Deployed on Vercel.
 
-GitHub: `https://github.com/kuldeep27396/kuldeep-pal-portfolio.git`
+## Features
 
-## Status
+- Responsive portfolio — projects, experience, and writing in one place
+- Blog page with content synced from Medium and LinkedIn newsletter RSS sources
+- Dark/light theming built on Radix primitives + Tailwind
+- SPA fallback rewrites configured for Vercel, Netlify, and Cloudflare Pages
+- Article sync runs automatically as part of every build (`prebuild`)
 
-- Portfolio content refresh completed
-- Vercel deployment support added
-- SPA rewrites configured for Vercel, Netlify, and Cloudflare Pages
-- Blog sync pipeline added for Medium and LinkedIn newsletter sources
+## Tech Stack
 
-## Scripts
+| Layer | Choice |
+|---|---|
+| Framework | React + Vite |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| UI components | shadcn/ui (Radix primitives) |
+| Hosting | Vercel |
+| Content | RSS sync pipeline (`scripts/`, Medium / LinkedIn sources) |
+
+## Quickstart
 
 ```sh
 npm install
-npm run dev
-npm run build
+npm run dev       # local dev server
+npm run build     # runs article sync (prebuild) + production build
 ```
 
 ## Content Sync
 
-The blogs page uses RSS-backed content sources.
+The blogs page is backed by RSS content sources:
 
 ```sh
 npm run sync:articles
 ```
 
-`npm run build` already runs the sync step through `prebuild`.
+`npm run build` already runs this via the `prebuild` hook — no manual step needed for deployments.
 
 ## Deployment
 
-Free hosting options that work well for this project:
-
-- Vercel
-- Netlify
-- Cloudflare Pages
-- GitHub Pages
-
-For Vercel, Netlify, or Cloudflare Pages, this repo is already set up for SPA routing:
-
-- Build command: `npm run build`
-- Output directory: `dist`
-
-Included files:
-
-- `vercel.json` for Vercel rewrites
-- `public/_redirects` for Netlify and Cloudflare Pages
-
-If you use a generated LinkedIn newsletter RSS feed, add the required env var in your hosting dashboard before building.
+Vercel (see `vercel.json`). The SPA rewrite rules also work out of the box on Netlify and Cloudflare Pages if you prefer those hosts.
