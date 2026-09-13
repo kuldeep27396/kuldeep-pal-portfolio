@@ -48,7 +48,7 @@ export const Stats = () => {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-card text-tone-frontend-fg shadow-soft">
                 <Hammer className="h-[18px] w-[18px]" aria-hidden="true" />
               </span>
-              <h3 className="mt-3 text-[15px] font-semibold">Builder, end to end</h3>
+              <h3 className="mt-3 text-[15px] font-semibold">Product Builder, end to end</h3>
               <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                 Backend is my craft. For UI, I design and vibe-code well enough to ship — fixing bugs
                 anywhere in the stack and taking whole applications to production single-handedly.
