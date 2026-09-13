@@ -18,7 +18,7 @@ const experiences = [
   {
     company: "ZS Associates",
     location: "Pune, India",
-    role: "Senior Software Engineer (Software Engineer 2)",
+    role: "Software Engineer 2 — Data Eng & AI",
     period: "Sept 2021 - June 2022",
     summary:
       "Built backend services in Flask alongside analytics and warehouse pipelines for product use cases, with focus on Airflow orchestration, Spark optimization, data modeling, and AWS-based data engineering.",
