@@ -50,8 +50,8 @@ export const Stats = () => {
               </span>
               <h3 className="mt-3 text-[15px] font-semibold">Builder, end to end</h3>
               <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                Backend is my craft — I design and vibe-code the UI, squash bugs across the stack, and
-                have shipped whole applications to production single-handedly.
+                Backend is my craft. For UI, I design and vibe-code well enough to ship — fixing bugs
+                anywhere in the stack and taking whole applications to production single-handedly.
               </p>
             </div>
           </div>
