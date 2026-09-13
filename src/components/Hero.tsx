@@ -89,18 +89,27 @@ export const Hero = () => {
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Single soft accent glow behind the frame */}
               <div
-                className="absolute inset-0 -m-5 rounded-[2rem] bg-accent/50 blur-2xl"
-                aria-hidden="true"
-              />
-              <div className="relative h-[21rem] w-[17rem] sm:h-[25rem] sm:w-[20rem] md:h-[27rem] md:w-[22rem] overflow-hidden rounded-2xl bg-card shadow-card">
+                className="h-[23rem] sm:h-[26rem] md:h-[28rem]"
+                style={{ filter: "drop-shadow(0 20px 28px hsl(212 30% 16% / 0.14))" }}
+              >
+                {/* Transparent cutout sits directly on the page canvas. The mask
+                    dissolves the canvas-cut edges (shoulders/bottom) into the
+                    page — a mask always matches the background behind it. */}
                 <img
                   src="/profile.webp"
                   alt="Kuldeep Pal"
-                  width={495}
-                  height={660}
-                  className="h-full w-full object-cover object-top"
+                  width={800}
+                  height={1067}
+                  className="h-full w-auto"
+                  style={{
+                    maskImage:
+                      "linear-gradient(to bottom, black 80%, transparent 99%), linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%)",
+                    maskComposite: "intersect",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, black 80%, transparent 99%), linear-gradient(to right, transparent 0%, black 16%, black 84%, transparent 100%)",
+                    WebkitMaskComposite: "source-in",
+                  }}
                   fetchPriority="high"
                 />
               </div>
@@ -112,7 +121,7 @@ export const Hero = () => {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: EASE_OUT, delay: 0.45 }}
-                className="absolute -bottom-4 right-3 rounded-xl border border-border/70 bg-card px-3.5 py-2.5 shadow-card transition-shadow hover:shadow-lift"
+                className="absolute bottom-10 right-0 rounded-xl border border-border/70 bg-card px-3.5 py-2.5 shadow-card transition-shadow hover:shadow-lift sm:right-2"
               >
                 <div className="flex items-center gap-2">
                   <ExternalLink className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
