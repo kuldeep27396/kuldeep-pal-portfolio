@@ -8,6 +8,23 @@ export type Certification = {
   credentialId?: string;
   skills?: string[];
   credentialUrl?: string;
+  /** Issuer brand mark (see public/company-logos, public/skill-logos); falls back to a tinted icon */
+  logo?: string;
+};
+
+/** issuer -> logo map, applied where a credential has no explicit logo */
+const issuerLogos: Record<string, string> = {
+  "Walmart Global Tech": "/company-logos/walmart.svg",
+  LangChain: "/skill-logos/langchain.svg",
+  Astronomer: "/skill-logos/apacheairflow.svg",
+  HackerRank: "/company-logos/hackerrank.png",
+  LinkedIn: "/company-logos/linkedin.svg",
+  Databricks: "/company-logos/databricks.png",
+  Udemy: "/company-logos/udemy.svg",
+  Udacity: "/company-logos/udacity.svg",
+  "Amazon Web Services (AWS)": "/company-logos/aws.svg",
+  "The Linux Foundation": "/company-logos/linuxfoundation.png",
+  "UC San Diego": "/company-logos/ucsandiego.svg",
 };
 
 export const certificationGroups: Array<{ year: string; items: Certification[] }> = [
@@ -267,3 +284,7 @@ export const totalCertifications = certificationGroups.reduce(
   (total, group) => total + group.items.length,
   0,
 );
+
+/** Resolve a credential's logo: explicit field first, then issuer match. */
+export const issuerLogo = (cert: Certification): string | undefined =>
+  cert.logo ?? issuerLogos[cert.issuer];

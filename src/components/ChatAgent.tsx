@@ -133,8 +133,8 @@ export const ChatAgent = () => {
                     {/* Header */}
                     <div className="flex items-center justify-between border-b border-border/50 px-5 py-4">
                       <div className="flex items-center gap-3.5">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                          <Bot className="h-5 w-5 text-primary" aria-hidden="true" />
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-tone-ai-bg text-tone-ai-fg">
+                          <Bot className="h-5 w-5" aria-hidden="true" />
                         </div>
                         <div>
                           <DialogPrimitive.Title className="text-base font-semibold">

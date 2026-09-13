@@ -52,8 +52,8 @@ export const Contact = () => {
 
         <div className="mx-auto grid max-w-5xl gap-4 lg:grid-cols-[0.85fr_1.15fr]">
           <motion.div {...fadeInUp} className="rounded-xl bg-card p-5 shadow-soft sm:p-6">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-              <MapPin className="h-5 w-5 text-primary" aria-hidden="true" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tone-cloud-bg text-tone-cloud-fg">
+              <MapPin className="h-5 w-5" aria-hidden="true" />
             </div>
             <h3 className="mt-4 text-lg font-semibold">Location</h3>
             <p className="mt-1 text-sm text-muted-foreground">Bengaluru, India</p>

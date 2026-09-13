@@ -217,7 +217,7 @@ const Projects = () => {
               <article className="group rounded-2xl bg-card p-6 shadow-card transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lift sm:p-8">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-tone-backend-bg text-tone-backend-fg">
                       <FolderGit2 className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <div>

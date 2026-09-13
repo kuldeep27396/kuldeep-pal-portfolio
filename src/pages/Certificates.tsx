@@ -3,7 +3,7 @@ import { Calendar, ExternalLink, FileCheck } from "lucide-react";
 import { Layout, PageHeader } from "@/components/layout/Layout";
 import { PageMeta } from "@/components/PageMeta";
 import { TagPill } from "@/components/primitives";
-import { certificationGroups, totalCertifications } from "@/data/certificates";
+import { certificationGroups, totalCertifications, issuerLogo } from "@/data/certificates";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 
 const Certificates = () => {
@@ -75,9 +75,21 @@ const Certificates = () => {
                           <h3 className="text-lg font-semibold leading-snug">{cert.title}</h3>
                           <p className="mt-1 text-sm font-medium">{cert.issuer}</p>
                         </div>
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                          <FileCheck className="h-[18px] w-[18px]" aria-hidden="true" />
-                        </div>
+                        {issuerLogo(cert) ? (
+                          // Issuer brand mark on a neutral tile so brand colors read cleanly
+                          <span className="flex h-9 min-w-9 shrink-0 items-center justify-center rounded-lg bg-muted px-2">
+                            <img
+                              src={issuerLogo(cert)}
+                              alt={`${cert.issuer} logo`}
+                              className="h-4 w-auto max-w-[76px] object-contain"
+                              loading="lazy"
+                            />
+                          </span>
+                        ) : (
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <FileCheck className="h-[18px] w-[18px]" aria-hidden="true" />
+                          </div>
+                        )}
                       </div>
 
                       <div className="tnum mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">

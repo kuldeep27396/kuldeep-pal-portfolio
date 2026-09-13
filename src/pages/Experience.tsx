@@ -139,7 +139,7 @@ const Experience = () => {
           <Reveal delay={0.1} className="mt-12">
             <Card className="p-5 sm:p-7">
               <div className="flex flex-wrap items-start gap-5">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-tone-frontend-bg text-tone-frontend-fg">
                   <GraduationCap className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <div>
