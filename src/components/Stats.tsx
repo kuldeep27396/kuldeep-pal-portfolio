@@ -1,95 +1,64 @@
 import { motion } from "framer-motion";
-import { Bot, Boxes, Database, Server } from "lucide-react";
-import { staggerContainer, staggerItem } from "@/lib/motion";
+import { Bot, Database, Server } from "lucide-react";
+import { fadeInUp, staggerContainer, staggerItem } from "@/lib/motion";
 
 /**
- * Bento grid — varied card sizes, one hero cell (docs/DESIGN.md §7).
- * Deliberately not a hero-metric template: values differ in scale and weight.
+ * Single statement panel: the pitch + a fact strip inside the same card.
+ * Facts are capability claims (not tenure math) — see docs/DESIGN.md §7.
  */
-const cells = [
+const facts = [
   {
-    value: "Multiple TB+",
-    label: "daily data volume across batch and streaming",
-    span: "",
-    icon: Database,
-    tone: "bg-tone-data-bg text-tone-data-fg",
-  },
-  {
-    value: "2+ years",
-    label: "building AI agents and LLM platforms for production use",
-    span: "",
-    icon: Bot,
-    tone: "bg-tone-ai-bg text-tone-ai-fg",
-  },
-  {
-    value: "FastAPI + Spring Boot",
-    label: "Production backend services and secure integrations",
-    span: "sm:col-span-2 md:col-span-2",
     icon: Server,
     tone: "bg-tone-backend-bg text-tone-backend-fg",
+    title: "Backend services",
+    detail: "FastAPI · Spring Boot · Flask in production",
   },
   {
-    value: "Lakehouse + Warehousing",
-    label: "platform focus, from ingestion to modeled marts",
-    span: "sm:col-span-2 md:col-span-1",
-    icon: Boxes,
-    tone: "bg-tone-frontend-bg text-tone-frontend-fg",
+    icon: Database,
+    tone: "bg-tone-data-bg text-tone-data-fg",
+    title: "TB+ daily scale",
+    detail: "batch + streaming pipelines, ingestion to modeled marts",
+  },
+  {
+    icon: Bot,
+    tone: "bg-tone-ai-bg text-tone-ai-fg",
+    title: "AI agents in production",
+    detail: "RAG and multi-agent LLM platforms, not demos",
   },
 ];
 
 export const Stats = () => {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6">
+    <section className="px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.4 }}
-          className="mb-10 sm:mb-12"
-        >
-          <h2 className="text-2xl sm:text-3xl font-semibold">Technical Positioning</h2>
-          <p className="mt-3 text-muted-foreground text-measure">
-            The combination of scale, stack, and production ownership I bring to senior engineering roles.
+        <motion.div {...fadeInUp} className="rounded-2xl bg-card p-6 shadow-card sm:p-10">
+          <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
+            8+ years building <span className="text-primary">production software</span> across backend, data &amp; AI.
+          </h2>
+          <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
+            End-to-end ownership — from API and platform design to data architecture and AI agents,
+            and the product decisions that ship them.
           </p>
-        </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
-        >
-          {/* Hero cell — the one larger block that anchors the grid */}
           <motion.div
-            variants={staggerItem}
-            className="rounded-2xl bg-card p-6 sm:p-8 shadow-card sm:col-span-2 sm:row-span-2 flex flex-col justify-between gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            className="mt-8 grid gap-5 border-t border-border/60 pt-6 sm:grid-cols-3"
           >
-            <p className="font-display text-4xl sm:text-5xl leading-[1.05] font-semibold">
-              8+ years building <span className="text-primary">production software</span> across backend, data &amp; AI.
-            </p>
-            <p className="text-muted-foreground max-w-[46ch]">
-              End-to-end ownership — from API and platform design to data architecture and AI agents,
-              and the product decisions that ship them.
-            </p>
+            {facts.map((fact) => (
+              <motion.div key={fact.title} variants={staggerItem} className="flex items-center gap-3.5">
+                <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${fact.tone}`}>
+                  <fact.icon className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold">{fact.title}</p>
+                  <p className="text-xs leading-relaxed text-muted-foreground">{fact.detail}</p>
+                </div>
+              </motion.div>
+            ))}
           </motion.div>
-
-          {cells.map((cell) => (
-            <motion.div
-              key={cell.value}
-              variants={staggerItem}
-              className={`flex flex-col gap-3 rounded-xl bg-card p-5 shadow-soft sm:p-6 ${cell.span}`}
-            >
-              <span className={`flex h-9 w-9 items-center justify-center rounded-lg ${cell.tone}`}>
-                <cell.icon className="h-[18px] w-[18px]" aria-hidden="true" />
-              </span>
-              <div className="mt-auto">
-                <p className="tnum text-xl font-semibold">{cell.value}</p>
-                <p className="text-sm text-muted-foreground">{cell.label}</p>
-              </div>
-            </motion.div>
-          ))}
         </motion.div>
       </div>
     </section>
