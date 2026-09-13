@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Bot, Database, Server } from "lucide-react";
+import { Bot, Database, Hammer, Server } from "lucide-react";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/motion";
 
 /**
@@ -32,13 +32,29 @@ export const Stats = () => {
     <section className="px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto w-full max-w-6xl">
         <motion.div {...fadeInUp} className="rounded-2xl bg-card p-6 shadow-card sm:p-10">
-          <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
-            8+ years building <span className="text-primary">production software</span> across backend, data &amp; AI.
-          </h2>
-          <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
-            End-to-end ownership — from API and platform design to data architecture and AI agents,
-            and the product decisions that ship them.
-          </p>
+          <div className="md:grid md:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] md:items-center md:gap-10">
+            <div>
+              <h2 className="max-w-[24ch] font-display text-3xl font-semibold leading-[1.08] sm:text-4xl md:text-5xl">
+                8+ years building <span className="text-primary">production software</span> across backend, data &amp; AI.
+              </h2>
+              <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted-foreground sm:text-base">
+                End-to-end ownership — from API and platform design to data architecture and AI agents,
+                and the product decisions that ship them.
+              </p>
+            </div>
+
+            {/* Builder block — backend depth plus full-product shipping */}
+            <div className="mt-6 rounded-xl border border-border/60 bg-tone-frontend-bg/50 p-5 md:mt-0">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-card text-tone-frontend-fg shadow-soft">
+                <Hammer className="h-[18px] w-[18px]" aria-hidden="true" />
+              </span>
+              <h3 className="mt-3 text-[15px] font-semibold">Builder, end to end</h3>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                Backend is my craft — I design and vibe-code the UI, squash bugs across the stack, and
+                have shipped whole applications to production single-handedly.
+              </p>
+            </div>
+          </div>
 
           <motion.div
             variants={staggerContainer}
