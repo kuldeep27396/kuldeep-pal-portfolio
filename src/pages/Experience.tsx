@@ -27,7 +27,7 @@ const experiences = [
   {
     company: "Tata Consultancy Services",
     location: "Pune, India",
-    role: "Software Engineer (Data & Cloud)",
+    role: "Software Engineer (Data Eng & Cloud)",
     period: "Sept 2018 - Sept 2021",
     clients: "Clients: Morgan Stanley, Nassau Re",
     summary:
