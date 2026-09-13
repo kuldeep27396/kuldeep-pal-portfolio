@@ -18,7 +18,7 @@ const cells = [
   },
   {
     value: "FastAPI + Spring Boot",
-    label: "AI-enabled backend services and secure integrations",
+    label: "Production backend services and secure integrations",
     span: "sm:col-span-2 md:col-span-2",
   },
   {
@@ -58,10 +58,10 @@ export const Stats = () => {
             className="rounded-2xl bg-card p-6 sm:p-8 shadow-card sm:col-span-2 sm:row-span-2 flex flex-col justify-between gap-8"
           >
             <p className="font-display text-4xl sm:text-5xl leading-[1.05] font-semibold">
-              8+ years building <span className="text-primary">production systems</span> across data, AI, and backend.
+              8+ years building <span className="text-primary">production software</span> across backend, data &amp; AI.
             </p>
             <p className="text-muted-foreground max-w-[46ch]">
-              End-to-end ownership — from pipeline architecture and platform design to AI agents, APIs,
+              End-to-end ownership — from API and platform design to data architecture and AI agents,
               and the product decisions that ship them.
             </p>
           </motion.div>

@@ -7,7 +7,7 @@ export const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="text-center md:text-left">
             <p className="font-semibold">Kuldeep Pal</p>
-            <p className="text-sm text-muted-foreground">Senior Software Engineer — Data, AI, and Backend Systems</p>
+            <p className="text-sm text-muted-foreground">Senior Software Engineer · Backend · Data · AI</p>
           </div>
 
           <SocialRow />

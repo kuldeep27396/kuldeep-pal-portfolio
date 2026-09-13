@@ -69,6 +69,20 @@ const getSkillMeta = (skill: string) => {
 
 const skillCategories = [
   {
+    title: "Backend Engineering",
+    icon: Server,
+    description: "Production backend delivery and service design.",
+    tone: "bg-tone-backend-bg text-tone-backend-fg",
+    skills: ["FastAPI", "Flask", "REST APIs", "Spring Boot", "System Design", "Authentication", "Secure File Flows", "Microservices"],
+  },
+  {
+    title: "Programming",
+    icon: Code2,
+    description: "Languages used across data, APIs, and platform work.",
+    tone: "bg-tone-craft-bg text-tone-craft-fg",
+    skills: ["Python", "SQL", "Java", "Scala", "Shell Scripting"],
+  },
+  {
     title: "Data Engineering",
     icon: Database,
     description: "Core data platform and analytics engineering stack.",
@@ -81,20 +95,6 @@ const skillCategories = [
     description: "Practical LLM systems and workflow orchestration.",
     tone: "bg-tone-ai-bg text-tone-ai-fg",
     skills: ["LLMs", "AI Agents", "RAG", "LangChain", "LangGraph", "FastMCP", "Prompt Engineering", "Pydantic"],
-  },
-  {
-    title: "Backend Engineering",
-    icon: Server,
-    description: "Production backend delivery and service design.",
-    tone: "bg-tone-backend-bg text-tone-backend-fg",
-    skills: ["FastAPI", "REST APIs", "Spring Boot", "System Design", "Authentication", "Secure File Flows", "Microservices"],
-  },
-  {
-    title: "Programming",
-    icon: Code2,
-    description: "Languages used across data, APIs, and platform work.",
-    tone: "bg-tone-craft-bg text-tone-craft-fg",
-    skills: ["Python", "SQL", "Java", "Scala", "Shell Scripting"],
   },
   {
     title: "Cloud and Infra",

@@ -6,16 +6,16 @@ import { enterOnMount, EASE_OUT } from "@/lib/motion";
 
 const highlights = [
   {
+    title: "Backend delivery",
+    detail: "FastAPI & Spring Boot services, system design, secure integrations, operational reliability",
+  },
+  {
     title: "Data engineering",
     detail: "lakehouse, warehousing, and large-scale batch + streaming pipelines",
   },
   {
     title: "AI systems",
     detail: "agentic workflows, RAG, and LLM platforms built for production",
-  },
-  {
-    title: "Backend delivery",
-    detail: "FastAPI & Spring Boot services, secure integrations, operational reliability",
   },
 ];
 
@@ -35,16 +35,16 @@ export const Hero = () => {
 
             <div>
               <h1 className="text-display">
-                Building data platforms, <span className="gradient-text">AI agents</span> &amp; backend systems.
+                Building <span className="gradient-text">production systems</span> across backend, data &amp; AI.
               </h1>
               <p className="mt-5 text-lg sm:text-xl text-muted-foreground">
-                Kuldeep Pal — Senior Software Engineer based in Bengaluru, India.
+                Kuldeep Pal — Senior Software Engineer · Bengaluru, India.
               </p>
             </div>
 
             <p className="text-measure text-base sm:text-lg text-muted-foreground leading-relaxed">
-              I build production systems where large-scale data, backend design, and intelligent systems
-              come together — with strong ownership across data platforms, AI agents, APIs, and reliability.
+              I build production software where backend design, large-scale data, and intelligent systems
+              come together — with strong ownership across APIs, data platforms, and AI agents.
             </p>
 
             <ul className="space-y-3">

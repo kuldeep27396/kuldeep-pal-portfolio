@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 const SITE_NAME = "Kuldeep Pal";
 const SITE_URL = "https://kuldeeppal.vercel.app";
 const DEFAULT_DESCRIPTION =
-  "Senior Software Engineer working across data engineering, AI systems, and backend platforms.";
+  "Senior Software Engineer building production software across backend systems, data platforms, and AI.";
 const DEFAULT_OG_IMAGE = "/og.png";
 
 /**
@@ -57,7 +57,7 @@ export const PersonJsonLd = () => {
     mainEntity: {
       "@type": "Person",
       name: "Kuldeep Pal",
-      jobTitle: "Senior Software Engineer — Data, AI, and Backend Systems",
+      jobTitle: "Senior Software Engineer — Backend, Data & AI",
       url: SITE_URL,
       image: `${SITE_URL}/profile.webp`,
       sameAs: [
@@ -67,10 +67,12 @@ export const PersonJsonLd = () => {
         "https://kuldeep27396.medium.com",
       ],
       knowsAbout: [
+        "Backend Systems",
+        "Software Engineering",
+        "Flask",
         "Data Engineering",
         "AI Agents",
         "LLM Workflows",
-        "Backend Systems",
         "FastAPI",
         "Spring Boot",
         "Apache Spark",

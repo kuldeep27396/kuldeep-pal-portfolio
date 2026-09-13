@@ -7,11 +7,7 @@ import { Contact } from "@/components/Contact";
 const Index = () => {
   return (
     <Layout flushTop>
-      <PageMeta
-        title="Kuldeep Pal"
-        description="Kuldeep Pal — Senior Software Engineer working across data engineering, AI systems, and backend platforms."
-        path="/"
-      />
+      <PageMeta title="Kuldeep Pal" path="/" />
       <PersonJsonLd />
       <Hero />
       <Stats />

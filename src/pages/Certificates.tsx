@@ -15,7 +15,7 @@ const Certificates = () => {
           <PageHeader
             backLink
             title="Licenses & Certifications"
-            lede="Public credentials from LinkedIn and internal Engineering Excellence awards from Walmart, reflecting impact across data engineering, AI, and backend systems."
+            lede="Public credentials from LinkedIn and internal Engineering Excellence awards from Walmart, reflecting impact across backend systems, data engineering, and AI."
           />
 
           <motion.dl

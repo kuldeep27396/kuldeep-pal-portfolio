@@ -60,8 +60,8 @@ export const Contact = () => {
 
             <div className="mt-5 space-y-3">
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Best for roles and conversations around data engineering, AI agents, backend systems,
-                and platform architecture.
+                Best for senior software engineering roles across backend systems, data platforms,
+                and AI agents.
               </p>
               <p className="text-xs leading-relaxed text-muted-foreground">
                 Messages are submitted directly through the form. Your message, name, and email are sent

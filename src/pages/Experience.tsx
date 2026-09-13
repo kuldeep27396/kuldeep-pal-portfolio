@@ -9,29 +9,29 @@ const experiences = [
   {
     company: "Walmart Global Tech",
     location: "Bengaluru, India",
-    role: "Senior Software Engineer (Data and AI)",
+    role: "Senior Software Engineer — Backend, Data & AI",
     period: "June 2022 - Present",
     summary:
-      "Working at the intersection of data engineering, AI, and backend systems across streaming pipelines, platform ETL, AI agents, FastAPI services, Spring Boot integrations, and secure large-file workflows built for production scale.",
+      "Working across backend systems and AI — FastAPI services, Spring Boot integrations, streaming pipelines, platform ETL, AI agents, and secure large-file workflows built for production scale.",
     tech: ["Spark", "Kafka", "PySpark", "BigQuery", "LangGraph", "LLMs", "FastAPI", "Spring Boot", "GCS"],
   },
   {
     company: "ZS Associates",
     location: "Pune, India",
-    role: "Software Engineer - 2 (Big-Data, AWS, Data Modelling)",
+    role: "Senior Software Engineer (Software Engineer 2)",
     period: "Sept 2021 - June 2022",
     summary:
-      "Built analytics and warehouse pipelines for product use cases with focus on Airflow orchestration, Spark optimization, data modeling, and AWS-based data engineering workflows.",
-    tech: ["Airflow", "Spark", "AWS", "Data Modeling", "Warehousing", "SQL"],
+      "Built backend services in Flask alongside analytics and warehouse pipelines for product use cases, with focus on Airflow orchestration, Spark optimization, data modeling, and AWS-based data engineering.",
+    tech: ["Flask", "Airflow", "Spark", "AWS", "Data Modeling", "Warehousing", "SQL"],
   },
   {
     company: "Tata Consultancy Services",
     location: "Pune, India",
-    role: "Data Engineer",
+    role: "Software Engineer (Data & Cloud)",
     period: "Sept 2018 - Sept 2021",
     clients: "Clients: Morgan Stanley, Nassau Re",
     summary:
-      "Delivered ETL, cloud migration, warehousing, and backend-integrated data systems for enterprise clients using AWS Glue, PySpark, SQL, and production data quality patterns.",
+      "Delivered ETL, cloud migration, warehousing, and backend-integrated systems for enterprise clients on AWS — using AWS Glue, PySpark, SQL, and production data-quality patterns.",
     tech: ["AWS Glue", "PySpark", "SQL", "Redshift", "Data Lake", "ETL"],
   },
 ];
@@ -45,7 +45,7 @@ const Experience = () => {
           <PageHeader
             backLink
             title="Work Experience"
-            lede="Experience across product companies and consulting environments, with consistent focus on data engineering and increasing ownership in AI systems, backend services, and production platform design."
+            lede="Experience across product companies and consulting environments, with a consistent focus on software engineering — backend services, data platforms, and increasing ownership in AI systems and production platform design."
           />
 
           <div className="relative">

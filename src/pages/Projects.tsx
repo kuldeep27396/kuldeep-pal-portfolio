@@ -82,7 +82,7 @@ const projects: Project[] = [
   {
     title: "Technical Writing Newsletter",
     description:
-      "A professional engineering newsletter with over 12k+ views, focusing on the intersection of data engineering, distributed systems, and AI architecture.",
+      "A professional engineering newsletter with over 12k+ views, focusing on the intersection of distributed systems, data engineering, and AI architecture.",
     tech: ["Technical Writing", "System Design", "Newsletter", "Architecture"],
     liveApp: "https://www.linkedin.com/newsletters/software-data-engineering-6983848189787271168/",
   },
@@ -187,7 +187,7 @@ const Projects = () => {
           <PageHeader
             backLink
             title="GitHub & Personal Projects"
-            lede="A selection of personal projects from my public GitHub profile, spanning AI tooling, browser products, orchestration, and real-time data engineering."
+            lede="A selection of personal projects from my public GitHub profile, spanning backend services, AI tooling, real-time data engineering, and browser products."
             action={
               <Button variant="outline" className="justify-center gap-2" asChild>
                 <a href={`https://github.com/${GITHUB_USER}`} target="_blank" rel="noopener noreferrer">
