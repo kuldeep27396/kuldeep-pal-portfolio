@@ -74,6 +74,9 @@ const Certificates = () => {
                         <div>
                           <h3 className="text-lg font-semibold leading-snug">{cert.title}</h3>
                           <p className="mt-1 text-sm font-medium">{cert.issuer}</p>
+                          {cert.note ? (
+                            <p className="mt-1 text-sm text-muted-foreground">{cert.note}</p>
+                          ) : null}
                         </div>
                         {issuerLogo(cert) ? (
                           // Issuer brand mark on a neutral tile so brand colors read cleanly

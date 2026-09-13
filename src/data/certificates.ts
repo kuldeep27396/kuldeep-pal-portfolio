@@ -10,6 +10,8 @@ export type Certification = {
   credentialUrl?: string;
   /** Issuer brand mark (see public/company-logos, public/skill-logos); falls back to a tinted icon */
   logo?: string;
+  /** One-line context (used mainly for internal awards) */
+  note?: string;
 };
 
 /** issuer -> logo map, applied where a credential has no explicit logo */
@@ -36,6 +38,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issuer: "Walmart Global Tech",
         issued: "Mar 2026",
         skills: ["Innovation", "Architecture", "AI Agents"],
+        note: "Internal award for AI-agent platform innovation",
       },
     ],
   },
@@ -93,12 +96,14 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issuer: "Walmart Global Tech",
         issued: "Apr 2025",
         skills: ["Seniority", "Ownership", "Technical Leadership"],
+        note: "Career promotion for ownership and technical leadership",
       },
       {
         title: "Bravo Award — Excellence in Execution",
         issuer: "Walmart Global Tech",
         issued: "Jan 2025",
         skills: ["Execution", "Reliability"],
+        note: "Internal award for excellence in execution",
       },
     ],
   },
@@ -136,6 +141,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issuer: "Walmart Global Tech",
         issued: "Dec 2024",
         skills: ["Business Impact", "Scale"],
+        note: "Internal award for business impact at scale",
       },
     ],
   },
@@ -147,6 +153,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issuer: "Walmart Global Tech",
         issued: "Aug 2023",
         skills: ["AI Agent"],
+        note: "Placed 3rd building an AI agent",
       },
       {
         title: "Academy Accreditation - Generative AI Fundamentals",
