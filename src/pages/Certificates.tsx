@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Lightbulb, Medal, Target, TrendingUp, Zap, type LucideIcon } from "lucide-react";
+import { Brain, Database, ExternalLink, Lightbulb, Medal, Server, Target, TrendingUp, Users, Zap, type LucideIcon } from "lucide-react";
 import { Layout, PageHeader } from "@/components/layout/Layout";
 import { PageMeta } from "@/components/PageMeta";
-import { awards, certifications, issuerLogo, type Certification } from "@/data/certificates";
+import { awards, certifications, domainOf, issuerLogo, type Certification, type CredentialDomain } from "@/data/certificates";
 import { fadeInUp, staggerContainer, staggerItem } from "@/lib/motion";
 
 /** Per-award icon + tone so the cards don't read as five clones. */
@@ -53,30 +53,36 @@ const AwardCard = ({ award }: { award: Certification }) => {
   );
 };
 
-/** Group the sorted ledger into year sections (undated items sink to the end). */
-const yearOf = (issued: string): string => {
-  const year = issued.split(" ")[1];
-  return year && /^\d{4}$/.test(year) ? year : "Earlier";
-};
+/** Domain sections: fixed order, tones matched to Skills/bento. */
+const domainSections: Array<{ id: CredentialDomain; label: string; icon: LucideIcon; tone: string }> = [
+  { id: "Backend", label: "Backend Engineering", icon: Server, tone: "bg-tone-backend-bg text-tone-backend-fg" },
+  { id: "Data", label: "Data Engineering", icon: Database, tone: "bg-tone-data-bg text-tone-data-fg" },
+  { id: "AI & ML", label: "AI & Machine Learning", icon: Brain, tone: "bg-tone-ai-bg text-tone-ai-fg" },
+  { id: "Professional", label: "Professional & Craft", icon: Users, tone: "bg-tone-craft-bg text-tone-craft-fg" },
+];
 
-const ledgerSections = (() => {
-  const map = new Map<string, Certification[]>();
-  for (const cert of certifications) {
-    const year = yearOf(cert.issued);
-    if (!map.has(year)) map.set(year, []);
-    map.get(year)!.push(cert);
-  }
-  return Array.from(map.entries());
-})();
+const ledgerSections = domainSections
+  .map((section) => ({
+    ...section,
+    items: certifications.filter((cert) => domainOf(cert) === section.id),
+  }))
+  .filter((section) => section.items.length > 0);
 
 const LedgerRow = ({ cert }: { cert: Certification }) => {
   const logo = issuerLogo(cert);
+  const undated = cert.issued.toLowerCase().includes("not");
 
   return (
   <div className="grid grid-cols-1 gap-x-5 gap-y-1.5 border-b border-border/50 px-4 py-4 transition-colors last:border-b-0 hover:bg-accent/25 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start sm:px-6">
     <p className="tnum leading-tight text-muted-foreground sm:pt-0.5">
-      <span className="block text-[13px] font-medium">{cert.issued.split(" ")[0]}</span>
-      <span className="block text-sm font-semibold">{cert.issued.split(" ")[1] ?? ""}</span>
+      {undated ? (
+        <span className="block text-[13px] font-medium">—</span>
+      ) : (
+        <>
+          <span className="block text-[13px] font-medium">{cert.issued.split(" ")[0]}</span>
+          <span className="block text-sm font-semibold">{cert.issued.split(" ")[1] ?? ""}</span>
+        </>
+      )}
     </p>
 
     <div className="min-w-0">
@@ -140,11 +146,16 @@ const Credentials = () => {
             initial="hidden"
             animate="show"
             aria-label="Awards and achievements"
-            className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
           >
-            {awards.map((award) => (
-              <AwardCard key={award.title} award={award} />
-            ))}
+            <div className="mb-4 flex items-baseline gap-3">
+              <h2 className="text-lg font-semibold">Awards &amp; Achievements</h2>
+              <span className="tnum text-xs text-muted-foreground">{awards.length} from Walmart Global Tech</span>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              {awards.map((award) => (
+                <AwardCard key={award.title} award={award} />
+              ))}
+            </div>
           </motion.section>
 
           {/* Certifications — compact ledger */}
@@ -157,12 +168,15 @@ const Credentials = () => {
             </div>
 
             <div className="overflow-hidden rounded-xl bg-card shadow-soft">
-              {ledgerSections.map(([year, items]) => (
-                <section key={year} aria-label={year}>
-                  <div className="tnum flex items-baseline gap-3 border-y border-border/50 bg-accent/25 px-4 py-1.5 sm:px-6">
-                    <span className="tnum text-sm font-semibold">{year}</span>
+              {ledgerSections.map(({ id, label, icon: Icon, tone, items }) => (
+                <section key={id} aria-label={label}>
+                  <div className="flex items-center gap-2.5 border-y border-border/50 bg-accent/25 px-4 py-2 sm:px-6">
+                    <span className={`flex h-6 w-6 items-center justify-center rounded-md ${tone}`}>
+                      <Icon className="h-3.5 w-3.5" aria-hidden="true" />
+                    </span>
+                    <span className="text-sm font-semibold">{label}</span>
                     <span className="tnum text-xs text-muted-foreground">
-                      {items.length} item{items.length > 1 ? "s" : ""}
+                      {items.length} credential{items.length > 1 ? "s" : ""}
                     </span>
                   </div>
                   {items.map((cert) => (

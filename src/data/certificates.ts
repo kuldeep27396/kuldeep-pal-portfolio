@@ -20,19 +20,19 @@ export type Certification = {
 
 /** issuer -> logo map, applied where a credential has no explicit logo.
  *  `wordmark: true` marks logos that contain the issuer name — render those
- *  without the adjacent text label. */
+ *  without the adjacent text label. Everything else is an icon + name. */
 const issuerLogos: Record<string, { src: string; wordmark?: boolean }> = {
   "Walmart Global Tech": { src: "/company-logos/walmart.svg", wordmark: true },
   LangChain: { src: "/skill-logos/langchain.svg" },
   Astronomer: { src: "/skill-logos/apacheairflow.svg" },
-  HackerRank: { src: "/company-logos/hackerrank.png", wordmark: true },
+  HackerRank: { src: "/company-logos/hackerrank.png" },
   LinkedIn: { src: "/company-logos/linkedin.svg", wordmark: true },
-  Databricks: { src: "/company-logos/databricks.png", wordmark: true },
+  Databricks: { src: "/company-logos/databricks.png" },
   Udemy: { src: "/company-logos/udemy.svg", wordmark: true },
   Udacity: { src: "/company-logos/udacity.svg", wordmark: true },
-  "Amazon Web Services (AWS)": { src: "/company-logos/aws.svg", wordmark: true },
-  "The Linux Foundation": { src: "/company-logos/linuxfoundation.png", wordmark: true },
-  "UC San Diego": { src: "/company-logos/ucsandiego.svg", wordmark: true },
+  "Amazon Web Services (AWS)": { src: "/company-logos/aws.svg" },
+  "The Linux Foundation": { src: "/company-logos/linuxfoundation.png" },
+  "UC San Diego": { src: "/company-logos/ucsandiego.svg" },
 };
 
 // Flat credential list — the ledger's source of truth. Add new entries to
@@ -308,6 +308,50 @@ export const issuerLogo = (
 ): { src: string; wordmark?: boolean } | undefined => cert.logo !== undefined
   ? { src: cert.logo }
   : issuerLogos[cert.issuer];
+
+/**
+ * Certifications are grouped by domain (not by year) so the page reads as a
+ * capability map — nothing reads as "old". Titles below must cover every
+ * certification; anything unmapped falls into Professional.
+ */
+export type CredentialDomain = "Backend" | "Data" | "AI & ML" | "Professional";
+
+const domainByTitle: Record<string, CredentialDomain> = {
+  // Backend — services, APIs, systems, CS fundamentals
+  "Software Engineer Certificate (Coding, SQL, REST API)": "Backend",
+  "Spring: Spring Security": "Backend",
+  "Kubernetes: Microservices (2018)": "Backend",
+  "DATA STRUCTURES & ALGORITHMS MINI-COURSE": "Backend",
+  "Problem Solving": "Backend",
+  "Python Basic": "Backend",
+  "Introduction to Linux (edX)": "Backend",
+  // Data — pipelines, streaming, warehousing, SQL, search
+  "Data Streaming Engineer": "Data",
+  "DAG Authoring for Apache Airflow": "Data",
+  "Apache Iceberg: 101": "Data",
+  "SQL Certificate": "Data",
+  "Academy Accreditation - Databricks Fundamentals": "Data",
+  "Scala 3 & Functional Programming Essentials": "Data",
+  "Elastic search Masterclass": "Data",
+  "Astronomer Certification for Apache Airflow Fundamentals": "Data",
+  "Apache Spark Essential Training": "Data",
+  "Data Analytics on AWS": "Data",
+  SQL: "Data",
+  // AI & ML — machine learning, GenAI, agents
+  Langgraph: "AI & ML",
+  "Academy Accreditation - Generative AI Fundamentals": "AI & ML",
+  "ML and Data Foundations on AWS": "AI & ML",
+  "CutShort Certified Data Science - Basic": "AI & ML",
+  "Python for Data Science and Machine learning Bootcamp": "AI & ML",
+  // Professional — craft, communication, product
+  "The Practices of High-Performing Employees": "Professional",
+  "Interpersonal Communication": "Professional",
+  "Learning How to Learn: Powerful mental tools to help you master tough subjects": "Professional",
+  "Product Management Fundamentals": "Professional",
+};
+
+export const domainOf = (cert: Certification): CredentialDomain =>
+  domainByTitle[cert.title] ?? "Professional";
 
 const MONTHS: Record<string, number> = {
   Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
