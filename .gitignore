@@ -28,3 +28,7 @@ dist-ssr
 # Local design-review screenshots (before/after evidence, kept out of the repo)
 docs/before-screenshots/
 docs/after-screenshots/
+
+# Agent session state (local tooling artifacts)
+.mimosa/
+.zcode/
