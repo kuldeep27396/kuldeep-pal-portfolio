@@ -286,18 +286,6 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
         issued: "Date not listed",
         credentialId: "cc3ed161-3be7-40b7-8b2e-708876667636",
       },
-      {
-        title: "Introduction to Linux (edX)",
-        issuer: "The Linux Foundation",
-        issued: "Date not listed",
-        credentialId: "e14a964141504f15869757115a76947e",
-      },
-      {
-        title: "Learning How to Learn: Powerful mental tools to help you master tough subjects",
-        issuer: "UC San Diego",
-        issued: "Date not listed",
-        credentialId: "SZKTWL2LE2PK",
-      },
     ],
   },
 ];
@@ -346,8 +334,6 @@ const domainByTitle: Record<string, CredentialDomain> = {
   // Professional — craft, communication, product
   "The Practices of High-Performing Employees": "Professional",
   "Interpersonal Communication": "Professional",
-  "Learning How to Learn: Powerful mental tools to help you master tough subjects": "Professional",
-  "Product Management Fundamentals": "Professional",
 };
 
 export const domainOf = (cert: Certification): CredentialDomain =>
