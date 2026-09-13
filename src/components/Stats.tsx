@@ -10,20 +10,20 @@ const facts = [
   {
     icon: Server,
     tone: "bg-tone-backend-bg text-tone-backend-fg",
-    title: "Backend services",
-    detail: "FastAPI · Spring Boot · Flask in production",
+    title: "Backend & distributed systems",
+    detail: "FastAPI · Spring Boot in production",
   },
   {
     icon: Database,
     tone: "bg-tone-data-bg text-tone-data-fg",
-    title: "TB+ daily scale",
-    detail: "batch + streaming pipelines, ingestion to modeled marts",
+    title: "Big data",
+    detail: "ingestion, processing, OLTP & OLAP database design, data modeling, cost savings",
   },
   {
     icon: Bot,
     tone: "bg-tone-ai-bg text-tone-ai-fg",
     title: "AI agents in production",
-    detail: "RAG and multi-agent LLM platforms, not demos",
+    detail: "RAG, multi-agent LLM platforms, multitenant SaaS",
   },
 ];
 
