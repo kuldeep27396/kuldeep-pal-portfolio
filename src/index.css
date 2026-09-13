@@ -144,6 +144,14 @@
 }
 
 @layer utilities {
+  /* Display step of the type scale (see docs/DESIGN.md §3) */
+  .text-display {
+    font-size: clamp(2.75rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-hero);

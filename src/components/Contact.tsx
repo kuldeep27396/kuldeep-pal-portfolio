@@ -1,23 +1,22 @@
 import { motion } from "framer-motion";
 import { FormEvent, useState } from "react";
 import { MapPin, Send, CalendarDays } from "lucide-react";
+import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 export const Contact = () => {
-  const [result, setResult] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setResult("Sending...");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "");
-    
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -27,13 +26,13 @@ export const Contact = () => {
       const data = await response.json();
 
       if (data.success) {
-        setResult("Form submitted successfully.");
+        toast.success("Message sent — I'll get back to you soon.");
         form.reset();
       } else {
-        setResult("Something went wrong. Please try again.");
+        toast.error("Something went wrong. Please try again in a moment.");
       }
     } catch {
-      setResult("Something went wrong. Please try again.");
+      toast.error("Network issue — please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -61,7 +60,7 @@ export const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-[1.5rem] border border-border bg-background p-6 shadow-soft"
+            className="rounded-xl border border-border/70 bg-background p-6 shadow-soft"
           >
             <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center">
               <MapPin className="w-6 h-6 text-primary" />
@@ -91,7 +90,7 @@ export const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.08 }}
             onSubmit={onSubmit}
-            className="rounded-[1.5rem] border border-border bg-background p-6 shadow-soft space-y-4"
+            className="rounded-xl border border-border/70 bg-background p-6 shadow-soft space-y-4"
           >
             <input type="hidden" name="subject" value="New portfolio contact submission" />
             <input type="hidden" name="from_name" value="Kuldeep Pal Portfolio" />
@@ -133,10 +132,12 @@ export const Contact = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-              <p className="text-xs text-muted-foreground min-h-4">{result}</p>
+              <p className="text-xs text-muted-foreground" role="status" aria-live="polite">
+                {isSubmitting ? "Sending…" : ""}
+              </p>
               <Button type="submit" className="w-full justify-center gap-2 sm:w-auto" disabled={isSubmitting}>
-                <Send className="w-4 h-4" />
-                {isSubmitting ? "Sending..." : "Send Message"}
+                <Send className="w-4 h-4" aria-hidden="true" />
+                {isSubmitting ? "Sending…" : "Send Message"}
               </Button>
             </div>
           </motion.form>

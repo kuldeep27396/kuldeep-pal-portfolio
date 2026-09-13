@@ -83,21 +83,21 @@ const RecommendationCard = ({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.08 }}
-      className="rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      className="rounded-xl bg-card p-5 shadow-soft sm:p-6"
     >
-      <Quote className="w-7 h-7 text-primary/30 mb-4" />
+      <Quote className="mb-4 h-6 w-6 text-primary/30" aria-hidden="true" />
 
       <div className="mb-4">
-        <h2 className="text-xl font-semibold">{recommendation.name}</h2>
-        <p className="text-sm text-muted-foreground mt-1">{recommendation.headline}</p>
+        <h2 className="text-lg font-semibold">{recommendation.name}</h2>
+        <p className="mt-0.5 text-sm text-muted-foreground">{recommendation.headline}</p>
       </div>
 
-      <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+      <div className="tnum mb-4 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
         <span>{recommendation.date}</span>
-        <span>•</span>
+        <span aria-hidden="true">·</span>
         <span>{recommendation.context}</span>
       </div>
 
@@ -150,12 +150,15 @@ const Recommendations = () => {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="rounded-[1.5rem] border border-border bg-card p-5 sm:p-6 shadow-card mb-10 flex flex-wrap items-center justify-between gap-5"
+            className="mb-10 flex flex-wrap items-center justify-between gap-5 rounded-xl bg-card p-5 shadow-soft sm:p-6"
           >
             <div>
-              <p className="text-sm font-semibold text-primary mb-1">Recommendation Snapshot</p>
-              <h2 className="text-xl sm:text-2xl font-bold">{recommendations.length} received recommendations</h2>
-              <p className="text-sm text-muted-foreground mt-1">This page uses the exact recommendation text you provided from LinkedIn.</p>
+              <h2 className="text-xl sm:text-2xl font-semibold">
+                <span className="tnum">{recommendations.length}</span> received recommendations
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Collected from teammates, managers, teachers, and collaborators on LinkedIn.
+              </p>
             </div>
             <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
               <a href="https://www.linkedin.com/in/kuldeep27396/details/recommendations/" target="_blank" rel="noopener noreferrer">
@@ -165,7 +168,7 @@ const Recommendations = () => {
             </Button>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid gap-4 md:grid-cols-2">
             {recommendations.map((recommendation, index) => (
               <RecommendationCard key={`${recommendation.name}-${recommendation.date}`} recommendation={recommendation} index={index} />
             ))}
