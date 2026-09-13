@@ -11,6 +11,21 @@
  * api/chat.ts remains the source of truth for prompt and model fallback.
  */
 import http from "node:http";
+import { readFileSync } from "node:fs";
+
+// Load .env.local (KEY=VALUE lines) so a plain `npm run dev:proxy` works.
+try {
+  for (const line of readFileSync(new URL("../.env.local", import.meta.url), "utf8").split("\n")) {
+    const match = line.match(/^\s*([\w.]+)\s*=\s*(.*)?\s*$/);
+    if (match && !line.trim().startsWith("#")) {
+      const key = match[1];
+      const value = (match[2] ?? "").replace(/^["']|["']$/g, "");
+      if (!(key in process.env)) process.env[key] = value;
+    }
+  }
+} catch {
+  // no .env.local — the OPENROUTER_API_KEY check below reports it
+}
 
 const PORT = process.env.PORT ?? 8787;
 const API_KEY = process.env.OPENROUTER_API_KEY;

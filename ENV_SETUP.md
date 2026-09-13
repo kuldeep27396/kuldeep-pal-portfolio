@@ -14,8 +14,8 @@
 2. Start the dev servers in two terminals:
 
 ```bash
-npm run dev                          # site on http://localhost:8080
-env $(grep -v '^#' .env.local | xargs) node scripts/dev-proxy.mjs   # chat proxy on :8787
+npm run dev          # site on http://localhost:8080
+npm run dev:proxy    # chat proxy on :8787 (auto-loads .env.local)
 ```
 
 Vite already proxies `/api` → `http://localhost:8787` (see `vite.config.ts`). Without the proxy

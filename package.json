@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:proxy": "node scripts/dev-proxy.mjs",
     "sync:articles": "node scripts/sync-articles.mjs",
     "prebuild": "npm run sync:articles",
     "build": "vite build",
