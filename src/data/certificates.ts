@@ -18,19 +18,21 @@ export type Certification = {
   type?: CredentialType;
 };
 
-/** issuer -> logo map, applied where a credential has no explicit logo */
-const issuerLogos: Record<string, string> = {
-  "Walmart Global Tech": "/company-logos/walmart.svg",
-  LangChain: "/skill-logos/langchain.svg",
-  Astronomer: "/skill-logos/apacheairflow.svg",
-  HackerRank: "/company-logos/hackerrank.png",
-  LinkedIn: "/company-logos/linkedin.svg",
-  Databricks: "/company-logos/databricks.png",
-  Udemy: "/company-logos/udemy.svg",
-  Udacity: "/company-logos/udacity.svg",
-  "Amazon Web Services (AWS)": "/company-logos/aws.svg",
-  "The Linux Foundation": "/company-logos/linuxfoundation.png",
-  "UC San Diego": "/company-logos/ucsandiego.svg",
+/** issuer -> logo map, applied where a credential has no explicit logo.
+ *  `wordmark: true` marks logos that contain the issuer name — render those
+ *  without the adjacent text label. */
+const issuerLogos: Record<string, { src: string; wordmark?: boolean }> = {
+  "Walmart Global Tech": { src: "/company-logos/walmart.svg", wordmark: true },
+  LangChain: { src: "/skill-logos/langchain.svg" },
+  Astronomer: { src: "/skill-logos/apacheairflow.svg" },
+  HackerRank: { src: "/company-logos/hackerrank.png", wordmark: true },
+  LinkedIn: { src: "/company-logos/linkedin.svg", wordmark: true },
+  Databricks: { src: "/company-logos/databricks.png", wordmark: true },
+  Udemy: { src: "/company-logos/udemy.svg", wordmark: true },
+  Udacity: { src: "/company-logos/udacity.svg", wordmark: true },
+  "Amazon Web Services (AWS)": { src: "/company-logos/aws.svg", wordmark: true },
+  "The Linux Foundation": { src: "/company-logos/linuxfoundation.png", wordmark: true },
+  "UC San Diego": { src: "/company-logos/ucsandiego.svg", wordmark: true },
 };
 
 // Flat credential list — the ledger's source of truth. Add new entries to
@@ -45,6 +47,15 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
         issued: "Mar 2026",
         skills: ["Innovation", "Architecture", "AI Agents"],
         note: "Internal award for AI-agent platform innovation",
+        type: "award",
+      },
+      {
+        title: "Hackathon — Bronze Medal (3rd Place)",
+        issuer: "Walmart Global Tech",
+        issued: "2026",
+        skills: ["AI Agent"],
+        note: "Placed 3rd building an AI agent — hosted on HackerRank",
+        credentialUrl: "https://www.hackerrank.com/profile/kuldeep27396",
         type: "award",
       },
     ],
@@ -158,15 +169,6 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
   {
     year: "2023",
     items: [
-      {
-        title: "Hackathon — Bronze Medal (3rd Place)",
-        issuer: "Walmart Global Tech",
-        issued: "Aug 2023",
-        skills: ["AI Agent"],
-        note: "Placed 3rd building an AI agent — hosted on HackerRank",
-        credentialUrl: "https://www.hackerrank.com/profile/kuldeep27396",
-        type: "award",
-      },
       {
         title: "Academy Accreditation - Generative AI Fundamentals",
         issuer: "Databricks",
@@ -301,20 +303,23 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
 ];
 
 /** Resolve a credential's logo: explicit field first, then issuer match. */
-export const issuerLogo = (cert: Certification): string | undefined =>
-  cert.logo ?? issuerLogos[cert.issuer];
+export const issuerLogo = (
+  cert: Certification,
+): { src: string; wordmark?: boolean } | undefined => cert.logo !== undefined
+  ? { src: cert.logo }
+  : issuerLogos[cert.issuer];
 
 const MONTHS: Record<string, number> = {
   Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
   Jul: 7, Aug: 8, Sep: 9, Sept: 9, Oct: 10, Nov: 11, Dec: 12,
 };
 
-/** "Mar 2026" -> 202603; undated items sort last. */
+/** "Mar 2026" -> 202603; year-only ("2026") sorts last within its year; undated sorts last overall. */
 const dateRank = (issued: string): number => {
   const [mon, year] = issued.split(" ");
-  const m = MONTHS[mon];
   const y = Number(year);
-  return m && y ? y * 100 + m : 0;
+  if (!y) return 0;
+  return y * 100 + (MONTHS[mon] ?? 12);
 };
 
 /** Every credential, newest first — the ledger order. */
@@ -322,5 +327,8 @@ export const allCredentials: Certification[] = certificationGroups
   .flatMap((group) => group.items)
   .sort((a, b) => dateRank(b.issued) - dateRank(a.issued));
 
-export const totalCredentials = allCredentials.length;
-export const totalAwards = allCredentials.filter((c) => c.type === "award").length;
+/** Walmart/employer awards — rendered as hero cards. */
+export const awards = allCredentials.filter((c) => c.type === "award");
+
+/** Professional certifications — rendered as the ledger. */
+export const certifications = allCredentials.filter((c) => c.type !== "award");
