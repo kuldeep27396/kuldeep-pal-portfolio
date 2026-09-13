@@ -24,17 +24,17 @@ const Certificates = () => {
             transition={{ delay: 0.12 }}
             className="mb-12 grid gap-4 md:grid-cols-3"
           >
-            <div className="rounded-xl bg-card p-5 shadow-soft">
+            <div className="flex flex-col rounded-xl bg-card p-5 shadow-soft">
+              <dt className="order-last text-sm text-muted-foreground">Total credentials listed</dt>
               <dd className="tnum text-2xl font-semibold">{totalCertifications}</dd>
-              <dt className="text-sm text-muted-foreground">Total credentials listed</dt>
             </div>
-            <div className="rounded-xl bg-card p-5 shadow-soft">
+            <div className="flex flex-col rounded-xl bg-card p-5 shadow-soft">
+              <dt className="order-last text-sm text-muted-foreground">Most recent certification wave</dt>
               <dd className="tnum text-2xl font-semibold">2025</dd>
-              <dt className="text-sm text-muted-foreground">Most recent certification wave</dt>
             </div>
-            <div className="rounded-xl bg-card p-5 shadow-soft">
+            <div className="flex flex-col rounded-xl bg-card p-5 shadow-soft">
+              <dt className="order-last text-sm text-muted-foreground">Themes reflected across the credential set</dt>
               <dd className="text-2xl font-semibold">Data + AI + Backend</dd>
-              <dt className="text-sm text-muted-foreground">Themes reflected across the credential set</dt>
             </div>
           </motion.dl>
 
@@ -76,7 +76,7 @@ const Certificates = () => {
                           <p className="mt-1 text-sm font-medium">{cert.issuer}</p>
                         </div>
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                          <FileCheck className="h-4.5 w-4.5" aria-hidden="true" />
+                          <FileCheck className="h-[18px] w-[18px]" aria-hidden="true" />
                         </div>
                       </div>
 

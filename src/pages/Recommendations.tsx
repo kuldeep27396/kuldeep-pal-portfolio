@@ -112,6 +112,7 @@ const RecommendationCard = ({
       {shouldTruncate ? (
         <button
           onClick={() => setExpanded((value) => !value)}
+          aria-expanded={expanded}
           className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
         >
           {expanded ? (

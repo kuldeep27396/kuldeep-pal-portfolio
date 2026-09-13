@@ -187,9 +187,9 @@ export const ChatAgent = () => {
                               <Sparkles className="h-3.5 w-3.5 text-primary" />
                             </div>
                             <div className="flex items-center gap-1.5 rounded-2xl rounded-tl-sm bg-muted/60 p-3.5" aria-label="Assistant is typing">
-                              <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary [animation-delay:-0.3s]" />
-                              <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary [animation-delay:-0.15s]" />
-                              <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-primary" />
+                              <div className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-primary [animation-delay:-0.3s]" />
+                              <div className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-primary [animation-delay:-0.15s]" />
+                              <div className="h-1.5 w-1.5 animate-typing-dot rounded-full bg-primary" />
                             </div>
                           </div>
                         </div>

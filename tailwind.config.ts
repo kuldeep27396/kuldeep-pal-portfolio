@@ -99,6 +99,15 @@ export default {
         lift: "var(--shadow-lift)",
         glow: "var(--shadow-glow)",
       },
+      keyframes: {
+        "typing-dot": {
+          "0%, 60%, 100%": { transform: "translateY(0)", opacity: "0.35" },
+          "30%": { transform: "translateY(-3px)", opacity: "1" },
+        },
+      },
+      animation: {
+        "typing-dot": "typing-dot 1.2s cubic-bezier(0.33, 1, 0.68, 1) infinite",
+      },
     },
   },
   plugins: [tailwindcssAnimate],

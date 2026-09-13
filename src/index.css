@@ -18,8 +18,9 @@
     --popover: 40 28% 92%;
     --popover-foreground: 214 30% 16%;
 
-    /* Brand — terracotta accent, used sparingly (the "10") */
-    --primary: 18 65% 44%;
+    /* Brand — terracotta accent, used sparingly (the "10").
+       Lightness 30% keeps small primary text ≥4.5:1 on card/white (WCAG AA). */
+    --primary: 18 72% 30%;
     --primary-foreground: 40 60% 97%;
     --secondary: 202 23% 24%;
     --secondary-foreground: 40 33% 97%;
@@ -33,18 +34,18 @@
 
     --border: 32 24% 82%;
     --input: 32 24% 82%;
-    --ring: 18 65% 44%;
+    --ring: 18 72% 30%;
 
     --radius: 0.75rem;
 
     /* Single brand gradient (hero accent word only) */
-    --gradient-hero: linear-gradient(135deg, hsl(18 65% 44%), hsl(194 60% 36%));
+    --gradient-hero: linear-gradient(135deg, hsl(18 72% 30%), hsl(194 60% 30%));
 
     /* Shadows — always offset + soft blur; no zero-offset halos */
     --shadow-soft: 0 1px 2px hsl(212 30% 16% / 0.06), 0 8px 24px -12px hsl(212 30% 16% / 0.12);
     --shadow-card: 0 2px 4px hsl(212 30% 16% / 0.05), 0 16px 40px -20px hsl(212 30% 16% / 0.18);
     --shadow-lift: 0 2px 4px hsl(212 30% 16% / 0.06), 0 20px 48px -20px hsl(212 30% 16% / 0.24);
-    --shadow-glow: 0 8px 20px -8px hsl(18 65% 44% / 0.45);
+    --shadow-glow: 0 8px 20px -8px hsl(18 72% 30% / 0.45);
 
     /* Semantic skill-category tones — tinted fg from the same hue, never gray */
     --tone-data-bg: 204 45% 93%;

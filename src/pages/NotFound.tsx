@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { PageMeta } from "@/components/PageMeta";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ const NotFound = () => {
           The page you're looking for was moved, renamed, or never existed.
         </p>
         <Button asChild className="mt-8">
-          <a href="/">Back to Home</a>
+          <Link to="/">Back to Home</Link>
         </Button>
       </div>
     </div>

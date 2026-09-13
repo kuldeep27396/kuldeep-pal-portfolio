@@ -146,10 +146,16 @@ const Projects = () => {
         const user = await userResp.json();
 
         let stars = 0;
-        const reposResp = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`);
-        if (reposResp.ok) {
-          const repos = await reposResp.json();
-          stars = repos.reduce((sum: number, r: { stargazers_count?: number }) => sum + (r.stargazers_count ?? 0), 0);
+        // Stars across all public repos (two pages cover up to 200 repos)
+        const repoPages = await Promise.all([
+          fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`),
+          fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated&page=2`),
+        ]);
+        for (const reposResp of repoPages) {
+          if (reposResp.ok) {
+            const repos = await reposResp.json();
+            stars += repos.reduce((sum: number, r: { stargazers_count?: number }) => sum + (r.stargazers_count ?? 0), 0);
+          }
         }
 
         if (!cancelled) {
@@ -198,8 +204,8 @@ const Projects = () => {
               <dl className="flex gap-8 sm:gap-10">
                 {stats.map((item) => (
                   <div key={item.label}>
+                    <dt className="order-last text-sm text-muted-foreground">{item.label}</dt>
                     <dd className="tnum text-2xl font-semibold">{item.value}</dd>
-                    <dt className="text-sm text-muted-foreground">{item.label}</dt>
                   </div>
                 ))}
               </dl>
