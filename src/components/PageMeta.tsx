@@ -8,7 +8,7 @@ const DEFAULT_OG_IMAGE = "/og.png";
 
 /**
  * Per-route document head: title, description, canonical URL, and social cards.
- * See docs/DESIGN.md and docs/SEO.md.
+ * Token and copy rules live in docs/DESIGN.md; deployment env vars in ENV_SETUP.md.
  */
 export const PageMeta = ({
   title,
