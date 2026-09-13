@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button";
 import { TagPill } from "@/components/primitives";
 import { sourceLinks, articles } from "@/data/articles.generated";
 
+// RSS sync can leave numeric HTML entities in titles/excerpts — decode them for display
+const decodeEntities = (text: string) => {
+  const el = document.createElement("textarea");
+  el.innerHTML = text;
+  return el.value;
+};
+
 const Articles = () => {
 
   return (
@@ -14,42 +21,6 @@ const Articles = () => {
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader backLink title="Blogs" />
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 }}
-            className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-8"
-          >
-            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
-              <a href={sourceLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                <Newspaper className="w-4 h-4" />
-                LinkedIn Newsletter
-              </a>
-            </Button>
-            <Button className="w-full justify-center gap-2 sm:w-auto" asChild>
-              <a
-                href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=6983848189787271168"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <BellPlus className="w-4 h-4" />
-                Subscribe on LinkedIn
-              </a>
-            </Button>
-            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
-              <a href={sourceLinks.medium} target="_blank" rel="noopener noreferrer">
-                <BookOpen className="w-4 h-4" />
-                Medium Profile
-              </a>
-            </Button>
-            <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
-              <a href={sourceLinks.substack} target="_blank" rel="noopener noreferrer">
-                <Newspaper className="w-4 h-4" />
-                Substack Newsletter
-              </a>
-            </Button>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -100,7 +71,7 @@ const Articles = () => {
                   <div className="aspect-video w-full overflow-hidden bg-muted">
                     <img
                       src={article.image}
-                      alt={article.title}
+                      alt={decodeEntities(article.title)}
                       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                       loading="lazy"
                       decoding="async"
@@ -114,10 +85,10 @@ const Articles = () => {
                     <span>{article.date}</span>
                   </div>
                   <h2 className="mb-3 text-lg font-semibold transition-colors line-clamp-2 group-hover:text-primary">
-                    {article.title}
+                    {decodeEntities(article.title)}
                   </h2>
                   <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                    {article.description}
+                    {decodeEntities(article.description)}
                   </p>
                   <div className="mt-auto flex flex-wrap gap-2">
                     {article.tags.slice(0, 3).map((tag) => (

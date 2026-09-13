@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Github, ExternalLink, FolderGit2 } from "lucide-react";
 import { Layout, PageHeader } from "@/components/layout/Layout";
 import { PageMeta } from "@/components/PageMeta";

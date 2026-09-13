@@ -1,4 +1,5 @@
 import { Github, Linkedin, BookOpen } from "lucide-react";
+import type { ComponentType } from "react";
 import { XIcon } from "@/components/XIcon";
 
 /**
@@ -7,7 +8,7 @@ import { XIcon } from "@/components/XIcon";
  * muted ink and invert on hover — see docs/DESIGN.md §2.
  */
 export interface SocialLink {
-  icon: typeof Linkedin;
+  icon: ComponentType<{ className?: string }>;
   href: string;
   label: string;
   /** Internal links use react-router <Link>, everything else an <a> */

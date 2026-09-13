@@ -14,8 +14,9 @@ const NotFound = () => {
     <div className="flex min-h-screen items-center justify-center px-4">
       <PageMeta title="Page Not Found" noindex />
       <div className="text-center">
-        <p className="tnum text-sm font-semibold text-primary">Error 404</p>
-        <h1 className="mt-3 text-4xl sm:text-5xl font-semibold">This page doesn't exist</h1>
+        <h1 className="text-4xl sm:text-5xl font-semibold">
+          Page not found <span className="tnum text-muted-foreground">(404)</span>
+        </h1>
         <p className="mt-4 text-muted-foreground text-measure mx-auto">
           The page you're looking for was moved, renamed, or never existed.
         </p>

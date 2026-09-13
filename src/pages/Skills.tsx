@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code2, Database, Brain, Server, Cloud, Workflow, Boxes } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Layout, PageHeader } from "@/components/layout/Layout";
 import { PageMeta } from "@/components/PageMeta";
 import { staggerContainer, staggerItem } from "@/lib/motion";
@@ -123,10 +124,13 @@ const SkillBadge = ({ skill }: { skill: string }) => {
 
   return (
     <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-foreground">
-      {/* Monogram is decorative — the skill name is adjacent text */}
+      {/* Monogram is decorative — the skill name is adjacent text. Text marks get a wider pill so 3-4 letter codes never clip. */}
       <span
         aria-hidden="true"
-        className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background text-[10px] font-bold uppercase tracking-[0.04em] text-muted-foreground"
+        className={cn(
+          "flex h-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background text-[10px] font-bold uppercase tracking-[0.04em] text-muted-foreground",
+          meta.logo ? "w-5" : "min-w-5 px-1",
+        )}
       >
         {meta.logo ? <img src={meta.logo} alt="" className="h-3.5 w-3.5 object-contain" loading="lazy" /> : meta.mark}
       </span>
