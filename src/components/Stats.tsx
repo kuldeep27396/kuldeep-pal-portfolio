@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Bot, Boxes, Database, Server } from "lucide-react";
 import { staggerContainer, staggerItem } from "@/lib/motion";
 
 /**
@@ -10,21 +11,29 @@ const cells = [
     value: "Multiple TB+",
     label: "daily data volume across batch and streaming",
     span: "",
+    icon: Database,
+    tone: "bg-tone-data-bg text-tone-data-fg",
   },
   {
     value: "2+ years",
     label: "building AI agents and LLM platforms for production use",
     span: "",
+    icon: Bot,
+    tone: "bg-tone-ai-bg text-tone-ai-fg",
   },
   {
     value: "FastAPI + Spring Boot",
     label: "Production backend services and secure integrations",
     span: "sm:col-span-2 md:col-span-2",
+    icon: Server,
+    tone: "bg-tone-backend-bg text-tone-backend-fg",
   },
   {
     value: "Lakehouse + Warehousing",
     label: "platform focus, from ingestion to modeled marts",
     span: "sm:col-span-2 md:col-span-1",
+    icon: Boxes,
+    tone: "bg-tone-frontend-bg text-tone-frontend-fg",
   },
 ];
 
@@ -70,10 +79,15 @@ export const Stats = () => {
             <motion.div
               key={cell.value}
               variants={staggerItem}
-              className={`rounded-xl bg-card p-5 sm:p-6 shadow-soft flex flex-col justify-end gap-1.5 ${cell.span}`}
+              className={`flex flex-col gap-3 rounded-xl bg-card p-5 shadow-soft sm:p-6 ${cell.span}`}
             >
-              <p className="tnum text-xl font-semibold">{cell.value}</p>
-              <p className="text-sm text-muted-foreground">{cell.label}</p>
+              <span className={`flex h-9 w-9 items-center justify-center rounded-lg ${cell.tone}`}>
+                <cell.icon className="h-[18px] w-[18px]" aria-hidden="true" />
+              </span>
+              <div className="mt-auto">
+                <p className="tnum text-xl font-semibold">{cell.value}</p>
+                <p className="text-sm text-muted-foreground">{cell.label}</p>
+              </div>
             </motion.div>
           ))}
         </motion.div>

@@ -88,7 +88,7 @@ export const ChatAgent = () => {
               <DialogPrimitive.Trigger asChild>
                 <button
                   aria-label="Open the AI assistant chat"
-                  className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-card shadow-lift transition-transform hover:scale-[1.03]"
+                  className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-card via-card to-accent/50 shadow-lift transition-transform hover:scale-[1.03]"
                 >
                   <Bot className="h-7 w-7 text-primary" aria-hidden="true" />
                   <span

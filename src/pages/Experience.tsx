@@ -49,8 +49,11 @@ const Experience = () => {
           />
 
           <div className="relative">
-            {/* Timeline rail */}
-            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-border" aria-hidden="true" />
+            {/* Timeline rail — brand gradient from terracotta to teal */}
+            <div
+              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-primary/50 to-secondary/40"
+              aria-hidden="true"
+            />
 
             <motion.ol
               variants={staggerContainer}

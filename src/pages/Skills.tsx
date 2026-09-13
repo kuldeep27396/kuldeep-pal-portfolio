@@ -124,15 +124,16 @@ const SkillBadge = ({ skill }: { skill: string }) => {
 
   return (
     <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-foreground">
-      {/* Monogram is decorative — the skill name is adjacent text. Text marks get a wider pill so 3-4 letter codes never clip. */}
+      {/* Monogram is decorative — the skill name is adjacent text. Colored
+          brand SVGs (devicon) and text marks get a roomier chip. */}
       <span
         aria-hidden="true"
         className={cn(
-          "flex h-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background text-[10px] font-bold uppercase tracking-[0.04em] text-muted-foreground",
-          meta.logo ? "w-5" : "min-w-5 px-1",
+          "flex h-6 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background",
+          meta.logo ? "w-6" : "min-w-6 px-1 text-[10px] font-bold uppercase tracking-[0.04em] text-muted-foreground",
         )}
       >
-        {meta.logo ? <img src={meta.logo} alt="" className="h-3.5 w-3.5 object-contain" loading="lazy" /> : meta.mark}
+        {meta.logo ? <img src={meta.logo} alt="" className="h-4 w-4 object-contain" loading="lazy" /> : meta.mark}
       </span>
       <span>{skill}</span>
     </span>

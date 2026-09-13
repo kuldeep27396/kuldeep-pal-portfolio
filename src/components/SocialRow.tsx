@@ -22,8 +22,8 @@ export const SocialRow = ({ className, size = "md", onNavigate }: SocialRowProps
     <div className={cn("flex items-center gap-2", className)}>
       {socialLinks.map((social) => {
         const classes = cn(
-          "rounded-full bg-muted text-muted-foreground transition-all duration-200",
-          "hover:bg-foreground hover:text-background hover:-translate-y-0.5",
+          "rounded-full bg-muted text-muted-foreground transition-all duration-200 hover:-translate-y-0.5",
+          social.hoverClass ?? "hover:bg-foreground hover:text-background",
           s.button,
         );
 
