@@ -27,12 +27,11 @@ export const Hero = () => {
       <div className="mx-auto w-full max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 items-center">
           <motion.div {...enterOnMount} className="space-y-7">
-            <div
-              className="inline-flex items-center gap-2 rounded-full bg-tone-backend-bg px-3.5 py-1.5"
-              role="status"
-            >
-              <span className="h-2 w-2 rounded-full bg-tone-backend-fg animate-pulse" />
-              <span className="text-sm font-medium text-tone-backend-fg">Available for new opportunities</span>
+            <div className="inline-flex items-center gap-2 rounded-full bg-tone-backend-bg px-3.5 py-1.5">
+              <span className="h-2 w-2 rounded-full bg-tone-backend-fg" aria-hidden="true" />
+              <span className="text-sm font-medium text-tone-backend-fg">
+                Senior Software Engineer · Walmart Global Tech
+              </span>
             </div>
 
             <div>
@@ -40,7 +39,7 @@ export const Hero = () => {
                 Building <span className="gradient-text">production systems</span> across backend, data &amp; AI.
               </h1>
               <p className="mt-5 text-lg sm:text-xl text-muted-foreground">
-                Kuldeep Pal — Senior Software Engineer · Bengaluru, India.
+                Kuldeep Pal · Bengaluru, India.
               </p>
             </div>
 
