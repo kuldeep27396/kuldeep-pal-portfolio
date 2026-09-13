@@ -1,147 +1,164 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Building2, MapPin, Calendar, GraduationCap, FileCheck } from "lucide-react";
+import { MapPin, GraduationCap, FileCheck } from "lucide-react";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
+import { Card, TagPill, Reveal } from "@/components/primitives";
+import { staggerContainer, staggerItem } from "@/lib/motion";
 
 const experiences = [
   {
     company: "Walmart Global Tech",
+    logo: "/company-logos/walmart.svg",
     location: "Bengaluru, India",
-    role: "Senior Software Engineer (Data and AI)",
+    role: "Senior Software Engineer — Backend, Data & AI",
     period: "June 2022 - Present",
     summary:
-      "Working at the intersection of data engineering, AI, and backend systems across streaming pipelines, platform ETL, AI agents, FastAPI services, Spring Boot integrations, and secure large-file workflows built for production scale.",
+      "Working across backend systems and AI — FastAPI services, Spring Boot integrations, streaming pipelines, platform ETL, AI agents, and secure large-file workflows built for production scale.",
     tech: ["Spark", "Kafka", "PySpark", "BigQuery", "LangGraph", "LLMs", "FastAPI", "Spring Boot", "GCS"],
   },
   {
     company: "ZS Associates",
+    logo: "/company-logos/zs.svg",
     location: "Pune, India",
-    role: "Software Engineer - 2 (Big-Data, AWS, Data Modelling)",
+    role: "Software Engineer 2 — Data Eng & AI",
     period: "Sept 2021 - June 2022",
     summary:
-      "Built analytics and warehouse pipelines for product use cases with focus on Airflow orchestration, Spark optimization, data modeling, and AWS-based data engineering workflows.",
-    tech: ["Airflow", "Spark", "AWS", "Data Modeling", "Warehousing", "SQL"],
+      "Built backend services in Flask alongside analytics and warehouse pipelines for product use cases, with focus on Airflow orchestration, Spark optimization, data modeling, and AWS-based data engineering.",
+    tech: ["Flask", "Airflow", "Spark", "AWS", "Data Modeling", "Warehousing", "SQL"],
   },
   {
     company: "Tata Consultancy Services",
+    logo: "/company-logos/tcs.svg",
     location: "Pune, India",
-    role: "Data Engineer",
+    role: "Software Engineer (Data Eng & Cloud)",
     period: "Sept 2018 - Sept 2021",
-    clients: "Clients: Morgan Stanley, Nassau Re",
+    clients: [
+      { name: "Morgan Stanley", logo: "/company-logos/morganstanley.svg", wordmark: true },
+      { name: "Nassau Re", logo: "/company-logos/nassau.png" },
+    ],
     summary:
-      "Delivered ETL, cloud migration, warehousing, and backend-integrated data systems for enterprise clients using AWS Glue, PySpark, SQL, and production data quality patterns.",
+      "Delivered ETL, cloud migration, warehousing, and backend-integrated systems for enterprise clients on AWS — using AWS Glue, PySpark, SQL, and production data-quality patterns.",
     tech: ["AWS Glue", "PySpark", "SQL", "Redshift", "Data Lake", "ETL"],
   },
 ];
 
 const Experience = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+    <Layout>
+      <PageMeta title="Work Experience" path="/experience" />
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader
+            backLink
+            title="Work Experience"
+            lede="Experience across product companies and consulting environments, with a consistent focus on software engineering — backend services, data platforms, and increasing ownership in AI systems and production platform design."
+          />
+
+          <div className="relative">
+            {/* Timeline rail — brand gradient from terracotta to teal */}
+            <div
+              className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary via-primary/50 to-secondary/40"
+              aria-hidden="true"
+            />
+
+            <motion.ol
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.1 }}
+              className="space-y-8"
             >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Work Experience</h1>
-            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
-              Experience across product companies and consulting environments, with consistent focus on data engineering
-              and increasing ownership in AI systems, backend services, and production platform design.
-            </p>
-          </motion.div>
-
-          <div className="space-y-6">
-            {experiences.map((exp, expIndex) => (
-              <motion.div
-                key={exp.company}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: expIndex * 0.1 }}
-                className="rounded-[1.75rem] border border-border bg-card p-5 sm:p-7 shadow-card"
-              >
-                <div className="flex flex-wrap items-start gap-4">
-                  <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                    <Building2 className="w-7 h-7" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
-                      <div>
-                        <h2 className="text-xl sm:text-2xl font-bold">{exp.company}</h2>
-                        <p className="text-foreground font-medium">{exp.role}</p>
-                        {exp.clients ? <p className="text-sm text-muted-foreground mt-1">{exp.clients}</p> : null}
+              {experiences.map((exp) => (
+                <motion.li key={exp.company} variants={staggerItem} className="relative pl-10">
+                  <span
+                    className="absolute left-0 top-7 h-[15px] w-[15px] rounded-full border-2 border-primary bg-background"
+                    aria-hidden="true"
+                  />
+                  <Card className="p-5 sm:p-7">
+                    <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-1">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          className="h-6 w-auto max-w-[110px] object-contain"
+                          loading="lazy"
+                        />
+                        <h2 className="text-xl sm:text-2xl font-semibold">{exp.company}</h2>
                       </div>
-                      <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-                        <span className="inline-flex items-center gap-1.5">
-                          <Calendar className="w-3.5 h-3.5" />
-                          {exp.period}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <MapPin className="w-3.5 h-3.5" />
-                          {exp.location}
-                        </span>
-                      </div>
+                      <p className="tnum text-sm text-muted-foreground">{exp.period}</p>
                     </div>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-prose">{exp.summary}</p>
-                    <div className="flex flex-wrap gap-2 mt-5">
+                    <p className="mt-1 font-medium">{exp.role}</p>
+                    <p className="mt-0.5 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                      <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                      {exp.location}
+                    </p>
+                    {exp.clients ? (
+                      <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-muted-foreground">
+                        <span>Clients:</span>
+                        {exp.clients.map((client) =>
+                          client.wordmark ? (
+                            // Wordmark logos speak their own name — render at
+                            // readable width, no adjacent text
+                            <span
+                              key={client.name}
+                              className="inline-flex items-center rounded-full bg-muted px-3 py-1.5"
+                            >
+                              <img
+                                src={client.logo}
+                                alt={client.name}
+                                className="h-3.5 w-auto object-contain"
+                                loading="lazy"
+                              />
+                            </span>
+                          ) : (
+                            <span
+                              key={client.name}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1"
+                            >
+                              <img src={client.logo} alt="" className="h-4 w-4 object-contain" loading="lazy" />
+                              <span className="text-xs font-medium text-foreground">{client.name}</span>
+                            </span>
+                          ),
+                        )}
+                      </p>
+                    ) : null}
+                    <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-muted-foreground md:text-base">
+                      {exp.summary}
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
                       {exp.tech.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-foreground"
-                        >
-                          {item}
-                        </span>
+                        <TagPill key={item}>{item}</TagPill>
                       ))}
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  </Card>
+                </motion.li>
+              ))}
+            </motion.ol>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
-            className="mt-16"
-          >
-            <h2 className="text-xl sm:text-2xl font-bold mb-6">Education</h2>
-            <div className="bg-card rounded-xl p-6 border border-border shadow-card">
-              <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <GraduationCap className="w-7 h-7 text-primary" />
+          <Reveal delay={0.1} className="mt-12">
+            <Card className="p-5 sm:p-7">
+              <div className="flex flex-wrap items-start gap-5">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-tone-frontend-bg text-tone-frontend-fg">
+                  <GraduationCap className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold">Shri Vaishnav Institute of Tech. and Science</h3>
-                  <p className="text-foreground font-medium">B.E. (Honours) in Computer Science Engineering</p>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <h2 className="text-xl font-semibold">Shri Vaishnav Institute of Tech. and Science</h2>
+                  <p className="mt-1 font-medium">B.E. (Honours) in Computer Science Engineering</p>
+                  <p className="tnum mt-1 text-sm text-muted-foreground">
                     July 2014 - July 2018 · Indore, MP, India
                   </p>
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary">
-                    <FileCheck className="h-3.5 w-3.5" />
-                    GATE CSE 2020 · 90th Percentile
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary">
+                    <FileCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                    <span className="tnum">GATE CSE 2020 · 90th Percentile</span>
                   </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </Card>
+          </Reveal>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

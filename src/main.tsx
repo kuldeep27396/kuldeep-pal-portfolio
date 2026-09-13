@@ -1,3 +1,15 @@
+// Self-hosted fonts (fontsource) — no Google Fonts network dependency.
+// Inter: body/UI; Lora: display headings; Space Mono: code & measured data.
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/lora/latin-500.css";
+import "@fontsource/lora/latin-600.css";
+import "@fontsource/lora/latin-700.css";
+import "@fontsource/space-mono/400.css";
+import "@fontsource/space-mono/700.css";
+
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";

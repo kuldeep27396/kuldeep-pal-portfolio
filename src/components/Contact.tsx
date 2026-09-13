@@ -1,23 +1,23 @@
-import { motion } from "framer-motion";
 import { FormEvent, useState } from "react";
+import { motion } from "framer-motion";
 import { MapPin, Send, CalendarDays } from "lucide-react";
+import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { fadeInUp } from "@/lib/motion";
 
 export const Contact = () => {
-  const [result, setResult] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
-    setResult("Sending...");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    formData.append("access_key", "b197f08b-7dcf-4b39-a454-6693672fe936");
-    
+    formData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "");
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -27,58 +27,49 @@ export const Contact = () => {
       const data = await response.json();
 
       if (data.success) {
-        setResult("Form submitted successfully.");
+        toast.success("Message sent — I'll get back to you soon.");
         form.reset();
       } else {
-        setResult("Something went wrong. Please try again.");
+        toast.error("Something went wrong. Please try again in a moment.");
       }
     } catch {
-      setResult("Something went wrong. Please try again.");
+      toast.error("Network issue — please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 py-20 px-4 sm:px-6 bg-card">
-      <div className="container max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-10 sm:mb-12"
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Get in Touch</h2>
-          <p className="text-muted-foreground max-w-3xl mx-auto">
-            For opportunities, collaboration, or technical conversations around data platforms, AI systems, and backend engineering, send a message here.
+    <section id="contact" className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl">
+        <motion.div {...fadeInUp} className="mb-10 sm:mb-12">
+          <h2 className="text-2xl font-semibold sm:text-3xl">Get in Touch</h2>
+          <p className="mt-3 text-muted-foreground text-measure">
+            For opportunities, collaboration, or technical conversations around data platforms, AI systems,
+            and backend engineering, send a message here.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-6 max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-[1.5rem] border border-border bg-background p-6 shadow-soft"
-          >
-            <div className="w-12 h-12 mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-primary" />
+        <div className="mx-auto grid max-w-5xl gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+          <motion.div {...fadeInUp} className="rounded-xl bg-card p-5 shadow-soft sm:p-6">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-tone-cloud-bg text-tone-cloud-fg">
+              <MapPin className="h-5 w-5" aria-hidden="true" />
             </div>
-            <h3 className="font-semibold mb-2">Location</h3>
-            <p className="text-sm text-muted-foreground mb-6">Bengaluru, India</p>
+            <h3 className="mt-4 text-lg font-semibold">Location</h3>
+            <p className="mt-1 text-sm text-muted-foreground">Bengaluru, India</p>
 
-            <div className="space-y-3">
-              <p className="text-sm text-muted-foreground">
-                Best for roles and conversations around data engineering, AI agents, backend systems, and platform architecture.
+            <div className="mt-5 space-y-3">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Best for senior software engineering roles across backend systems, data platforms,
+                and AI agents.
               </p>
-              <p className="text-xs text-muted-foreground">
-                Messages are submitted directly through the form. Your message, name, and email are sent securely without showing a personal email address on the page.
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Messages are submitted directly through the form. Your message, name, and email are sent
+                securely without showing a personal email address on the page.
               </p>
               <Button variant="outline" className="mt-2 w-full justify-center gap-2 sm:w-auto" asChild>
                 <a href="https://cal.com/kuldeep.pal/meet-kuldeep" target="_blank" rel="noopener noreferrer">
-                  <CalendarDays className="w-4 h-4" />
+                  <CalendarDays className="h-4 w-4" aria-hidden="true" />
                   Schedule via Cal.com
                 </a>
               </Button>
@@ -86,18 +77,17 @@ export const Contact = () => {
           </motion.div>
 
           <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.08 }}
+            {...fadeInUp}
+            transition={{ ...fadeInUp.transition, delay: 0.08 }}
             onSubmit={onSubmit}
-            className="rounded-[1.5rem] border border-border bg-background p-6 shadow-soft space-y-4"
+            className="space-y-4 rounded-xl bg-card p-5 shadow-soft sm:p-6"
           >
             <input type="hidden" name="subject" value="New portfolio contact submission" />
             <input type="hidden" name="from_name" value="Kuldeep Pal Portfolio" />
-            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+            {/* Honeypot field for spam bots — visually hidden, skipped in tab order */}
+            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid gap-4 md:grid-cols-2">
               <div className="space-y-2">
                 <label htmlFor="contact-name" className="text-sm font-medium">
                   Name
@@ -114,7 +104,7 @@ export const Contact = () => {
 
             <div className="space-y-2">
               <label htmlFor="contact-company" className="text-sm font-medium">
-                Company
+                Company <span className="font-normal text-muted-foreground">(optional)</span>
               </label>
               <Input id="contact-company" name="company" placeholder="Company or team" />
             </div>
@@ -132,11 +122,13 @@ export const Contact = () => {
               />
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-              <p className="text-xs text-muted-foreground min-h-4">{result}</p>
+            <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-xs text-muted-foreground" role="status" aria-live="polite">
+                {isSubmitting ? "Sending…" : ""}
+              </p>
               <Button type="submit" className="w-full justify-center gap-2 sm:w-auto" disabled={isSubmitting}>
-                <Send className="w-4 h-4" />
-                {isSubmitting ? "Sending..." : "Send Message"}
+                <Send className="h-4 w-4" aria-hidden="true" />
+                {isSubmitting ? "Sending…" : "Send Message"}
               </Button>
             </div>
           </motion.form>

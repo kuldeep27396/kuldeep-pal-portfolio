@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, ChevronDown, ChevronUp, Quote } from "lucide-react";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
+import { ExternalLink, ChevronDown, ChevronUp, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -84,21 +83,21 @@ const RecommendationCard = ({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.08 }}
-      className="rounded-[1.5rem] border border-border bg-card p-6 shadow-card"
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      className="rounded-xl bg-card p-5 shadow-soft sm:p-6"
     >
-      <Quote className="w-7 h-7 text-primary/30 mb-4" />
+      <Quote className="mb-4 h-6 w-6 text-primary/30" aria-hidden="true" />
 
       <div className="mb-4">
-        <h2 className="text-xl font-semibold">{recommendation.name}</h2>
-        <p className="text-sm text-muted-foreground mt-1">{recommendation.headline}</p>
+        <h2 className="text-lg font-semibold">{recommendation.name}</h2>
+        <p className="mt-0.5 text-sm text-muted-foreground">{recommendation.headline}</p>
       </div>
 
-      <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-4">
+      <div className="tnum mb-4 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground">
         <span>{recommendation.date}</span>
-        <span>•</span>
+        <span aria-hidden="true">·</span>
         <span>{recommendation.context}</span>
       </div>
 
@@ -113,6 +112,7 @@ const RecommendationCard = ({
       {shouldTruncate ? (
         <button
           onClick={() => setExpanded((value) => !value)}
+          aria-expanded={expanded}
           className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
         >
           {expanded ? (
@@ -134,46 +134,32 @@ const RecommendationCard = ({
 
 const Recommendations = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
-          >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">LinkedIn Recommendations</h1>
-            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
-              Public recommendations received on LinkedIn from teammates, managers, teachers, and collaborators.
-            </p>
-          </motion.div>
+    <Layout>
+      <PageMeta
+        title="LinkedIn Recommendations"
+        path="/recommendations"
+      />
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader
+            backLink
+            title="LinkedIn Recommendations"
+            lede="Public recommendations received on LinkedIn from teammates, managers, teachers, and collaborators."
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
-            className="rounded-[1.5rem] border border-border bg-card p-5 sm:p-6 shadow-card mb-10 flex flex-wrap items-center justify-between gap-5"
+            className="mb-10 flex flex-wrap items-center justify-between gap-5 rounded-xl bg-card p-5 shadow-soft sm:p-6"
           >
             <div>
-              <p className="text-sm font-semibold text-primary mb-1">Recommendation Snapshot</p>
-              <h2 className="text-xl sm:text-2xl font-bold">{recommendations.length} received recommendations</h2>
-              <p className="text-sm text-muted-foreground mt-1">This page uses the exact recommendation text you provided from LinkedIn.</p>
+              <h2 className="text-xl sm:text-2xl font-semibold">
+                <span className="tnum">{recommendations.length}</span> received recommendations
+              </h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Collected from teammates, managers, teachers, and collaborators on LinkedIn.
+              </p>
             </div>
             <Button variant="outline" className="w-full justify-center gap-2 sm:w-auto" asChild>
               <a href="https://www.linkedin.com/in/kuldeep27396/details/recommendations/" target="_blank" rel="noopener noreferrer">
@@ -183,15 +169,14 @@ const Recommendations = () => {
             </Button>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid gap-4 md:grid-cols-2">
             {recommendations.map((recommendation, index) => (
               <RecommendationCard key={`${recommendation.name}-${recommendation.date}`} recommendation={recommendation} index={index} />
             ))}
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

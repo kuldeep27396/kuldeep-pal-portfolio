@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Code2, Database, Brain, Server, Cloud, Workflow, Boxes } from "lucide-react";
+import { Code2, Database, Brain, Server, Cloud, Workflow, Boxes } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
+import { staggerContainer, staggerItem } from "@/lib/motion";
 
 type SkillMeta = {
   logo?: string;
@@ -68,52 +69,52 @@ const getSkillMeta = (skill: string) => {
 
 const skillCategories = [
   {
+    title: "Backend Engineering",
+    icon: Server,
+    description: "Production backend delivery and service design.",
+    tone: "bg-tone-backend-bg text-tone-backend-fg",
+    skills: ["FastAPI", "Flask", "REST APIs", "Spring Boot", "System Design", "Authentication", "Secure File Flows", "Microservices"],
+  },
+  {
+    title: "Programming",
+    icon: Code2,
+    description: "Languages used across data, APIs, and platform work.",
+    tone: "bg-tone-craft-bg text-tone-craft-fg",
+    skills: ["Python", "SQL", "Java", "Scala", "Shell Scripting"],
+  },
+  {
     title: "Data Engineering",
     icon: Database,
     description: "Core data platform and analytics engineering stack.",
-    tone: "bg-amber-500/10 text-amber-700 dark:text-amber-400",
+    tone: "bg-tone-data-bg text-tone-data-fg",
     skills: ["PySpark", "Spark", "Kafka", "Airflow", "Data Lake", "Lakehouse", "Warehousing", "Data Modeling", "BigQuery", "Delta Lake", "Hadoop/Hive"],
   },
   {
     title: "AI and Agents",
     icon: Brain,
     description: "Practical LLM systems and workflow orchestration.",
-    tone: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+    tone: "bg-tone-ai-bg text-tone-ai-fg",
     skills: ["LLMs", "AI Agents", "RAG", "LangChain", "LangGraph", "FastMCP", "Prompt Engineering", "Pydantic"],
-  },
-  {
-    title: "Backend Engineering",
-    icon: Server,
-    description: "Production backend delivery and service design.",
-    tone: "bg-sky-500/10 text-sky-700 dark:text-sky-400",
-    skills: ["FastAPI", "REST APIs", "Spring Boot", "System Design", "Authentication", "Secure File Flows", "Microservices"],
-  },
-  {
-    title: "Programming",
-    icon: Code2,
-    description: "Languages used across data, APIs, and platform work.",
-    tone: "bg-rose-500/10 text-rose-700 dark:text-rose-400",
-    skills: ["Python", "SQL", "Java", "Scala", "Shell Scripting"],
   },
   {
     title: "Cloud and Infra",
     icon: Cloud,
     description: "Delivery and operations across managed cloud services.",
-    tone: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-400",
+    tone: "bg-tone-cloud-bg text-tone-cloud-fg",
     skills: ["AWS", "GCP", "S3", "EMR", "Glue", "Dataproc", "GCS", "Docker", "Kubernetes", "Git", "CI/CD"],
   },
   {
     title: "Databases and Search",
     icon: Boxes,
     description: "Storage and retrieval systems used in production work.",
-    tone: "bg-violet-500/10 text-violet-700 dark:text-violet-400",
+    tone: "bg-tone-frontend-bg text-tone-frontend-fg",
     skills: ["SQL Databases", "Redshift", "Elasticsearch", "Azure SQL", "Milvus"],
   },
   {
     title: "Platform Workflow",
     icon: Workflow,
     description: "Cross-cutting practices around scale and reliability.",
-    tone: "bg-orange-500/10 text-orange-700 dark:text-orange-400",
+    tone: "bg-tone-data-bg text-tone-data-fg",
     skills: ["Observability", "Data Quality", "Migration", "Orchestration", "Caching", "Signed URLs", "Platform Reliability"],
   },
 ];
@@ -122,10 +123,17 @@ const SkillBadge = ({ skill }: { skill: string }) => {
   const meta = getSkillMeta(skill);
 
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground shadow-sm">
-      {/* Keep the monogram small: 3-4 letter marks (SQL, AUTH) must fit the 20px circle */}
-      <span className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-muted text-[9px] font-bold uppercase tracking-[0.08em] text-muted-foreground">
-        {meta.logo ? <img src={meta.logo} alt="" className="h-3.5 w-3.5 object-contain" loading="lazy" /> : meta.mark}
+    <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1.5 text-xs font-medium text-foreground">
+      {/* Monogram is decorative — the skill name is adjacent text. Colored
+          brand SVGs (devicon) and text marks get a roomier chip. */}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "flex h-6 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background",
+          meta.logo ? "w-6" : "min-w-6 px-1 text-[10px] font-bold uppercase tracking-[0.04em] text-muted-foreground",
+        )}
+      >
+        {meta.logo ? <img src={meta.logo} alt="" className="h-4 w-4 object-contain" loading="lazy" /> : meta.mark}
       </span>
       <span>{skill}</span>
     </span>
@@ -134,45 +142,35 @@ const SkillBadge = ({ skill }: { skill: string }) => {
 
 const Skills = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
+    <Layout>
+      <PageMeta title="Tech Stack & Focus Areas" path="/skills" />
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader backLink title="Tech Stack & Focus Areas" />
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="grid gap-4 md:grid-cols-2"
           >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Tech Stack & Focus Areas</h1>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {skillCategories.map((category, index) => (
-              <motion.div
+            {skillCategories.map((category) => (
+              <motion.section
                 key={category.title}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="rounded-[1.5rem] border border-border bg-card p-5 sm:p-6 shadow-card"
+                variants={staggerItem}
+                className="rounded-xl bg-card p-5 shadow-soft sm:p-6"
+                aria-labelledby={`skills-${category.title.replace(/[^a-z]/gi, "-").toLowerCase()}`}
               >
-                <div className="flex items-start gap-4 mb-5">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${category.tone}`}>
-                    <category.icon className="w-6 h-6" />
+                <div className="mb-5 flex items-start gap-4">
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${category.tone}`}>
+                    <category.icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold">{category.title}</h2>
-                    <p className="text-sm text-muted-foreground mt-1 max-w-prose">{category.description}</p>
+                    <h2 id={`skills-${category.title.replace(/[^a-z]/gi, "-").toLowerCase()}`} className="font-semibold">
+                      {category.title}
+                    </h2>
+                    <p className="mt-0.5 text-sm text-muted-foreground">{category.description}</p>
                   </div>
                 </div>
 
@@ -181,13 +179,12 @@ const Skills = () => {
                     <SkillBadge key={skill} skill={skill} />
                   ))}
                 </div>
-              </motion.div>
+              </motion.section>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

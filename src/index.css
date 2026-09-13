@@ -2,127 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Design tokens — light theme only.
+ * The canonical reference for every value here is docs/DESIGN.md.
+ * If you change a token, update DESIGN.md in the same commit.
+ */
 @layer base {
   :root {
+    /* Surface — warm paper, white cards (60-30-10: background/secondary/primary) */
     --background: 36 37% 96%;
+    --background-end: 38 30% 93%;
     --foreground: 214 30% 16%;
-
     --card: 0 0% 100%;
     --card-foreground: 214 30% 16%;
-
     --popover: 40 28% 92%;
     --popover-foreground: 214 30% 16%;
 
-    --primary: 18 72% 46%;
+    /* Brand — terracotta accent, used sparingly (the "10").
+       Lightness 30% keeps small primary text ≥4.5:1 on card/white (WCAG AA). */
+    --primary: 18 72% 30%;
     --primary-foreground: 40 60% 97%;
-
     --secondary: 202 23% 24%;
     --secondary-foreground: 40 33% 97%;
 
     --muted: 38 24% 89%;
-    --muted-foreground: 212 18% 36%;
-
+    --muted-foreground: 212 18% 34%;
     --accent: 188 28% 86%;
     --accent-foreground: 198 30% 22%;
-
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
     --border: 32 24% 82%;
     --input: 32 24% 82%;
-    --ring: 18 72% 46%;
+    --ring: 18 72% 30%;
 
     --radius: 0.75rem;
 
-    --gradient-hero: linear-gradient(135deg, hsl(18 72% 46%), hsl(194 67% 36%));
-    --background-end: hsl(38 30% 93%);
-    --shadow-soft: 0 6px 24px -10px hsl(212 30% 16% / 0.10);
-    --shadow-card: 0 16px 40px -18px hsl(212 30% 16% / 0.18);
-    --shadow-glow: 0 0 42px hsl(18 72% 46% / 0.18);
+    /* Single brand gradient (hero accent word only) */
+    --gradient-hero: linear-gradient(135deg, hsl(18 72% 30%), hsl(194 60% 30%));
 
-    --sidebar-background: 36 37% 96%;
-    --sidebar-foreground: 214 30% 16%;
-    --sidebar-primary: 18 72% 46%;
-    --sidebar-primary-foreground: 40 60% 97%;
-    --sidebar-accent: 202 23% 24%;
-    --sidebar-accent-foreground: 40 33% 97%;
-    --sidebar-border: 32 24% 82%;
-    --sidebar-ring: 18 72% 46%;
-    --chart-1: 18 72% 46%;
-    --chart-2: 194 67% 36%;
-    --chart-3: 43 62% 58%;
-    --chart-4: 212 18% 36%;
-    --chart-5: 188 28% 46%;
-    --sidebar: 0 0% 100%;
+    /* Shadows — always offset + soft blur; no zero-offset halos */
+    --shadow-soft: 0 1px 2px hsl(212 30% 16% / 0.06), 0 8px 24px -12px hsl(212 30% 16% / 0.12);
+    --shadow-card: 0 2px 4px hsl(212 30% 16% / 0.05), 0 16px 40px -20px hsl(212 30% 16% / 0.18);
+    --shadow-lift: 0 2px 4px hsl(212 30% 16% / 0.06), 0 20px 48px -20px hsl(212 30% 16% / 0.24);
+    --shadow-glow: 0 8px 20px -8px hsl(18 72% 30% / 0.45);
+
+    /* Semantic skill-category tones — tinted fg from the same hue, never gray */
+    --tone-data-bg: 204 45% 93%;
+    --tone-data-fg: 204 40% 30%;
+    --tone-ai-bg: 262 40% 94%;
+    --tone-ai-fg: 262 35% 34%;
+    --tone-backend-bg: 160 35% 92%;
+    --tone-backend-fg: 162 38% 26%;
+    --tone-frontend-bg: 42 60% 91%;
+    --tone-frontend-fg: 32 55% 30%;
+    --tone-cloud-bg: 190 40% 92%;
+    --tone-cloud-fg: 192 40% 28%;
+    --tone-craft-bg: 350 40% 93%;
+    --tone-craft-fg: 350 35% 32%;
+
     --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-serif: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    --font-display: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", serif;
     --font-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    --shadow-2xs: 0 1px 3px 0px hsl(212 30% 16% / 0.05);
-    --shadow-xs: 0 1px 3px 0px hsl(212 30% 16% / 0.05);
-    --shadow-sm: 0 2px 6px -2px hsl(212 30% 16% / 0.10), 0 1px 2px -1px hsl(212 30% 16% / 0.08);
-    --shadow: 0 2px 8px -3px hsl(212 30% 16% / 0.12), 0 1px 2px -1px hsl(212 30% 16% / 0.08);
-    --shadow-md: 0 8px 18px -8px hsl(212 30% 16% / 0.14), 0 2px 4px -2px hsl(212 30% 16% / 0.08);
-    --shadow-lg: 0 12px 28px -12px hsl(212 30% 16% / 0.16), 0 4px 8px -4px hsl(212 30% 16% / 0.08);
-    --shadow-xl: 0 18px 36px -14px hsl(212 30% 16% / 0.20);
-    --shadow-2xl: 0 24px 48px -18px hsl(212 30% 16% / 0.26);
     --tracking-normal: 0em;
     --spacing: 0.25rem;
-  }
-
-  .dark {
-    --background: 210 24% 11%;
-    --foreground: 40 33% 96%;
-
-    --card: 210 21% 15%;
-    --card-foreground: 40 33% 96%;
-
-    --popover: 210 19% 18%;
-    --popover-foreground: 40 33% 96%;
-
-    --primary: 22 82% 62%;
-    --primary-foreground: 214 30% 16%;
-
-    --secondary: 190 24% 72%;
-    --secondary-foreground: 214 30% 16%;
-
-    --muted: 212 14% 28%;
-    --muted-foreground: 38 22% 78%;
-
-    --accent: 194 28% 22%;
-    --accent-foreground: 40 33% 96%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 85% 97%;
-
-    --border: 212 14% 26%;
-    --input: 212 14% 26%;
-    --ring: 22 82% 62%;
-
-    --sidebar-background: 210 24% 11%;
-    --sidebar-foreground: 40 33% 96%;
-    --sidebar-primary: 22 82% 62%;
-    --sidebar-primary-foreground: 214 30% 16%;
-    --sidebar-accent: 190 24% 72%;
-    --sidebar-accent-foreground: 214 30% 16%;
-    --sidebar-border: 212 14% 26%;
-    --sidebar-ring: 22 82% 62%;
-    --chart-1: 22 82% 62%;
-    --chart-2: 194 67% 54%;
-    --chart-3: 45 74% 60%;
-    --chart-4: 38 22% 78%;
-    --chart-5: 188 34% 62%;
-    --sidebar: 210 21% 15%;
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.08);
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.08);
-    --shadow-sm: 0 2px 6px -2px hsl(0 0% 0% / 0.18), 0 1px 2px -1px hsl(0 0% 0% / 0.12);
-    --shadow: 0 2px 8px -3px hsl(0 0% 0% / 0.22), 0 1px 2px -1px hsl(0 0% 0% / 0.12);
-    --shadow-md: 0 8px 18px -8px hsl(0 0% 0% / 0.28), 0 2px 4px -2px hsl(0 0% 0% / 0.18);
-    --shadow-lg: 0 12px 28px -12px hsl(0 0% 0% / 0.32), 0 4px 8px -4px hsl(0 0% 0% / 0.18);
-    --shadow-xl: 0 18px 36px -14px hsl(0 0% 0% / 0.36);
-
-    --gradient-hero: linear-gradient(135deg, hsl(22 82% 62%), hsl(194 67% 54%));
-    --background-end: hsl(210 22% 7%);
-    --shadow-2xl: 0 24px 48px -18px hsl(0 0% 0% / 0.44);
   }
 }
 
@@ -138,23 +81,78 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     background-image:
-      radial-gradient(circle at top, hsl(var(--accent) / 0.45), transparent 34%),
-      linear-gradient(180deg, hsl(var(--background)), var(--background-end));
+      radial-gradient(circle at top, hsl(var(--accent) / 0.35), transparent 34%),
+      linear-gradient(180deg, hsl(var(--background)), hsl(var(--background-end)));
     min-height: 100vh;
     overflow-x: hidden;
   }
 
+  /* Editorial display voice: Lora carries h1–h3; UI-level h4–h6 stay Inter */
   h1,
   h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h3 {
     @apply font-display;
+    text-wrap: balance;
+  }
+
+  h1 {
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    letter-spacing: -0.01em;
+  }
+
+  /* Theme the browser surfaces most sites forget (the cheapest craft signal) */
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+    color: hsl(var(--foreground));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::placeholder {
+    color: hsl(var(--muted-foreground) / 0.7);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 999px;
+    border: 2px solid hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
 
 @layer utilities {
+  /* Display step of the type scale (see docs/DESIGN.md §3) */
+  .text-display {
+    font-size: clamp(2.75rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 600;
+  }
+
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: var(--gradient-hero);
@@ -162,6 +160,16 @@
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Comfortable body measure: 65–75ch */
+  .text-measure {
+    max-width: 68ch;
+  }
+
+  /* Tabular numerals for stats, dates, and other measured data */
+  .tnum {
+    font-variant-numeric: tabular-nums;
   }
 
   .rss-embed-shell {
