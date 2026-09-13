@@ -33,7 +33,7 @@ const experiences = [
     role: "Software Engineer (Data Eng & Cloud)",
     period: "Sept 2018 - Sept 2021",
     clients: [
-      { name: "Morgan Stanley", logo: "/company-logos/morganstanley.svg" },
+      { name: "Morgan Stanley", logo: "/company-logos/morganstanley.svg", wordmark: true },
       { name: "Nassau Re", logo: "/company-logos/nassau.png" },
     ],
     summary:
@@ -95,15 +95,31 @@ const Experience = () => {
                     {exp.clients ? (
                       <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-muted-foreground">
                         <span>Clients:</span>
-                        {exp.clients.map((client) => (
-                          <span
-                            key={client.name}
-                            className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1"
-                          >
-                            <img src={client.logo} alt="" className="h-4 w-4 object-contain" loading="lazy" />
-                            <span className="text-xs font-medium text-foreground">{client.name}</span>
-                          </span>
-                        ))}
+                        {exp.clients.map((client) =>
+                          client.wordmark ? (
+                            // Wordmark logos speak their own name — render at
+                            // readable width, no adjacent text
+                            <span
+                              key={client.name}
+                              className="inline-flex items-center rounded-full bg-muted px-3 py-1.5"
+                            >
+                              <img
+                                src={client.logo}
+                                alt={client.name}
+                                className="h-3.5 w-auto object-contain"
+                                loading="lazy"
+                              />
+                            </span>
+                          ) : (
+                            <span
+                              key={client.name}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1"
+                            >
+                              <img src={client.logo} alt="" className="h-4 w-4 object-contain" loading="lazy" />
+                              <span className="text-xs font-medium text-foreground">{client.name}</span>
+                            </span>
+                          ),
+                        )}
                       </p>
                     ) : null}
                     <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-muted-foreground md:text-base">
