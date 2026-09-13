@@ -9,12 +9,13 @@ const quote = {
 
 export const Footer = () => {
   const { pathname } = useLocation();
+  const showQuote = pathname === "/";
 
   return (
     <footer className="border-t border-border/70 px-4 py-10 sm:px-6">
       <div className="mx-auto w-full max-w-6xl">
         {pathname === "/" ? (
-          <blockquote className="mb-8 text-center">
+          <blockquote className="mb-8 border-b border-border/50 pb-8 text-center">
             <p className="font-display text-xl italic leading-relaxed text-foreground sm:text-2xl">
               &ldquo;{quote.text}&rdquo;
             </p>
@@ -22,7 +23,7 @@ export const Footer = () => {
           </blockquote>
         ) : null}
 
-        <div className="flex flex-col items-center justify-between gap-6 border-t border-border/50 pt-8 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="text-center md:text-left">
             <p className="font-semibold">Kuldeep Pal</p>
             <p className="text-sm text-muted-foreground">Senior Software Engineer · Backend · Data · AI</p>

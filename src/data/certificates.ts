@@ -281,10 +281,10 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
     year: "Earlier / Undated",
     items: [
       {
-        title: "Product Management Fundamentals",
-        issuer: "The Product Folks",
+        title: "Introduction to Linux (edX)",
+        issuer: "The Linux Foundation",
         issued: "Date not listed",
-        credentialId: "cc3ed161-3be7-40b7-8b2e-708876667636",
+        credentialId: "e14a964141504f15869757115a76947e",
       },
     ],
   },
