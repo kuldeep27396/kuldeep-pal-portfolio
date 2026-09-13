@@ -8,6 +8,7 @@ import { staggerContainer, staggerItem } from "@/lib/motion";
 const experiences = [
   {
     company: "Walmart Global Tech",
+    logo: "/company-logos/walmart.svg",
     location: "Bengaluru, India",
     role: "Senior Software Engineer — Backend, Data & AI",
     period: "June 2022 - Present",
@@ -17,6 +18,7 @@ const experiences = [
   },
   {
     company: "ZS Associates",
+    logo: "/company-logos/zs.svg",
     location: "Pune, India",
     role: "Software Engineer 2 — Data Eng & AI",
     period: "Sept 2021 - June 2022",
@@ -26,10 +28,14 @@ const experiences = [
   },
   {
     company: "Tata Consultancy Services",
+    logo: "/company-logos/tcs.svg",
     location: "Pune, India",
     role: "Software Engineer (Data Eng & Cloud)",
     period: "Sept 2018 - Sept 2021",
-    clients: "Clients: Morgan Stanley, Nassau Re",
+    clients: [
+      { name: "Morgan Stanley", logo: "/company-logos/morganstanley.svg" },
+      { name: "Nassau Re", logo: "/company-logos/nassau.png" },
+    ],
     summary:
       "Delivered ETL, cloud migration, warehousing, and backend-integrated systems for enterprise clients on AWS — using AWS Glue, PySpark, SQL, and production data-quality patterns.",
     tech: ["AWS Glue", "PySpark", "SQL", "Redshift", "Data Lake", "ETL"],
@@ -69,8 +75,16 @@ const Experience = () => {
                     aria-hidden="true"
                   />
                   <Card className="p-5 sm:p-7">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                      <h2 className="text-xl sm:text-2xl font-semibold">{exp.company}</h2>
+                    <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-1">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          className="h-6 w-auto max-w-[110px] object-contain"
+                          loading="lazy"
+                        />
+                        <h2 className="text-xl sm:text-2xl font-semibold">{exp.company}</h2>
+                      </div>
                       <p className="tnum text-sm text-muted-foreground">{exp.period}</p>
                     </div>
                     <p className="mt-1 font-medium">{exp.role}</p>
@@ -78,7 +92,20 @@ const Experience = () => {
                       <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                       {exp.location}
                     </p>
-                    {exp.clients ? <p className="mt-2 text-sm text-muted-foreground">{exp.clients}</p> : null}
+                    {exp.clients ? (
+                      <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-muted-foreground">
+                        <span>Clients:</span>
+                        {exp.clients.map((client) => (
+                          <span
+                            key={client.name}
+                            className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1"
+                          >
+                            <img src={client.logo} alt="" className="h-4 w-4 object-contain" loading="lazy" />
+                            <span className="text-xs font-medium text-foreground">{client.name}</span>
+                          </span>
+                        ))}
+                      </p>
+                    ) : null}
                     <p className="mt-4 max-w-[68ch] text-sm leading-relaxed text-muted-foreground md:text-base">
                       {exp.summary}
                     </p>
