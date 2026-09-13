@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
 import { Award, Calendar, ExternalLink, FileCheck } from "lucide-react";
 
 type Certification = {
@@ -270,6 +271,10 @@ const totalCertifications = certificationGroups.reduce((total, group) => total +
 const Certificates = () => {
   return (
     <Layout>
+      <PageMeta
+        title="Licenses & Certifications"
+        path="/certificates"
+      />
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader

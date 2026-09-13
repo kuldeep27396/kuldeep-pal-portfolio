@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
 import { Github, ExternalLink, FolderGit2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -80,6 +81,10 @@ const projects: Project[] = [
 const Projects = () => {
   return (
     <Layout>
+      <PageMeta
+        title="GitHub & Personal Projects"
+        path="/projects"
+      />
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader

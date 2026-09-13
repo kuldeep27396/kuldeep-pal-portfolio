@@ -1,4 +1,5 @@
 import { Download, ExternalLink, FileText } from "lucide-react";
+import { PageMeta } from "@/components/PageMeta";
 
 const resumeUrl =
   "https://2aadxqrvwumqaun6.public.blob.vercel-storage.com/SENIOR_DATA_ENGINEER_Kuldeep_Pal_7_Years.pdf";
@@ -6,6 +7,12 @@ const resumeUrl =
 const Resume = () => {
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,hsl(var(--accent)/0.14),transparent_42%),linear-gradient(180deg,hsl(var(--background)),hsl(var(--muted)/0.32))] px-4 py-8 sm:px-6 lg:px-8">
+      <PageMeta
+        title="Resume"
+        description="Kuldeep Pal's resume — intentionally unlisted."
+        path="/resume"
+        noindex
+      />
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
         <section className="rounded-3xl border border-border/70 bg-background/92 p-6 shadow-soft backdrop-blur sm:p-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">

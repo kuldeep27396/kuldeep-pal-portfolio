@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
 import { ExternalLink, ChevronDown, ChevronUp, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -133,6 +134,10 @@ const RecommendationCard = ({
 const Recommendations = () => {
   return (
     <Layout>
+      <PageMeta
+        title="LinkedIn Recommendations"
+        path="/recommendations"
+      />
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader

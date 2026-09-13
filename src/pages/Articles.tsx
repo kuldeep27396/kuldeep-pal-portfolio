@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
 import { BookOpen, Newspaper, BellPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { sourceLinks, articles } from "@/data/articles.generated";
@@ -8,6 +9,7 @@ const Articles = () => {
 
   return (
     <Layout>
+      <PageMeta title="Blogs" path="/articles" />
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader backLink title="Blogs" />

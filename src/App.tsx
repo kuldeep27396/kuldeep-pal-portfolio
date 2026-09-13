@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { MotionConfig } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import Experience from "./pages/Experience";
 import Skills from "./pages/Skills";
@@ -16,7 +17,8 @@ import NotFound from "./pages/NotFound";
 import { ChatAgent } from "./components/ChatAgent";
 
 const App = () => (
-  <TooltipProvider>
+  <HelmetProvider>
+    <TooltipProvider>
       {/* Respect the user's OS-level reduced-motion preference for JS-driven animations */}
       <MotionConfig reducedMotion="user">
         <Toaster />
@@ -39,6 +41,7 @@ const App = () => (
         <Analytics />
       </MotionConfig>
     </TooltipProvider>
+  </HelmetProvider>
 );
 
 export default App;

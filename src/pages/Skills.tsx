@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
 import { Code2, Database, Brain, Server, Cloud, Workflow, Boxes } from "lucide-react";
 
 type SkillMeta = {
@@ -133,6 +134,10 @@ const SkillBadge = ({ skill }: { skill: string }) => {
 const Skills = () => {
   return (
     <Layout>
+      <PageMeta
+        title="Tech Stack & Focus Areas"
+        path="/skills"
+      />
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader backLink title="Tech Stack & Focus Areas" />

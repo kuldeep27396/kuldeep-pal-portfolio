@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Layout, PageHeader } from "@/components/layout/Layout";
+import { PageMeta } from "@/components/PageMeta";
 import { Building2, MapPin, Calendar, GraduationCap, FileCheck } from "lucide-react";
 
 const experiences = [
@@ -36,6 +37,10 @@ const experiences = [
 const Experience = () => {
   return (
     <Layout>
+      <PageMeta
+        title="Work Experience"
+        path="/experience"
+      />
       <div className="px-4 sm:px-6">
         <div className="mx-auto w-full max-w-6xl">
           <PageHeader
