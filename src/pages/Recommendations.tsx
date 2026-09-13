@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, ChevronDown, ChevronUp, Quote } from "lucide-react";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { ExternalLink, ChevronDown, ChevronUp, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -134,35 +132,14 @@ const RecommendationCard = ({
 
 const Recommendations = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
-          >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">LinkedIn Recommendations</h1>
-            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
-              Public recommendations received on LinkedIn from teammates, managers, teachers, and collaborators.
-            </p>
-          </motion.div>
+    <Layout>
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader
+            backLink
+            title="LinkedIn Recommendations"
+            lede="Public recommendations received on LinkedIn from teammates, managers, teachers, and collaborators."
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -189,9 +166,8 @@ const Recommendations = () => {
             ))}
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

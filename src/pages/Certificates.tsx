@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Award, Calendar, ExternalLink, FileCheck } from "lucide-react";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { Award, Calendar, ExternalLink, FileCheck } from "lucide-react";
 
 type Certification = {
   title: string;
@@ -271,35 +269,14 @@ const totalCertifications = certificationGroups.reduce((total, group) => total +
 
 const Certificates = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
-          >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-10"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Licenses & Certifications</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
-              Public credentials from LinkedIn and internal Engineering Excellence awards from Walmart, reflecting impact across data engineering, AI, and backend systems.
-            </p>
-          </motion.div>
+    <Layout>
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader
+            backLink
+            title="Licenses & Certifications"
+            lede="Public credentials from LinkedIn and internal Engineering Excellence awards from Walmart, reflecting impact across data engineering, AI, and backend systems."
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -399,9 +376,8 @@ const Certificates = () => {
             ))}
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

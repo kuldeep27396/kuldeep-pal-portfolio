@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Github, ExternalLink, FolderGit2, Star, Users } from "lucide-react";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { Github, ExternalLink, FolderGit2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const githubStats = [
@@ -81,32 +79,14 @@ const projects: Project[] = [
 
 const Projects = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">GitHub & Personal Projects</h1>
-            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
-              A selection of personal projects from my public GitHub profile, spanning AI tooling, browser products,
-              orchestration, and real-time data engineering.
-            </p>
-          </motion.div>
+    <Layout>
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader
+            backLink
+            title="GitHub & Personal Projects"
+            lede="A selection of personal projects from my public GitHub profile, spanning AI tooling, browser products, orchestration, and real-time data engineering."
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,9 +191,8 @@ const Projects = () => {
             ))}
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

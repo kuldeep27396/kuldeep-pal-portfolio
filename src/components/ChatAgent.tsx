@@ -59,7 +59,7 @@ export const ChatAgent = () => {
     try {
       const response = await getChatResponse([...messages, userMessage]);
       setMessages((prev) => [...prev, { role: "assistant", content: response }]);
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: "**System Alert:** All models are currently busy. Please try again in a few moments." }

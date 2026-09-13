@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Building2, MapPin, Calendar, GraduationCap, FileCheck } from "lucide-react";
+import { Layout, PageHeader } from "@/components/layout/Layout";
+import { Building2, MapPin, Calendar, GraduationCap, FileCheck } from "lucide-react";
 
 const experiences = [
   {
@@ -37,32 +35,14 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main className="pt-24 pb-16 px-4 sm:px-6">
-        <div className="container max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="mb-8">
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold mb-4">Work Experience</h1>
-            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl">
-              Experience across product companies and consulting environments, with consistent focus on data engineering
-              and increasing ownership in AI systems, backend services, and production platform design.
-            </p>
-          </motion.div>
+    <Layout>
+      <div className="px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-6xl">
+          <PageHeader
+            backLink
+            title="Work Experience"
+            lede="Experience across product companies and consulting environments, with consistent focus on data engineering and increasing ownership in AI systems, backend services, and production platform design."
+          />
 
           <div className="space-y-6">
             {experiences.map((exp, expIndex) => (
@@ -139,9 +119,8 @@ const Experience = () => {
             </div>
           </motion.div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 
