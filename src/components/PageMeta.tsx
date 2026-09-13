@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_NAME = "Kuldeep Pal";
-const SITE_URL = "https://kuldeeppal.vercel.app";
+const SITE_URL = "https://kuldeep-pal.in";
 const DEFAULT_DESCRIPTION =
   "Senior Software Engineer building production software across backend systems, data platforms, and AI.";
 const DEFAULT_OG_IMAGE = "/og.png";
