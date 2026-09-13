@@ -95,7 +95,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         skills: ["Seniority", "Ownership", "Technical Leadership"],
       },
       {
-        title: "Bravo Award - Excellence in Execution",
+        title: "Bravo Award — Excellence in Execution",
         issuer: "Walmart Global Tech",
         issued: "Jan 2025",
         skills: ["Execution", "Reliability"],
@@ -143,9 +143,10 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
     year: "2023",
     items: [
       {
-        title: "Hackathon",
+        title: "Hackathon — Bronze Medal (3rd Place)",
         issuer: "Walmart Global Tech",
         issued: "Aug 2023",
+        skills: ["AI Agent"],
       },
       {
         title: "Academy Accreditation - Generative AI Fundamentals",
