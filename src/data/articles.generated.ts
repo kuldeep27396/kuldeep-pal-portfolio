@@ -31,7 +31,7 @@ export const highlightTags = [
   "MCP"
 ] as const;
 
-export const lastUpdated = "2026-09-13T17:53:46.371Z";
+export const lastUpdated = "2026-09-13T17:57:24.201Z";
 
 export const articles: ArticleItem[] = [
   {

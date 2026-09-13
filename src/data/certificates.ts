@@ -51,10 +51,10 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
       },
       {
         title: "Hackathon — Bronze Medal (3rd Place)",
-        issuer: "Walmart Global Tech",
+        issuer: "HackerRank",
         issued: "2026",
         skills: ["AI Agent"],
-        note: "Placed 3rd building an AI agent — hosted on HackerRank",
+        note: "Placed 3rd building an AI agent",
         credentialUrl: "https://www.hackerrank.com/profile/kuldeep27396",
         type: "award",
       },
