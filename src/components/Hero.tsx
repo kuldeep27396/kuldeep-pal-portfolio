@@ -6,7 +6,7 @@ import { enterOnMount, EASE_OUT } from "@/lib/motion";
 
 const highlights = [
   {
-    title: "Backend delivery",
+    title: "Backend systems",
     detail:
       "distributed systems & system design with cost efficiency — FastAPI & Spring Boot services, secure integrations, operational reliability",
   },
