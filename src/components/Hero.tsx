@@ -7,11 +7,13 @@ import { enterOnMount, EASE_OUT } from "@/lib/motion";
 const highlights = [
   {
     title: "Backend delivery",
-    detail: "FastAPI & Spring Boot services, system design, secure integrations, operational reliability",
+    detail:
+      "distributed systems & system design with cost efficiency — FastAPI & Spring Boot services, secure integrations, operational reliability",
   },
   {
     title: "Data engineering",
-    detail: "lakehouse, warehousing, and large-scale batch + streaming pipelines",
+    detail:
+      "large-scale streaming + batch pipelines, lakehouse & warehousing, and OLTP/OLAP database design & data modeling",
   },
   {
     title: "AI systems",
