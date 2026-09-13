@@ -102,7 +102,7 @@ const ProjectLinks = ({ project }: { project: Project }) => (
         href={project.github}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+        className="inline-flex items-center gap-1.5 py-1.5 text-sm font-medium text-primary hover:underline"
       >
         <Github className="h-4 w-4" aria-hidden="true" />
         Source Code
@@ -113,7 +113,7 @@ const ProjectLinks = ({ project }: { project: Project }) => (
         href={project.liveApp}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+        className="inline-flex items-center gap-1.5 py-1.5 text-sm font-medium text-primary hover:underline"
       >
         <ExternalLink className="h-4 w-4" aria-hidden="true" />
         Live App
@@ -124,7 +124,7 @@ const ProjectLinks = ({ project }: { project: Project }) => (
         href={project.aboutUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:underline"
+        className="inline-flex items-center gap-1.5 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:underline"
       >
         <ExternalLink className="h-4 w-4" aria-hidden="true" />
         About &amp; Architecture
