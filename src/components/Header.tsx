@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Skills", href: "/skills" },
   { label: "Projects", href: "/projects" },
   { label: "Blogs", href: "/articles" },
-  { label: "Certificates", href: "/certificates" },
+  { label: "Awards", href: "/certificates" },
   { label: "Recommendations", href: "/recommendations" },
 ];
 

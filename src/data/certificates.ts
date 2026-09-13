@@ -1,5 +1,7 @@
 // Certification data — extracted from the page component for maintainability.
 
+export type CredentialType = "award" | "certification";
+
 export type Certification = {
   title: string;
   issuer: string;
@@ -12,6 +14,8 @@ export type Certification = {
   logo?: string;
   /** One-line context (used mainly for internal awards) */
   note?: string;
+  /** Awards/career milestones render with a chip and sort to their date like everything else */
+  type?: CredentialType;
 };
 
 /** issuer -> logo map, applied where a credential has no explicit logo */
@@ -29,7 +33,9 @@ const issuerLogos: Record<string, string> = {
   "UC San Diego": "/company-logos/ucsandiego.svg",
 };
 
-export const certificationGroups: Array<{ year: string; items: Certification[] }> = [
+// Flat credential list — the ledger's source of truth. Add new entries to
+// the group that matches their year; they flow into the sorted list below.
+const certificationGroups: Array<{ year: string; items: Certification[] }> = [
   {
     year: "2026",
     items: [
@@ -39,6 +45,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issued: "Mar 2026",
         skills: ["Innovation", "Architecture", "AI Agents"],
         note: "Internal award for AI-agent platform innovation",
+        type: "award",
       },
     ],
   },
@@ -97,6 +104,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issued: "Apr 2025",
         skills: ["Seniority", "Ownership", "Technical Leadership"],
         note: "Career promotion for ownership and technical leadership",
+        type: "award",
       },
       {
         title: "Bravo Award — Excellence in Execution",
@@ -104,6 +112,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issued: "Jan 2025",
         skills: ["Execution", "Reliability"],
         note: "Internal award for excellence in execution",
+        type: "award",
       },
     ],
   },
@@ -142,6 +151,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issued: "Dec 2024",
         skills: ["Business Impact", "Scale"],
         note: "Internal award for business impact at scale",
+        type: "award",
       },
     ],
   },
@@ -155,6 +165,7 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         skills: ["AI Agent"],
         note: "Placed 3rd building an AI agent — hosted on HackerRank",
         credentialUrl: "https://www.hackerrank.com/profile/kuldeep27396",
+        type: "award",
       },
       {
         title: "Academy Accreditation - Generative AI Fundamentals",
@@ -289,11 +300,27 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
   },
 ];
 
-export const totalCertifications = certificationGroups.reduce(
-  (total, group) => total + group.items.length,
-  0,
-);
-
 /** Resolve a credential's logo: explicit field first, then issuer match. */
 export const issuerLogo = (cert: Certification): string | undefined =>
   cert.logo ?? issuerLogos[cert.issuer];
+
+const MONTHS: Record<string, number> = {
+  Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6,
+  Jul: 7, Aug: 8, Sep: 9, Sept: 9, Oct: 10, Nov: 11, Dec: 12,
+};
+
+/** "Mar 2026" -> 202603; undated items sort last. */
+const dateRank = (issued: string): number => {
+  const [mon, year] = issued.split(" ");
+  const m = MONTHS[mon];
+  const y = Number(year);
+  return m && y ? y * 100 + m : 0;
+};
+
+/** Every credential, newest first — the ledger order. */
+export const allCredentials: Certification[] = certificationGroups
+  .flatMap((group) => group.items)
+  .sort((a, b) => dateRank(b.issued) - dateRank(a.issued));
+
+export const totalCredentials = allCredentials.length;
+export const totalAwards = allCredentials.filter((c) => c.type === "award").length;
