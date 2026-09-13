@@ -2,7 +2,7 @@ import { Download, ExternalLink } from "lucide-react";
 import { PageMeta } from "@/components/PageMeta";
 
 const resumeUrl =
-  "https://2aadxqrvwumqaun6.public.blob.vercel-storage.com/SENIOR_DATA_ENGINEER_Kuldeep_Pal_7_Years.pdf";
+  "https://2aadxqrvwumqaun6.public.blob.vercel-storage.com/Kuldeep_Pal_8_Years__Resume_May_2026.pdf";
 
 const Resume = () => {
   return (
