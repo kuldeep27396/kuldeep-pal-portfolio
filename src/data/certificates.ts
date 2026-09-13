@@ -153,7 +153,8 @@ export const certificationGroups: Array<{ year: string; items: Certification[] }
         issuer: "Walmart Global Tech",
         issued: "Aug 2023",
         skills: ["AI Agent"],
-        note: "Placed 3rd building an AI agent",
+        note: "Placed 3rd building an AI agent — hosted on HackerRank",
+        credentialUrl: "https://www.hackerrank.com/profile/kuldeep27396",
       },
       {
         title: "Academy Accreditation - Generative AI Fundamentals",
