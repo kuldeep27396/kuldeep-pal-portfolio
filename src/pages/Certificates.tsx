@@ -149,7 +149,7 @@ const Credentials = () => {
           >
             <div className="mb-4 flex items-baseline gap-3">
               <h2 className="text-lg font-semibold">Awards &amp; Achievements</h2>
-              <span className="tnum text-xs text-muted-foreground">{awards.length} from Walmart Global Tech</span>
+              <span className="tnum text-xs text-muted-foreground">{awards.length} across Walmart Global Tech &amp; HackerRank</span>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               {awards.map((award) => (
