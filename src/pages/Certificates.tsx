@@ -42,7 +42,7 @@ const AwardCard = ({ award }: { award: Certification }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Verify ${award.title}`}
-            className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+            className="inline-flex items-center gap-1 py-1.5 text-xs font-medium text-primary hover:underline"
           >
             Verify
             <ExternalLink className="h-3 w-3" aria-hidden="true" />
@@ -94,7 +94,7 @@ const LedgerRow = ({ cert }: { cert: Certification }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Verify ${cert.title}`}
-            className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:underline"
+            className="inline-flex items-center gap-1 py-1.5 text-xs font-medium text-primary hover:underline"
           >
             Verify
             <ExternalLink className="h-3 w-3" aria-hidden="true" />
