@@ -8,7 +8,7 @@ import { fadeInUp, staggerContainer, staggerItem } from "@/lib/motion";
 /** Per-award icon + tone so the cards don't read as five clones. */
 const awardVisuals: Record<string, { icon: LucideIcon; tone: string }> = {
   "Engineering Innovation Award": { icon: Lightbulb, tone: "bg-tone-ai-bg text-tone-ai-fg" },
-  "Hackathon — Bronze Medal (3rd Place)": { icon: Medal, tone: "bg-tone-frontend-bg text-tone-frontend-fg" },
+  "Hackathon — 2× Bronze Medalist (Top 13%)": { icon: Medal, tone: "bg-tone-frontend-bg text-tone-frontend-fg" },
   "L3 to L4 Career Promotion": { icon: TrendingUp, tone: "bg-tone-backend-bg text-tone-backend-fg" },
   "Bravo Award — Excellence in Execution": { icon: Zap, tone: "bg-tone-data-bg text-tone-data-fg" },
   "Walmart Impact Award": { icon: Target, tone: "bg-tone-craft-bg text-tone-craft-fg" },

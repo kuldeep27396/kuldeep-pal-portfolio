@@ -50,11 +50,11 @@ const certificationGroups: Array<{ year: string; items: Certification[] }> = [
         type: "award",
       },
       {
-        title: "Hackathon — Bronze Medal (3rd Place)",
+        title: "Hackathon — 2× Bronze Medalist (Top 13%)",
         issuer: "HackerRank",
         issued: "2026",
         skills: ["AI Agent"],
-        note: "Placed 3rd building an AI agent",
+        note: "Top 13% & top 14% of ~3,000 participants across two Orchestrate editions — building AI agents",
         credentialUrl: "https://www.hackerrank.com/profile/kuldeep27396",
         type: "award",
       },
